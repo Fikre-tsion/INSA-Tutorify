@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin Example",
+      "email": "admin@tutorify.test",
+      "role": "admin",
+      "salt": "base64-salt-placeholder",
+      "hash": "base64-hash-placeholder"
+    }
+  ]
+}
