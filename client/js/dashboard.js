@@ -14,18 +14,11 @@ const setTheme = (theme) => {
     }
 }
 
-if (currentTheme) {
-    setTheme(currentTheme);
-} else {
-    setTheme('light');
-}
+setTheme(currentTheme || 'light');
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        let theme = 'light';
-        if (!document.body.classList.contains('dark-mode')) {
-            theme = 'dark';
-        }
+        const theme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
         setTheme(theme);
         localStorage.setItem('theme', theme);
     });
@@ -34,12 +27,22 @@ if (themeToggle) {
 // --- Live Dashboard Data ---
 async function fetchStats() {
     const token = localStorage.getItem('token');
-    if (!token) return;
+    if (!token) {
+        window.location.href = 'login.html';
+        return;
+    }
 
     try {
-        const response = await fetch('/api/stats', {
+        const response = await fetch('/api/admin/stats', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            alert('Access denied. Admin only.');
+            window.location.href = 'login.html';
+            return;
+        }
+
         if (response.ok) {
             const data = await response.json();
             updateDashboard(data);

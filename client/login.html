@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login & Register - Tutorify</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body { background: #0b132b; color: #fff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .container { background: #1c2541; padding: 2rem; border-radius: 15px; width: 350px; box-shadow: 0 0 10px #3a506b; }
+    h2 { text-align: center; margin-bottom: 1rem; color: #5bc0be; }
+    .input-box { margin-bottom: 1rem; }
+    .input-box input, .input-box select { width: 100%; padding: 10px; border: none; border-radius: 8px; outline: none; background: #3a506b; color: #fff; }
+    button { width: 100%; padding: 10px; background: #5bc0be; border: none; border-radius: 8px; color: #0b132b; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    button:hover { background: #6fffe9; }
+    .toggle { text-align: center; margin-top: 1rem; color: #aaa; cursor: pointer; }
+    .hidden { display: none; }
+    #message { text-align: center; margin-top: 1rem; min-height: 1.2em; font-size: 0.9em; }
+    .error { color: #f75842; }
+    .success { color: #00bf8e; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2 id="formTitle">Login</h2>
+
+    <div id="loginForm">
+      <div class="input-box"><input type="email" id="loginEmail" placeholder="Email" required></div>
+      <div class="input-box"><input type="password" id="loginPassword" placeholder="Password" required></div>
+      <div class="input-box">
+        <select id="loginRole">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button id="loginBtn">Login</button>
+      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+    </div>
+
+    <div id="registerForm" class="hidden">
+      <div class="input-box"><input type="text" id="regName" placeholder="Full Name" required></div>
+      <div class="input-box"><input type="email" id="regEmail" placeholder="Email" required></div>
+      <div class="input-box"><input type="password" id="regPassword" placeholder="Password" required></div>
+      <div class="input-box">
+        <select id="regRole">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button id="regBtn">Register</button>
+      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const formTitle = document.getElementById('formTitle');
+    const msgEl = document.getElementById('message');
+
+    function showMsg(text, isError = true) {
+        msgEl.textContent = text;
+        msgEl.className = isError ? 'error' : 'success';
+    }
+
+    function toggleForm() {
+      loginForm.classList.toggle('hidden');
+      registerForm.classList.toggle('hidden');
+      formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
+      msgEl.textContent = '';
+    }
+
+    async function handleAuth(url, body, successMsg) {
+        msgEl.textContent = 'Processing...';
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+            const data = await response.json();
+            if (response.ok) {
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('user', JSON.stringify(data.user));
+                    showMsg(successMsg, false);
+                    setTimeout(() => {
+                        window.location.href = data.user.role === 'admin' ? 'dashboard.html' : 'index.html';
+                    }, 1000);
+                } else {
+                    showMsg(successMsg, false);
+                    setTimeout(toggleForm, 1500);
+                }
+            } else {
+                showMsg(data.message || 'Action failed');
+            }
+        } catch (error) {
+            showMsg('Network error occurred');
+        }
+    }
+
+    document.getElementById('loginBtn').onclick = () => {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const role = document.getElementById('loginRole').value;
+        handleAuth('/api/auth/login', { email, password, role }, 'Login successful!');
+    };
+
+    document.getElementById('regBtn').onclick = () => {
+        const name = document.getElementById('regName').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+        const role = document.getElementById('regRole').value;
+        handleAuth('/api/auth/register', { name, email, password, role }, 'Registration successful! Please login.');
+    };
+  </script>
+</body>
+</html>

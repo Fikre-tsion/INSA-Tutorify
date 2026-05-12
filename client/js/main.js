@@ -1,3 +1,39 @@
+// --- Reusable API Service ---
+const api = {
+    async fetch(url, options = {}) {
+        const token = localStorage.getItem('token');
+        const headers = {
+            'Content-Type': 'application/json',
+            ...options.headers,
+        };
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        try {
+            const response = await fetch(url, { ...options, headers });
+            const data = await response.json();
+
+            if (response.status === 401 || response.status === 403) {
+                // Token expired or invalid
+                if (token) {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = 'login.html';
+                }
+            }
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Something went wrong');
+            }
+            return data;
+        } catch (error) {
+            console.error('API Error:', error);
+            throw error;
+        }
+    }
+};
+
 // Changing navbar style when scrolling
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
@@ -9,15 +45,9 @@ const faqs = document.querySelectorAll('.faq');
 faqs.forEach(faq => {
     faq.addEventListener('click', () => {
         faq.classList.toggle('open');
-
-        // Changing icon on FAQ click
         const icon = faq.querySelector('.faq__icon i');
         if (icon) {
-            if (icon.className === 'uil uil-plus') {
-                icon.className = 'uil uil-minus';
-            } else {
-                icon.className = 'uil uil-plus';
-            }
+            icon.className = faq.classList.contains('open') ? 'uil uil-minus' : 'uil uil-plus';
         }
     })
 });
@@ -61,19 +91,11 @@ const setTheme = (theme) => {
     }
 }
 
-if (currentTheme) {
-    setTheme(currentTheme);
-} else {
-    // Default to dark mode if not set
-    setTheme('dark');
-}
+setTheme(currentTheme || 'dark');
 
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-        let theme = 'dark';
-        if (!document.body.classList.contains('light-mode')) {
-            theme = 'light';
-        }
+        const theme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
         setTheme(theme);
         localStorage.setItem('theme', theme);
     });
@@ -94,3 +116,4 @@ function logout() {
     window.location.reload();
 }
 window.logout = logout;
+window.api = api;
