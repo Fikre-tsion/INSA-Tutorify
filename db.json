@@ -2,11 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Admin Example",
-      "email": "admin@tutorify.test",
-      "role": "admin",
-      "salt": "base64-salt-placeholder",
-      "hash": "base64-hash-placeholder"
+      "name": "Playwright User",
+      "email": "pw@example.com",
+      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
+      "role": "user"
     }
   ]
 }

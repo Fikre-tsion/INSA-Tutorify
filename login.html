@@ -121,7 +121,7 @@
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
-    function register() {
+    async function register() {
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
@@ -132,38 +132,52 @@
         return;
       }
 
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      const userExists = users.some(user => user.email === email);
-
-      if (userExists) {
-        alert('Email already registered!');
-        return;
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, role })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          alert('Registration successful! You can now log in.');
+          toggleForm();
+        } else {
+          alert(data.message || 'Registration failed');
+        }
+      } catch (error) {
+        console.error('Error during registration:', error);
+        alert('An error occurred during registration.');
       }
-
-      users.push({ name, email, password, role });
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('Registration successful! You can now log in.');
-      toggleForm();
     }
 
-    function login() {
+    async function login() {
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
 
-      const users = JSON.parse(localStorage.getItem('users')) || [];
-      const user = users.find(u => u.email === email && u.password === password && u.role === role);
-
-      if (!user) {
-        alert('Invalid credentials or role!');
-        return;
-      }
-
-      alert(`Welcome ${user.name}!`);
-      if (role === 'admin') {
-        window.location.href = 'dashboard.html';
-      } else {
-        window.location.href = 'index.html';
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password, role })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          alert(`Welcome ${data.user.name}!`);
+          if (role === 'admin') {
+            window.location.href = 'dashboard.html';
+          } else {
+            window.location.href = 'index.html';
+          }
+        } else {
+          alert(data.message || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Error during login:', error);
+        alert('An error occurred during login.');
       }
     }
   </script>
