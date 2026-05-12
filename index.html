@@ -54,8 +54,8 @@
                 <a href="courses.html" class="btn btn-primary">Get Started</a>
             </div>
             <div class="header__right">
-                <div class="header__right-image"></div>
-                    <img src="./images/header.svg" alt="Kids Learning and having fun with their friends">
+                <div class="header__right-image">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students learning together">
                 </div>
             </div>
 
@@ -63,6 +63,14 @@
 
     <!-- ==================== END OF HEADER ==================== -->
 
+<section class="my-courses hidden" id="my-courses-section">
+    <div class="container">
+        <h2>My Enrolled Courses</h2>
+        <div class="courses__container" id="my-courses-container">
+            <!-- Enrolled courses will be injected here -->
+        </div>
+    </div>
+</section>
 
 <section class="categories">
   <div class="container categories__container">
@@ -125,51 +133,8 @@
 
 <section class="courses">
   <h2>Our Popular Courses</h2>
-  <div class="container courses__container">
-
-    <!-- Course 1 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Social Media Website UI Design</h4>
-        <p>
-          Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 2 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
-      </div>
-      <div class="course__info">
-        <h4>Responsive SmartHome Website Design</h4>
-        <p>
-          Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 3 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
+  <div class="container courses__container" id="popular-courses-container">
+    <!-- Courses will be loaded from API -->
   </div>
 </section>
 <!-- ==================== END OF COURSES ==================== -->
@@ -215,46 +180,6 @@
           </div>
           <p>
             Definitely! Our platform is available 24/7. Once enrolled, you can learn at any time that suits you — whether it’s early morning or late at night — from any device with an internet connection.
-          </p>
-        </article>
-
-        <article class="faq">
-          <div>
-            <div class="faq__icon"><i class="uil uil-plus"></i></div>
-            <h4>Do I need any special software or tools?</h4>
-          </div>
-          <p>
-            Most courses only require a web browser and internet access. If a specific course needs extra tools (like VS Code for web development), clear setup instructions will be provided in the first lesson.
-          </p>
-        </article>
-
-        <article class="faq">
-          <div>
-            <div class="faq__icon"><i class="uil uil-plus"></i></div>
-            <h4>How do I contact instructors if I have questions?</h4>
-          </div>
-          <p>
-            Each course includes a dedicated Q&A or discussion section where you can post questions. Our instructors and community members are active and happy to help you quickly.
-          </p>
-        </article>
-
-        <article class="faq">
-          <div>
-            <div class="faq__icon"><i class="uil uil-plus"></i></div>
-            <h4>Can I get a refund if I’m not satisfied?</h4>
-          </div>
-          <p>
-            Yes, we offer a 100% satisfaction guarantee. If a course doesn’t meet your expectations, you can request a refund within the trial period — no questions asked.
-          </p>
-        </article>
-
-        <article class="faq">
-          <div>
-            <div class="faq__icon"><i class="uil uil-plus"></i></div>
-            <h4>Are there any discounts or bundles available?</h4>
-          </div>
-          <p>
-            Definitely! We regularly offer bundle deals and seasonal discounts. Join our mailing list or follow us on social media to be the first to know about new offers and exclusive learning packages.
           </p>
         </article>
 
@@ -310,36 +235,6 @@
         <div class="testimonial__body">
           <p>
             "I took the data science courses, and it was a game-changer for my career."
-          </p>
-        </div>
-      </div>
-    </article>
-
-    <article class="testimonial swiper-slide">
-      <div class="avatar">
-        <img src="./images/avatar4.jpg" alt="Avatar 4">
-      </div>
-      <div class="testimonial__info">
-        <h5>Yeshi Fikre</h5>
-        <small>Designer</small>
-        <div class="testimonial__body">
-          <p>
-            "Arodion's graphic design courses helped me unleash my creativity!"
-          </p>
-        </div>
-      </div>
-    </article>
-
-    <article class="testimonial swiper-slide">
-      <div class="avatar">
-        <img src="./images/avatar5.jpg" alt="Avatar 5">
-      </div>
-      <div class="testimonial__info">
-        <h5>Atsede Teferi</h5>
-        <small>Entrepreneur</small>
-        <div class="testimonial__body">
-          <p>
-            "The business courses provided me with the knowledge and skills to start my own venture confidently."
           </p>
         </div>
       </div>
@@ -430,6 +325,88 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
+  // Page Specific Logic
+  async function loadCourses() {
+    try {
+        const response = await fetch('/api/courses');
+        const courses = await response.json();
+        const container = document.getElementById('popular-courses-container');
+        if (container) {
+            container.innerHTML = courses.map(course => `
+                <article class="course">
+                    <div class="course__image">
+                        <img src="${course.image}" alt="${course.title}">
+                    </div>
+                    <div class="course__info">
+                        <h4>${course.title}</h4>
+                        <p>${course.description}</p>
+                        <div style="display:flex; gap: 1rem;">
+                            <a href="course.html?id=${course.id}" class="btn btn-primary">Learn More</a>
+                            <button onclick="enroll(${course.id})" class="btn">Enroll</button>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
+        }
+    } catch (e) { console.error(e); }
+  }
+
+  async function loadMyCourses() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+        const response = await fetch('/api/my-courses', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+            const courses = await response.json();
+            if (courses.length > 0) {
+                const section = document.getElementById('my-courses-section');
+                const container = document.getElementById('my-courses-container');
+                section.classList.remove('hidden');
+                container.innerHTML = courses.map(course => `
+                    <article class="course">
+                        <div class="course__info">
+                            <h4>${course.title}</h4>
+                            <p>Status: Enrolled</p>
+                            <a href="course.html?id=${course.id}" class="btn btn-primary">Go to Course</a>
+                        </div>
+                    </article>
+                `).join('');
+            }
+        }
+    } catch (e) { console.error(e); }
+  }
+
+  async function enroll(courseId) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please login to enroll');
+        window.location.href = 'login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/enroll', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ courseId })
+        });
+        const data = await response.json();
+        alert(data.message);
+        if (response.ok) loadMyCourses();
+    } catch (e) { alert('Enrollment failed'); }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadCourses();
+    loadMyCourses();
+  });
+
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,

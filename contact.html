@@ -8,14 +8,10 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   
   <link rel="stylesheet" href="./CSS/style.css">
-  <link rel="stylesheet" href="./CSS/about.css">
- <link rel="stylesheet" href="./CSS/contact.css">
-
-
 
 </head>
 
@@ -42,12 +38,12 @@
       <div class="container contact__container">
           <aside class="contact__aside">  
               <div class="aside__image">
-                  <img src="./images/contact.svg" alt="Contact Image">
+                  <img src="https://via.placeholder.com/400x300?text=Contact+Us" alt="Contact Image">
               </div>
               <h2>Contact Us</h2>
               <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
               <ul class="contact__details">
-                  <li><i class="uil uil-phone-times"></i><h5>+251966418467 / +251928505904</h5></li>
+                  <li><i class="uil uil-phone"></i><h5>+251966418467 / +251928505904</h5></li>
                   <li><i class="uil uil-envelope"></i><h5>tutorifytutoring@gmail.com</h5></li>
                   <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
               </ul>
@@ -59,13 +55,13 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
-              <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+          <form id="contact-form" class="contact__form" style="display: flex; flex-direction: column; gap: 1rem;">
+              <div class="form__name" style="display: flex; gap: 1rem;">
+                  <input type="text" id="firstName" placeholder="First Name" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
+                  <input type="text" id="lastName"  placeholder="Last Name" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
+              <input type="email" id="email" placeholder="Your Email Address" required style="padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
+              <textarea id="message" rows="7" placeholder="Message" required style="padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);"></textarea>
               <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
       </div>
@@ -124,5 +120,25 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, message })
+            });
+            const data = await response.json();
+            alert(data.message);
+            if (response.ok) e.target.reset();
+        } catch (e) { alert('Failed to send message'); }
+    });
+  </script>
 </body>
 </html>

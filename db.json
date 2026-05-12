@@ -2,10 +2,50 @@
   "users": [
     {
       "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
-      "role": "user"
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$7LWfHxqRD2H5lndGh0DP3uejglLmrbyBrELTQsQMD5rBJf93ETH66",
+      "role": "admin",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 1778612605636,
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2a$10$iENpLn.IAeiJNJ8BvAgVyuBCEm1I96RWZ1HUEkxaPJAjxCbC5OzBW",
+      "role": "user",
+      "createdAt": "2026-05-12T19:03:25.636Z"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "https://via.placeholder.com/400x250?text=Social+Media+UI",
+      "price": "ETB 450/hr"
+    },
+    {
+      "id": 2,
+      "title": "Introduction to Blockchain",
+      "description": "Learn blockchain fundamentals, smart contracts, and decentralized apps.",
+      "image": "https://via.placeholder.com/400x250?text=Blockchain",
+      "price": "ETB 500/hr"
+    },
+    {
+      "id": 3,
+      "title": "Mastering React & Node.js",
+      "description": "Build fullstack applications from scratch with modern tools.",
+      "image": "https://via.placeholder.com/400x250?text=Fullstack",
+      "price": "ETB 600/hr"
+    }
+  ],
+  "enrollments": [
+    {
+      "userId": 1778612605636,
+      "courseId": 1,
+      "enrolledAt": "2026-05-12T19:03:27.247Z"
+    }
+  ],
+  "contacts": []
 }

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Admin Dashboard - Tutorify</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -17,9 +17,9 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-            <span class="title">Dashboard</span>
+            <span class="title">Home</span>
           </a>
         </li>
         <li>
@@ -31,25 +31,13 @@
         <li>
           <a href="#">
             <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-            <span class="title">Message</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
-            <span class="title">Help</span>
+            <span class="title">Messages</span>
           </a>
         </li>
         <li>
           <a href="#">
             <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
             <span class="title">Settings</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-            <span class="title">Password</span>
           </a>
         </li>
         <li>
@@ -73,10 +61,12 @@
           </label>
         </div>
         <div class="user">
-          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem; margin-right: 20px; display: flex; align-items: center;">
+          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem; display: flex; align-items: center;">
             <ion-icon name="sunny-outline"></ion-icon>
           </div>
-          <img src="./images2/image.png" alt="User Profile" width="120" height="120">
+          <div class="imgBx">
+            <img src="./images2/image.png" alt="Admin">
+          </div>
         </div>
       </div>
 
@@ -84,17 +74,26 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
+            <div class="numbers">0</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
           </div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers">0</div>
+            <div class="cardName">Courses</div>
+          </div>
+          <div class="iconBx">
+            <ion-icon name="book-outline"></ion-icon>
+          </div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">0</div>
+            <div class="cardName">Enrollments</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -102,85 +101,33 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="chatbubbles-outline"></ion-icon>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
-          </div>
-          <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="mail-outline"></ion-icon>
           </div>
         </div>
       </div>
 
-      <!-- datails lists -->
+      <!-- details lists -->
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
-              <h2>Recent Tutors</h2>
+              <h2>Recent Users</h2>
               <a href="#" class="btn">View All</a>
             </div>
             <table>
               <thead>
                 <tr>
-                  <td>Tutor</td>
-                  <td>Course</td>
-                  <td>Payment</td>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Role</td>
                   <td>Status</td>
                 </tr>
               </thead>
-
               <tbody>
-                <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
+                <!-- Populated by JS -->
               </tbody>
             </table>
           </div>
@@ -188,53 +135,10 @@
           <!-- New Customers -->
            <div class="recentCustomers">
             <div class="cardHeader">
-              <h2>Recent Customers</h2>
+              <h2>Recent Messages</h2>
             </div>
             <table>
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Gebre<br><span>Grade 12</span></h4>
-                </td>
-              </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
+              <!-- Populated by JS -->
             </table>
            </div>
 
