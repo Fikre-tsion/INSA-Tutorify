@@ -53,7 +53,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" onclick="logout()">
             <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
             <span class="title">Logout</span>
           </a>
@@ -243,6 +243,21 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
   <script>
+    // Check authentication
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (!token || !user || user.role !== 'admin') {
+      alert('Access denied. Please login as admin.');
+      window.location.href = 'login.html';
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = 'login.html';
+    }
+
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
