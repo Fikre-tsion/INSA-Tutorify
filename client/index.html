@@ -29,6 +29,9 @@
     </nav>
 
     <header>
+        <div id="daily-quote" style="position: absolute; top: 10px; width: 100%; text-align: center; font-style: italic; font-size: 0.8rem; opacity: 0.7; color: var(--color-warning);">
+            <!-- Quote -->
+        </div>
         <div class="container header__container">
             <div id="leaderboard-sidebar" style="position: fixed; left: 20px; top: 8rem; width: 200px; background: var(--color-bg1); padding: 1rem; border-radius: 1rem; border: 1px solid var(--glass-border); z-index: 100;" class="hidden-mobile">
                 <h4 style="margin-bottom: 0.5rem;"><i class="uil uil-trophy" style="color: #f1c40f;"></i> Top Learners</h4>
@@ -140,6 +143,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/my-courses.js"></script>
+    <script src="js/motivation.js"></script>
     <script>
         async function loadCourses() {
             try {
@@ -242,7 +246,14 @@
             } catch (e) { console.error(e); }
         }
 
+        function loadDailyQuote() {
+            if (window.motivation) {
+                document.getElementById('daily-quote').textContent = window.motivation.getRandomQuote();
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            loadDailyQuote();
             loadCourses();
             loadMyCourses();
             loadRecommended();

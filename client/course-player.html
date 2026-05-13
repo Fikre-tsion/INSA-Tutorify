@@ -252,7 +252,8 @@
 
                 await api.addXP(50); // Earn 50 XP per lesson!
 
-                if (window.motivation) window.motivation.celebrate();
+                const isFinal = (completedLessons.length + 1) === currentCourse.lessons.length;
+                if (window.motivation) window.motivation.celebrate(isFinal);
 
                 completedLessons.push(lessonId);
                 renderLessons();
@@ -261,7 +262,7 @@
                 // If all lessons complete, show success
                 if (completedLessons.length === currentCourse.lessons.length) {
                     setTimeout(() => {
-                        alert(i18n.translations['player_congrats'] || 'Congratulations! You have completed all lessons in this course.');
+                        // Custom final congratulation logic is now inside motivation.celebrate(true)
                     }, 1000);
                 }
             } catch (error) {

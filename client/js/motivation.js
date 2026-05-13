@@ -47,17 +47,38 @@ const motivation = {
         return this.congratulations[Math.floor(Math.random() * this.congratulations.length)];
     },
 
-    async celebrate() {
+    async celebrate(isFinal = false) {
         if (window.confetti) {
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#6c63ff', '#ff9f43', '#54a0ff', '#4cd137']
-            });
+            const end = Date.now() + (isFinal ? 3000 : 1000);
+            const colors = ['#6c63ff', '#ff9f43', '#54a0ff', '#4cd137'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 3,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 3,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
         }
 
-        this.showModal(this.getRandomCongrats(), "Keep up the great work!");
+        if (isFinal) {
+            this.showModal("🏆 COURSE MASTERED!", "You've completed every lesson! You're officially a pro. Go grab your certificate from the dashboard!");
+        } else {
+            this.showModal(this.getRandomCongrats(), "Your brain just leveled up! Keep that streak alive! 🔥");
+        }
     },
 
     showModal(title, text) {
