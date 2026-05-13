@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Courses - Tutorify</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top glass">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">TUTORIFY</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">About</a></li>
+          <li class="nav-item"><a class="nav-link active" href="courses.html" data-i18n="nav_courses">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+          <li class="nav-item ms-lg-3" id="auth-link"><a class="btn btn-outline-primary" href="login.html">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="py-5 mt-5">
+    <div class="container text-center py-5">
+      <h1 class="display-4 fw-bold mb-3" data-i18n="explore_courses">Explore Our Courses</h1>
+      <p class="text-muted mx-auto" style="max-width: 600px;">Discover a world of knowledge with our expertly crafted courses in technology, design, and business.</p>
+    </div>
+  </header>
+
+  <section class="pb-5">
+    <div class="container">
+        <div class="row g-3 mb-5 justify-content-center">
+            <div class="col-md-3">
+                <select id="filter-category" class="form-select glass text-white" onchange="loadAllCourses()">
+                    <option value="" data-i18n="all_categories">All Categories</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Design">Design</option>
+                    <option value="Business">Business</option>
+                    <option value="Technology">Technology</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="sort-by" class="form-select glass text-white" onchange="loadAllCourses()">
+                    <option value="popularity" data-i18n="sort_popularity">Popularity</option>
+                    <option value="date" data-i18n="sort_newest">Newest First</option>
+                    <option value="title" data-i18n="sort_alphabetical">Alphabetical</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-text glass text-white border-end-0"><i class="uil uil-search"></i></span>
+                    <input type="text" id="search-input" class="form-control glass text-white border-start-0" data-i18n="search_placeholder" placeholder="Search courses..." onkeyup="filterBySearch()">
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4" id="all-courses-container">
+            <!-- Courses loaded from API -->
+        </div>
+    </div>
+  </section>
+
+  <footer class="mt-5">
+    <div class="container text-center py-4 border-top border-secondary border-opacity-10">
+      <p class="small m-0">&copy; 2025 Tutorify Tutoring. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    let allLoadedCourses = [];
+
+    async function loadAllCourses() {
+        const category = document.getElementById('filter-category').value;
+        const sort = document.getElementById('sort-by').value;
+        let url = `/api/courses?sort=${sort}`;
+        if (category) url += `&category=${category}`;
+
+        try {
+            allLoadedCourses = await api.fetch(url);
+            renderCourses(allLoadedCourses);
+        } catch (e) { console.error(e); }
+    }
+
+    function renderCourses(courses) {
+        const container = document.getElementById('all-courses-container');
+        container.innerHTML = courses.map(course => `
+            <div class="col-md-6 col-lg-4">
+                <article class="course glass-card shadow-sm">
+                    <div class="course__image"><img src="${course.image}" class="img-fluid" alt="${course.title}"></div>
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill">${course.category}</span>
+                            <span class="text-warning small"><i class="uil uil-star"></i> ${course.rating || 'New'}</span>
+                        </div>
+                        <h5 class="fw-bold mb-3">${course.title}</h5>
+                        <p class="small text-muted mb-4">${course.description.substring(0, 100)}...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button onclick="enroll(${course.id})" class="btn btn-neon btn-sm px-4" data-i18n="enroll_now">Enroll Now</button>
+                            <span class="small text-muted">(${course.reviewCount || 0} reviews)</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        `).join('');
+    }
+
+    function filterBySearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const filtered = allLoadedCourses.filter(c =>
+            c.title.toLowerCase().includes(query) ||
+            c.description.toLowerCase().includes(query)
+        );
+        renderCourses(filtered);
+    }
+
+    async function enroll(courseId) {
+        try {
+            const data = await api.fetch('/api/courses/enroll', {
+                method: 'POST',
+                body: JSON.stringify({ courseId })
+            });
+            alert(data.message);
+        } catch (e) { alert(e.message); }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadAllCourses);
+  </script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

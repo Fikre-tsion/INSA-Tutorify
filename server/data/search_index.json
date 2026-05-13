@@ -1,0 +1,165 @@
+{
+  "pages": [
+    {
+      "name": "about.html",
+      "content": "Tutorify Tutorial Website Tutorify Home About Courses Contact Login Built for Excellence Node.js/Express Smart AI Agent Gamification Engine 6+ Languages JWT/RBAC Secure Achievements Infinity many people have turned into achievers from being thinkers. Learn with us and achieve your lifetime goals — become the owner of skills that shape your future. 45+ Courses 1,000+ Students 5+ Awards Meet Our Tutors Daniel Birhanu Expert Tutor Juliana Fikru Frontend Instructor — HTML, CSS, JavaScript Lulit Hailemariam Backend & APIs — Node.js, Databases Netsanet Simeon Data Science Lead — Python, ML Tutorify Our mission is to empower individuals with the knowledge and skills to succeed. Permalinks Home About Courses Contact Privacy Privacy Policy Terms and Conditions Refund Policy Contact Us +251966418467 / +251928505904 tutorifytutoring@gmail.com &copy; 2025 Tutorify Tutoring . All Rights Reserved."
+    },
+    {
+      "name": "certificate.html",
+      "content": "Certificate - Tutorify Download / Print PDF TUTORIFY Certificate of Completion Tutorify This is to certify that Loading... has successfully completed the online course Loading... Issued on: --/--/---- Director Tutorify Education Instructor Lead Educator"
+    },
+    {
+      "name": "contact.html",
+      "content": "Tutorify Tutorial Website Tutorify Home About Courses Contact Login Contact Us We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you! +251966418467 / +251928505904 tutorifytutoring@gmail.com AddisAbaba, Ethiopia Send Message Tutorify Our mission is to empower individuals with the knowledge and skills to succeed. Permalinks Home About Courses Contact Privacy Privacy Policy Terms and Conditions Refund Policy Contact Us +251966418467 / +251928505904 tutorifytutoring@gmail.com &copy; 2025 Tutorify Tutoring . All Rights Reserved."
+    },
+    {
+      "name": "course-player.html",
+      "content": "Course Player - Tutorify TUTORIFY Course Title Select a lesson Click on a lesson to start learning. Previous 0 Mark as Completed Next Community Discussion Post Comment"
+    },
+    {
+      "name": "course.html",
+      "content": "Course Details - Tutorify Tutorify Home About Courses Contact Login Course Details Loading course information... About this course This is a comprehensive course designed to help you master the subject from scratch. You will learn through interactive lessons and hands-on projects. Enroll Now &copy; 2025 Tutorify Tutoring . All Rights Reserved."
+    },
+    {
+      "name": "courses.html",
+      "content": "Explore Courses - Tutorify TUTORIFY Home About Courses Contact Login Explore Our Courses Discover a world of knowledge with our expertly crafted courses in technology, design, and business. All Categories Programming Design Business Technology Popularity Newest First Alphabetical &copy; 2025 Tutorify Tutoring. All Rights Reserved."
+    },
+    {
+      "name": "dashboard.html",
+      "content": "Admin Hub - Tutorify TUTORIFY Home Dashboard Users Logout Admin Hub Total Users 0 Courses 0 Enrollments 0 Messages 0 Recent Registrations Name Email Role Joined Live Activity"
+    },
+    {
+      "name": "i18n_test.html",
+      "content": "i18n Test Home Login Original Title Original Subtitle"
+    },
+    {
+      "name": "index.html",
+      "content": "Tutorify - Intelligent Learning Ecosystem TUTORIFY Home About Courses Contact Login Unlock Your Potential Discover step-by-step tutorials, interactive lessons, and expert guidance to help you achieve your goals—no experience required! Get Started Learn More Top Learners Recommended for You Trending Now 🔥 Our Popular Courses My Learning TUTORIFY Our mission is to empower individuals with the knowledge and skills to shape the future of technology. Links Home About Courses Contact Support Privacy Policy Terms Help Center Contact Us support@tutorify.com +251 966 418 467 &copy; 2025 Tutorify Tutoring. All Rights Reserved."
+    },
+    {
+      "name": "login.html",
+      "content": "Login - Tutorify TUTORIFY Welcome Back Student Teacher Admin Sign In Don't have an account? Create account Student Teacher Join Now Already a member? Login"
+    },
+    {
+      "name": "onboarding.html",
+      "content": "Welcome to Tutorify - Personalized Onboarding Welcome to the Community! First, how should we call you? A nickname makes things more personal. Your Nickname (Optional) Next What are your goals? Tell us what you want to achieve so we can tailor your experience. Programming Design Business Marketing Technology Personal Growth Back Complete"
+    },
+    {
+      "name": "privacy.html",
+      "content": "Privacy Policy | Tutorify Tutoring Privacy Policy Last Updated: October 2025 1. Introduction At Tutorify Tutoring , we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our website and services. 2. Information We Collect Personal details like your name, email, and contact information. Account information such as login credentials and preferences. Usage data including pages visited and time spent on the site. 3. How We Use Your Information To provide and improve our tutoring services. To personalize user experience and recommend suitable courses. To send important updates, notifications, and marketing emails. 4. Data Protection and Security We use modern encryption and secure storage systems to ensure your personal data is protected against unauthorized access, alteration, or disclosure. 5. Your Rights You have the right to access, correct, or delete your personal informati"
+    },
+    {
+      "name": "profile.html",
+      "content": "Profile Settings - Tutorify TUTORIFY Home Courses U User Name email@example.com Student XP: 0 Get Shield (500 XP) Basic Info Nickname Social Media Links (Optional but beneficial for networking!) LinkedIn YouTube Telegram TikTok Save Profile Changes"
+    },
+    {
+      "name": "refund.html",
+      "content": "Refund Policy | Tutorify Tutoring Refund Policy Last Updated: October 2025 1. Overview At Tutorify Tutoring , we strive to ensure customer satisfaction. If you are not satisfied with your purchase, please review our refund policy below. 2. Eligibility for Refunds Refund requests must be made within 14 days of purchase. Only unused or unaccessed courses are eligible for full refunds. Completed lessons or downloaded materials are non-refundable. 3. Non-Refundable Items Gift cards and promotional purchases. Special discounted bundles. 4. Refund Process To initiate a refund, contact us at support@tutorify.com with your order details. Approved refunds will be processed to your original payment method within 5–10 business days. 5. Contact Us For any refund-related questions, reach out via email at support@tutorify.com . 6. Changes to This Policy We may update our refund policy occasionally. Changes will be posted on this page with an updated revision date. 7. Governing Law This refund policy"
+    },
+    {
+      "name": "studio.html",
+      "content": "Tutorify Studio - Upload Course TUTORIFY STUDIO Back to Dashboard Upload new course 1. Details 2. Thumbnail 3. Curriculum 4. Visibility Title (required) Description Category Programming Design Business Technology Select or upload a picture that shows what's in your course. A good thumbnail stands out and draws viewers' attention. Thumbnail URL Add lessons to your course. These are the building blocks of your curriculum. Add Lesson Choose when to publish and who can see your course. Public Everyone can see and enroll in your course. Unlisted Anyone with the course link can see it. Private (Pro Feature) Only you and people you choose can see it. Back Next"
+    },
+    {
+      "name": "teacher-dashboard.html",
+      "content": "Teacher Studio - Tutorify STUDIO Exit Studio Content Logout Channel Content Create New Course Visibility Date Stats Actions"
+    },
+    {
+      "name": "terms.html",
+      "content": "Terms and Conditions | Tutorify Tutoring Terms and Conditions Last Updated: October 2025 1. Acceptance of Terms By accessing or using Tutorify Tutoring services, you agree to comply with and be bound by these Terms and Conditions. 2. Use of Our Services You agree to use our platform only for lawful educational purposes. You may not attempt to hack, modify, or disrupt our systems. Accounts are non-transferable and must be used responsibly. 3. Intellectual Property All content, logos, and materials on this site are owned by Tutorify Tutoring and protected under copyright laws. 4. Limitation of Liability Tutorify Tutoring is not liable for any indirect, incidental, or consequential damages resulting from your use of the platform. 5. Changes to These Terms We may update these Terms from time to time. Continued use of the service means you accept the revised terms. &copy; 2025 Tutorify Tutoring. All Rights Reserved."
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media UI Design",
+      "category": "Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS."
+    },
+    {
+      "id": 2,
+      "title": "Introduction to Blockchain",
+      "category": "Technology",
+      "description": "Learn blockchain fundamentals, smart contracts, and decentralized apps."
+    },
+    {
+      "id": 3,
+      "title": "Mastering React & Node.js",
+      "category": "Programming",
+      "description": "Build fullstack applications from scratch with modern tools."
+    },
+    {
+      "id": 4,
+      "title": "Python for Data Science",
+      "category": "Programming",
+      "description": "Learn how to use Python for data analysis, visualization and machine learning."
+    },
+    {
+      "id": 5,
+      "title": "Digital Marketing Fundamentals",
+      "category": "Marketing",
+      "description": "Master SEO, SEM, social media marketing, and content strategy."
+    },
+    {
+      "id": 6,
+      "title": "Graphic Design Masterclass",
+      "category": "Design",
+      "description": "Learn Photoshop, Illustrator, and InDesign from scratch."
+    },
+    {
+      "id": 7,
+      "title": "Business Strategy & Leadership",
+      "category": "Business",
+      "description": "Develop the skills needed to lead teams and grow businesses."
+    },
+    {
+      "id": 8,
+      "title": "Cybersecurity for Beginners",
+      "category": "Technology",
+      "description": "Learn how to protect systems and networks from digital attacks."
+    },
+    {
+      "id": 9,
+      "title": "Mobile App Development with Flutter",
+      "category": "Programming",
+      "description": "Build beautiful native apps for iOS and Android with one codebase."
+    },
+    {
+      "id": 10,
+      "title": "UI/UX Design Essentials",
+      "category": "Design",
+      "description": "Learn the process of designing beautiful and functional user interfaces."
+    },
+    {
+      "id": 11,
+      "title": "Introduction to Finance",
+      "category": "Business",
+      "description": "Understand the basics of personal and corporate finance."
+    },
+    {
+      "id": 12,
+      "title": "Cloud Computing with AWS",
+      "category": "Technology",
+      "description": "Learn how to build and deploy scalable applications on AWS."
+    },
+    {
+      "id": 1778641886916,
+      "title": "Playwright Verified Course",
+      "category": "Programming",
+      "description": "This course was added by an automated test."
+    },
+    {
+      "id": 1778641991376,
+      "title": "Playwright Verified Course",
+      "category": "Programming",
+      "description": "This course was added by an automated test."
+    },
+    {
+      "id": 1778642058972,
+      "title": "Playwright Course 6354",
+      "category": "Programming",
+      "description": "This course was added by an automated test."
+    }
+  ],
+  "faqs": []
+}

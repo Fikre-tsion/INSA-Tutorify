@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Player - Tutorify</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .player-sidebar { height: calc(100vh - 5rem); overflow-y: auto; background: var(--color-bg-dark); border-right: 1px solid var(--color-glass-border); }
+        .lesson-item { padding: 1rem; cursor: pointer; transition: 0.3s; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .lesson-item:hover, .lesson-item.active { background: var(--color-primary); }
+        .lesson-item.completed i { color: var(--color-success); }
+        .main-content { height: calc(100vh - 5rem); overflow-y: auto; padding: 3rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top glass">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="index.html">TUTORIFY</a>
+            <div class="ms-auto d-flex align-items-center" id="auth-link"></div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5 pt-3">
+        <div class="row">
+            <aside class="col-md-3 col-lg-2 p-0 player-sidebar">
+                <div class="p-4 border-bottom border-secondary border-opacity-10">
+                    <h5 id="course-title" class="fw-bold m-0">Course Title</h5>
+                </div>
+                <div id="lesson-list"></div>
+            </aside>
+
+            <main class="col-md-9 col-lg-10 main-content">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 id="lesson-title" class="fw-bold">Select a lesson</h2>
+                    <div id="xp-badge" class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm"></div>
+                </div>
+
+                <div class="glass-card p-5 mb-5 shadow-sm">
+                    <div id="lesson-content">
+                        <p class="lead text-muted">Click on a lesson to start learning.</p>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-5">
+                    <button class="btn btn-outline-light rounded-pill px-4" id="prev-btn" disabled>Previous</button>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-light rounded-pill px-4" id="like-btn"><i class="uil uil-thumbs-up me-2"></i> <span id="like-count">0</span></button>
+                        <button class="btn btn-neon px-5" id="complete-btn" style="display: none;">Mark as Completed</button>
+                    </div>
+                    <button class="btn btn-outline-light rounded-pill px-4" id="next-btn" disabled>Next</button>
+                </div>
+
+                <section class="mt-5 pt-5 border-top border-secondary border-opacity-10">
+                    <h4 class="fw-bold mb-4">Community Discussion</h4>
+                    <div class="glass-card p-4 mb-4">
+                        <div class="input-group">
+                            <input type="text" id="comment-input" class="form-control glass text-white" placeholder="What's on your mind?">
+                            <button class="btn btn-primary" onclick="postComment()">Post Comment</button>
+                        </div>
+                    </div>
+                    <div id="comment-list" class="d-flex flex-column gap-3"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/motivation.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id');
+        let currentCourse = null;
+        let currentLessonIndex = -1;
+        let completedLessons = [];
+
+        async function initPlayer() {
+            if (!courseId) { window.location.href = 'courses.html'; return; }
+            try {
+                currentCourse = await api.fetch(`/api/courses/${courseId}`);
+                document.getElementById('course-title').textContent = currentCourse.title;
+                document.getElementById('like-count').textContent = currentCourse.likes || 0;
+
+                const progressData = await api.fetch(`/api/courses/${courseId}/progress`);
+                completedLessons = progressData.completedLessons || [];
+
+                renderLessons();
+                if (currentCourse.lessons && currentCourse.lessons.length > 0) loadLesson(0);
+                loadComments();
+            } catch (error) { window.location.href = 'courses.html'; }
+        }
+
+        function renderLessons() {
+            const list = document.getElementById('lesson-list');
+            list.innerHTML = currentCourse.lessons.map((lesson, index) => `
+                <div class="lesson-item ${completedLessons.includes(lesson.id) ? 'completed' : ''} ${currentLessonIndex === index ? 'active' : ''}"
+                     onclick="loadLesson(${index})">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="${completedLessons.includes(lesson.id) ? 'uil uil-check-circle' : 'uil uil-play-circle'} fs-5"></i>
+                        <span class="small">${lesson.title}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function loadLesson(index) {
+            currentLessonIndex = index;
+            const lesson = currentCourse.lessons[index];
+            renderLessons();
+            document.getElementById('lesson-title').textContent = lesson.title;
+            document.getElementById('lesson-content').innerHTML = `<p class="lead">${lesson.content}</p>`;
+            document.getElementById('prev-btn').disabled = index === 0;
+            document.getElementById('next-btn').disabled = index === currentCourse.lessons.length - 1;
+            document.getElementById('complete-btn').style.display = completedLessons.includes(lesson.id) ? 'none' : 'inline-block';
+        }
+
+        async function markAsComplete(lessonId) {
+            try {
+                await api.fetch(`/api/courses/${courseId}/progress`, { method: 'POST', body: JSON.stringify({ lessonId }) });
+                await api.addXP(50);
+                const isFinal = (completedLessons.length + 1) === currentCourse.lessons.length;
+                if (window.motivation) window.motivation.celebrate(isFinal);
+                completedLessons.push(lessonId);
+                loadLesson(currentLessonIndex);
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadComments() {
+            try {
+                const comments = await api.fetch(`/api/courses/${courseId}/comments`);
+                const container = document.getElementById('comment-list');
+                container.innerHTML = comments.map(c => `
+                    <div class="glass-card p-3 shadow-sm border-0 bg-opacity-10" style="background: rgba(255,255,255,0.02)">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-bold text-primary small">${c.userName}</span>
+                            <span class="small text-muted">${new Date(c.createdAt).toLocaleDateString()}</span>
+                        </div>
+                        <p class="m-0 small">${c.text}</p>
+                    </div>
+                `).join('') || '<p class="text-center text-muted py-5">No comments yet. Start the conversation!</p>';
+            } catch (e) { console.error(e); }
+        }
+
+        async function postComment() {
+            const text = document.getElementById('comment-input').value;
+            if (!text.trim()) return;
+            try {
+                await api.fetch('/api/courses/comments', { method: 'POST', body: JSON.stringify({ courseId, text }) });
+                document.getElementById('comment-input').value = '';
+                loadComments();
+            } catch (e) { alert(e.message); }
+        }
+
+        document.getElementById('complete-btn').onclick = () => markAsComplete(currentCourse.lessons[currentLessonIndex].id);
+        document.getElementById('prev-btn').onclick = () => loadLesson(currentLessonIndex - 1);
+        document.getElementById('next-btn').onclick = () => loadLesson(currentLessonIndex + 1);
+        document.getElementById('like-btn').onclick = async () => {
+            const data = await api.fetch(`/api/courses/${courseId}/like`, { method: 'POST' });
+            document.getElementById('like-count').textContent = data.likes;
+        };
+
+        document.addEventListener('DOMContentLoaded', initPlayer);
+    </script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

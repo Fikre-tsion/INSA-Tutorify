@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorify - Intelligent Learning Ecosystem</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top glass">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">TUTORIFY</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav_home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav_about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html" data-i18n="nav_courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav_contact">Contact</a></li>
+                    <li class="nav-item ms-lg-3" id="auth-link"><a class="btn btn-outline-primary" href="login.html" data-i18n="nav_login">Login</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <button id="theme-toggle" class="btn btn-sm"><i class="uil uil-sun"></i></button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center text-lg-start">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div id="daily-quote" class="mb-4"></div>
+                    <h1 class="hero-title" data-i18n="hero_title">Unlock Your <span>Potential</span></h1>
+                    <p class="lead mb-5" data-i18n="hero_subtitle">Discover step-by-step tutorials, interactive lessons, and expert guidance to help you achieve your goals—no experience required!</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                        <a href="courses.html" class="btn btn-neon" data-i18n="get_started">Get Started</a>
+                        <a href="about.html" class="btn btn-outline-light rounded-pill px-4" data-i18n="learn_more">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-5 mt-lg-0">
+                    <div id="leaderboard-sidebar" class="p-4 glass-card hidden-mobile shadow-lg">
+                        <h4 class="mb-3 d-flex align-items-center"><i class="uil uil-trophy me-2 text-warning"></i> Top Learners</h4>
+                        <div id="leaderboard-list">
+                            <!-- Leaderboard -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-5">
+        <section class="mb-5" id="recommended-section">
+            <h2 class="section-title text-center" data-i18n="recommended_for_you">Recommended for You</h2>
+            <div class="row g-4" id="recommended-courses-container"></div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title text-center" data-i18n="trending_courses">Trending Now 🔥</h2>
+            <div class="row g-4" id="trending-courses-container"></div>
+        </section>
+
+        <section class="mb-5">
+            <h2 class="section-title text-center" data-i18n="popular_courses">Our Popular Courses</h2>
+            <div class="row g-4" id="popular-courses-container"></div>
+        </section>
+
+        <section class="my-courses hidden mb-5" id="my-courses-section">
+            <h2 class="section-title text-center" data-i18n="enrolled_courses">My Learning</h2>
+            <div class="row g-4" id="my-courses-container"></div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h4 class="text-primary fw-bold">TUTORIFY</h4>
+                    <p data-i18n="footer_mission">Our mission is to empower individuals with the knowledge and skills to shape the future of technology.</p>
+                    <div class="d-flex gap-3 mt-4 fs-4">
+                        <a href="#" class="text-white"><i class="uil uil-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="uil uil-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="uil uil-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-2 ms-lg-auto">
+                    <h4 data-i18n="footer_permalinks">Links</h4>
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="about.html" class="footer-link">About</a>
+                    <a href="courses.html" class="footer-link">Courses</a>
+                    <a href="contact.html" class="footer-link">Contact</a>
+                </div>
+                <div class="col-6 col-lg-2">
+                    <h4 data-i18n="footer_privacy">Support</h4>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms</a>
+                    <a href="#" class="footer-link">Help Center</a>
+                </div>
+                <div class="col-lg-3">
+                    <h4 data-i18n="footer_contact">Contact Us</h4>
+                    <p class="small mb-1"><i class="uil uil-envelope-alt me-2 text-primary"></i> support@tutorify.com</p>
+                    <p class="small"><i class="uil uil-phone me-2 text-primary"></i> +251 966 418 467</p>
+                </div>
+            </div>
+            <hr class="my-5 border-secondary opacity-25">
+            <p class="text-center small m-0">&copy; 2025 Tutorify Tutoring. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/my-courses.js"></script>
+    <script src="js/motivation.js"></script>
+    <script>
+        // Updated course rendering to use Bootstrap Grid
+        async function loadCourses() {
+            try {
+                const courses = await api.fetch('/api/courses');
+                const container = document.getElementById('popular-courses-container');
+                if (container) {
+                    container.innerHTML = courses.slice(0, 3).map(course => `
+                        <div class="col-md-6 col-lg-4">
+                            <article class="course glass-card overflow-hidden">
+                                <div class="course__image"><img src="${course.image}" class="img-fluid" alt="${course.title}"></div>
+                                <div class="p-4">
+                                    <h5 class="fw-bold mb-3">${course.title}</h5>
+                                    <p class="small text-muted mb-4">${course.description.substring(0, 80)}...</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="course.html?id=${course.id}" class="btn btn-primary btn-sm rounded-pill px-3" data-i18n="learn_more">Learn More</a>
+                                        <button onclick="enroll(${course.id})" class="btn btn-outline-primary btn-sm rounded-pill" data-i18n="enroll_now">Enroll</button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    `).join('');
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadTrending() {
+            try {
+                const courses = await api.fetch('/api/courses');
+                const trending = courses.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+                const container = document.getElementById('trending-courses-container');
+                container.innerHTML = trending.slice(0, 3).map(course => `
+                    <div class="col-md-6 col-lg-4">
+                        <article class="course glass-card shadow-sm">
+                            <div class="course__image position-relative">
+                                <img src="${course.image}" class="img-fluid" alt="${course.title}">
+                                <span class="badge bg-danger position-absolute top-0 end-0 m-3"><i class="uil uil-fire"></i> Trending</span>
+                            </div>
+                            <div class="p-4">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span class="small text-primary fw-bold">${course.category}</span>
+                                    <span class="small text-danger"><i class="uil uil-heart"></i> ${course.likes || 0}</span>
+                                </div>
+                                <h5 class="fw-bold mb-4">${course.title}</h5>
+                                <a href="course.html?id=${course.id}" class="btn btn-outline-primary w-100 rounded-pill" data-i18n="learn_more">View Course</a>
+                            </div>
+                        </article>
+                    </div>
+                `).join('');
+            } catch (e) { console.error(e); }
+        }
+
+        async function loadLeaderboard() {
+            if (!localStorage.getItem('token')) return;
+            try {
+                const leaderboard = await api.fetch('/api/users/leaderboard');
+                const container = document.getElementById('leaderboard-list');
+                container.innerHTML = leaderboard.map((u, i) => `
+                    <div class="d-flex align-items-center justify-content-between py-2 border-bottom border-secondary border-opacity-10">
+                        <div class="d-flex align-items-center">
+                            <span class="badge bg-secondary rounded-circle me-2" style="width: 24px; height: 24px; font-size: 0.7rem;">${i+1}</span>
+                            <span class="fw-medium small">${u.name}</span>
+                        </div>
+                        <span class="text-primary small fw-bold">${u.xp} XP</span>
+                    </div>
+                `).join('');
+            } catch (e) { console.error(e); }
+        }
+
+        async function enroll(courseId) {
+            try {
+                const data = await api.fetch('/api/courses/enroll', {
+                    method: 'POST',
+                    body: JSON.stringify({ courseId })
+                });
+                alert(data.message);
+                if (window.loadMyCourses) loadMyCourses();
+            } catch (e) { alert(e.message); }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.motivation) document.getElementById('daily-quote').innerHTML = `<p class="badge bg-warning bg-opacity-10 text-warning px-3 py-2 border border-warning border-opacity-25 rounded-pill"><i class="uil uil-quote-left me-1"></i> ${window.motivation.getRandomQuote()}</p>`;
+            loadCourses();
+            loadTrending();
+            loadLeaderboard();
+            if (window.loadMyCourses) loadMyCourses();
+        });
+    </script>
+    <script src="js/chat.js"></script>
+</body>
+</html>
