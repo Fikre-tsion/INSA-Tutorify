@@ -104,5 +104,6 @@
   "cert_certify": "This is to certify that",
   "cert_completed": "has successfully completed the online course",
   "cert_issued": "Issued on",
-  "recommended_for_you": "Recommended for You"
+   "recommended_for_you": "Recommended for You",
+   "trending_courses": "Trending Now 🔥"
 }

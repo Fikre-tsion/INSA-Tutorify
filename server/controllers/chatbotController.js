@@ -64,9 +64,14 @@ function findAnswer(query, kb, lang, user = null) {
         ? ` Since you're interested in ${user.interests.join(', ')}, I highly recommend checking out our latest courses in those fields.`
         : "";
 
+    // Duolingo-style "funny/unhinged" interjections
+    const personality = (user && user.streak === 0)
+        ? " By the way, your 0-day streak is making me very sad. If you don't start a lesson soon, I might have to haunt your dreams. 🦉🔪"
+        : "";
+
     // Simple rule-based engine
     if (query.includes('hello') || query.includes('hi')) {
-        return `${greeting} I'm here to help you find the best courses on Tutorify.${interestMsg} What are you interested in learning today?`;
+        return `${greeting} I'm here to help you find the best courses on Tutorify.${interestMsg} What are you interested in learning today?${personality}`;
     }
 
     if (query.includes('course') || query.includes('learn') || query.includes('classes')) {

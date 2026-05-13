@@ -208,8 +208,17 @@ function updateAuthUI() {
 
         const displayName = user.nickname || user.name;
 
+        const streak = user.streak || 0;
+        const shield = user.shieldCount || 0;
+
         authLink.outerHTML = `
             ${dashboardLink}
+            <li class="streak-badge" title="Daily Streak">
+                <i class="uil uil-fire" style="color: #ff9f43;"></i> ${streak}
+            </li>
+            <li class="shield-badge" title="Streak Freeze">
+                <i class="uil uil-shield-check" style="color: #54a0ff;"></i> ${shield}
+            </li>
             <li><a href="profile.html"><i class="uil uil-user-circle"></i> ${displayName}</a></li>
             <li id="auth-link"><a href="#" onclick="logout()">(<span data-i18n="nav_logout">${i18n.translations['nav_logout'] || 'Logout'}</span>)</a></li>
         `;

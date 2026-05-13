@@ -68,7 +68,7 @@ exports.getTeacherCourses = (req, res) => {
 };
 
 exports.createCourse = (req, res) => {
-    const { title, description, image, category } = req.body;
+    const { title, description, image, category, visibility, lessons } = req.body;
     const db = readDB();
 
     const newCourse = {
@@ -79,7 +79,14 @@ exports.createCourse = (req, res) => {
         category: category || 'General',
         createdAt: new Date().toISOString(),
         popularity: 0,
-        instructorId: req.user.id
+        instructorId: req.user.id,
+        visibility: visibility || 'public',
+        lessons: lessons || [
+            {"id": 1, "title": "Introduction", "content": "Welcome!", "type": "text"}
+        ],
+        likes: 0,
+        rating: 0,
+        reviewCount: 0
     };
 
     db.courses.push(newCourse);
@@ -94,7 +101,6 @@ exports.updateCourse = (req, res) => {
 
     if (index === -1) return res.status(404).json({ message: 'Course not found' });
 
-    // Check ownership
     if (db.courses[index].instructorId !== req.user.id && req.user.role !== 'admin') {
         return res.status(403).json({ message: 'Not authorized to update this course' });
     }
@@ -116,7 +122,6 @@ exports.deleteCourse = (req, res) => {
     }
 
     db.courses = db.courses.filter(c => c.id !== parseInt(id));
-    // Also cleanup enrollments
     db.enrollments = db.enrollments.filter(e => e.courseId !== parseInt(id));
 
     writeDB(db);
@@ -178,8 +183,6 @@ exports.addReview = (req, res) => {
     };
 
     db.reviews.push(newReview);
-
-    // Update course average rating
     const courseReviews = db.reviews.filter(r => r.courseId === courseId);
     const avgRating = courseReviews.reduce((sum, r) => sum + r.rating, 0) / courseReviews.length;
 
@@ -191,4 +194,39 @@ exports.addReview = (req, res) => {
 
     writeDB(db);
     res.status(201).json({ message: 'Review added', review: newReview });
+};
+
+// Social Interactions (Comments & Likes)
+exports.getComments = (req, res) => {
+    const db = readDB();
+    const courseId = parseInt(req.params.id);
+    const comments = db.comments.filter(c => c.courseId === courseId);
+    res.json(comments);
+};
+
+exports.addComment = (req, res) => {
+    const db = readDB();
+    const { courseId, text } = req.body;
+    const newComment = {
+        id: Date.now(),
+        courseId: parseInt(courseId),
+        userId: req.user.id,
+        userName: req.user.nickname || req.user.name,
+        text,
+        createdAt: new Date().toISOString()
+    };
+    db.comments.push(newComment);
+    writeDB(db);
+    res.status(201).json(newComment);
+};
+
+exports.likeCourse = (req, res) => {
+    const db = readDB();
+    const courseId = parseInt(req.params.id);
+    const courseIndex = db.courses.findIndex(c => c.id === courseId);
+    if (courseIndex === -1) return res.status(404).json({ message: 'Not found' });
+
+    db.courses[courseIndex].likes = (db.courses[courseIndex].likes || 0) + 1;
+    writeDB(db);
+    res.json({ likes: db.courses[courseIndex].likes });
 };

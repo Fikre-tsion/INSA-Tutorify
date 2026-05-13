@@ -16,7 +16,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778612605636,
@@ -34,7 +38,11 @@
       },
       "interests": [],
       "onboardingStatus": "pending",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778614588314,
@@ -52,7 +60,11 @@
       },
       "interests": [],
       "onboardingStatus": "pending",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778614707214,
@@ -70,7 +82,11 @@
       },
       "interests": [],
       "onboardingStatus": "pending",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 2,
@@ -88,7 +104,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 3,
@@ -106,7 +126,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778641767547,
@@ -124,7 +148,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778641882935,
@@ -142,7 +170,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778641987413,
@@ -160,7 +192,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778642055010,
@@ -178,7 +214,11 @@
       },
       "interests": [],
       "onboardingStatus": "completed",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     },
     {
       "id": 1778649133055,
@@ -196,7 +236,11 @@
       },
       "interests": [],
       "onboardingStatus": "pending",
-      "xp": 0
+      "xp": 0,
+      "streak": 0,
+      "lastActivity": "",
+      "bestStreak": 0,
+      "shieldCount": 1
     }
   ],
   "courses": [
@@ -230,7 +274,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 2,
@@ -262,7 +309,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 3,
@@ -294,7 +344,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 4,
@@ -326,7 +379,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 5,
@@ -358,7 +414,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 6,
@@ -390,7 +449,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 7,
@@ -422,7 +484,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 8,
@@ -454,7 +519,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 9,
@@ -486,7 +554,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 10,
@@ -518,7 +589,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 11,
@@ -550,7 +624,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 12,
@@ -582,7 +659,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 1778641886916,
@@ -614,7 +694,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 1778641991376,
@@ -646,7 +729,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     },
     {
       "id": 1778642058972,
@@ -678,7 +764,10 @@
         }
       ],
       "rating": 4.5,
-      "reviewCount": 0
+      "reviewCount": 0,
+      "visibility": "public",
+      "tags": [],
+      "likes": 0
     }
   ],
   "enrollments": [
@@ -695,5 +784,6 @@
   ],
   "contacts": [],
   "reviews": [],
-  "progress": []
+  "progress": [],
+  "comments": []
 }

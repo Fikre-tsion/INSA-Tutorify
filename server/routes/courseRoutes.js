@@ -15,6 +15,9 @@ router.post('/enroll', authenticateToken, courseController.enroll);
 router.get('/:id/progress', authenticateToken, courseController.getProgress);
 router.post('/:id/progress', authenticateToken, courseController.updateProgress);
 router.post('/:id/reviews', authenticateToken, courseController.addReview);
+router.get('/:id/comments', authenticateToken, courseController.getComments);
+router.post('/comments', authenticateToken, courseController.addComment);
+router.post('/:id/like', authenticateToken, courseController.likeCourse);
 
 // Teacher/Admin routes
 router.get('/teacher', authenticateToken, hasRole(['teacher', 'admin']), courseController.getTeacherCourses);

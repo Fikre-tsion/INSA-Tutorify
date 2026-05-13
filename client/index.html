@@ -87,6 +87,11 @@
         <div class="container courses__container" id="recommended-courses-container"></div>
     </section>
 
+    <section class="courses trending" id="trending-section">
+        <h2 data-i18n="trending_courses">Trending Now 🔥</h2>
+        <div class="container courses__container" id="trending-courses-container"></div>
+    </section>
+
     <section class="courses">
         <h2 data-i18n="popular_courses">Our Popular Courses</h2>
         <div class="container courses__container" id="popular-courses-container"></div>
@@ -192,10 +197,36 @@
             } catch (e) { console.error(e); }
         }
 
+        async function loadTrending() {
+            try {
+                const courses = await api.fetch('/api/courses');
+                // Sort by likes
+                const trending = courses.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+
+                const container = document.getElementById('trending-courses-container');
+                container.innerHTML = trending.slice(0, 3).map(course => `
+                    <article class="course">
+                        <div class="course__image"><img src="${course.image}" alt="${course.title}"></div>
+                        <div class="course__info">
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="font-size: 0.8rem; color: var(--color-primary);">${course.category}</span>
+                                <span style="font-size: 0.8rem; color: #ff4757;"><i class="uil uil-heart"></i> ${course.likes || 0}</span>
+                            </div>
+                            <h4>${course.title}</h4>
+                            <div style="display:flex; gap: 1rem; margin-top: auto;">
+                                <a href="course.html?id=${course.id}" class="btn btn-primary" data-i18n="learn_more">${i18n.translations['learn_more'] || 'Learn More'}</a>
+                            </div>
+                        </div>
+                    </article>
+                `).join('');
+            } catch (e) { console.error(e); }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             loadCourses();
             loadMyCourses();
             loadRecommended();
+            loadTrending();
         });
     </script>
     <script src="js/chat.js"></script>

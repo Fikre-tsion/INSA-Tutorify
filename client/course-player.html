@@ -67,6 +67,38 @@
             background: var(--color-bg2);
             border-top: 1px solid var(--glass-border);
         }
+        .social-section {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--color-bg2);
+            border-radius: 1rem;
+            border: 1px solid var(--glass-border);
+        }
+        .comment-box {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .comment-box input {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            border: 1px solid var(--glass-border);
+            background: var(--color-bg);
+            color: white;
+        }
+        .comment-list {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .comment-item {
+            padding: 1rem;
+            background: var(--color-bg);
+            border-radius: 0.5rem;
+            border: 1px solid var(--glass-border);
+        }
         @media screen and (max-width: 1024px) {
             .player-container {
                 flex-direction: column;
@@ -112,9 +144,23 @@
             </div>
             <div class="player-footer">
                 <button class="btn" id="prev-btn" disabled data-i18n="player_prev">Previous</button>
-                <button class="btn btn-primary" id="complete-btn" style="display: none;" data-i18n="player_complete">Mark as Completed</button>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn" id="like-btn"><i class="uil uil-thumbs-up"></i> <span id="like-count">0</span></button>
+                    <button class="btn btn-primary" id="complete-btn" style="display: none;" data-i18n="player_complete">Mark as Completed</button>
+                </div>
                 <button class="btn btn-primary" id="next-btn" disabled data-i18n="player_next">Next</button>
             </div>
+
+            <section class="social-section">
+                <h3>Comments</h3>
+                <div class="comment-box">
+                    <input type="text" id="comment-input" placeholder="Add a public comment...">
+                    <button class="btn btn-primary" onclick="postComment()">Comment</button>
+                </div>
+                <div class="comment-list" id="comment-list">
+                    <!-- Comments -->
+                </div>
+            </section>
         </main>
     </div>
 
@@ -136,6 +182,7 @@
                 // Fetch course data
                 currentCourse = await api.fetch(`/api/courses/${courseId}`);
                 document.getElementById('course-title').textContent = currentCourse.title;
+                document.getElementById('like-count').textContent = currentCourse.likes || 0;
 
                 // Fetch progress
                 const progressData = await api.fetch(`/api/courses/${courseId}/progress`);
@@ -147,6 +194,8 @@
                 if (currentCourse.lessons && currentCourse.lessons.length > 0) {
                     loadLesson(0);
                 }
+
+                loadComments();
             } catch (error) {
                 console.error('Failed to load player:', error);
                 alert('Please enroll in the course to view content.');
@@ -202,10 +251,46 @@
                 if (completedLessons.length === currentCourse.lessons.length) {
                     alert(i18n.translations['player_congrats'] || 'Congratulations! You have completed all lessons in this course.');
                 }
+
+                // Refresh topbar for streak update
+                location.reload();
             } catch (error) {
                 console.error('Failed to mark complete:', error);
             }
         }
+
+        async function loadComments() {
+            try {
+                const comments = await api.fetch(`/api/courses/${courseId}/comments`);
+                const container = document.getElementById('comment-list');
+                container.innerHTML = comments.map(c => `
+                    <div class="comment-item">
+                        <strong>${c.userName}</strong> <small style="opacity:0.6">${new Date(c.createdAt).toLocaleDateString()}</small>
+                        <p style="margin-top:0.5rem">${c.text}</p>
+                    </div>
+                `).join('') || '<p>No comments yet. Be the first to start the discussion!</p>';
+            } catch (e) { console.error(e); }
+        }
+
+        async function postComment() {
+            const text = document.getElementById('comment-input').value;
+            if (!text.trim()) return;
+            try {
+                await api.fetch('/api/courses/comments', {
+                    method: 'POST',
+                    body: JSON.stringify({ courseId, text })
+                });
+                document.getElementById('comment-input').value = '';
+                loadComments();
+            } catch (e) { alert(e.message); }
+        }
+
+        document.getElementById('like-btn').onclick = async () => {
+            try {
+                const data = await api.fetch(`/api/courses/${courseId}/like`, { method: 'POST' });
+                document.getElementById('like-count').textContent = data.likes;
+            } catch (e) { alert(e.message); }
+        };
 
         document.getElementById('prev-btn').addEventListener('click', () => {
             if (currentLessonIndex > 0) loadLesson(currentLessonIndex - 1);

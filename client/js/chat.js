@@ -25,7 +25,7 @@ const chatbot = {
             </div>
             <div class="chatbot-window" id="chatbot-window">
                 <div class="chatbot-header">
-                    <h3 data-i18n="chat_title">Tutorify AI Assistant</h3>
+                    <h3 data-i18n="chat_title">Tut the Owl 🦉</h3>
                     <div class="chatbot-close" id="chatbot-close">
                         <i class="uil uil-multiply"></i>
                     </div>
@@ -76,9 +76,16 @@ const chatbot = {
     },
 
     addWelcomeMessage() {
-        const welcome = window.i18n && window.i18n.translations['chat_welcome']
-            ? window.i18n.translations['chat_welcome']
-            : "Hello! I'm your Tutorify assistant. How can I help you today?";
+        const user = JSON.parse(localStorage.getItem('user'));
+        const name = user ? (user.nickname || user.name) : '';
+
+        let welcome = "Hello! I'm your Tutorify assistant.";
+        if (user && user.streak > 0) {
+            welcome = `Hey ${name}! Your ${user.streak}-day streak is looking hot! 🔥 Don't let it go cold, let's learn something today!`;
+        } else if (user) {
+            welcome = `Hey ${name}! You don't have a streak yet. Do you want me to cry? 😢 Start a lesson now!`;
+        }
+
         this.addMessage('bot', welcome);
     },
 
