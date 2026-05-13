@@ -165,6 +165,7 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="js/motivation.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const courseId = urlParams.get('id');
@@ -234,6 +235,14 @@
             completeBtn.onclick = () => markAsComplete(lesson.id);
         }
 
+        let struggleTimer = null;
+        function resetStruggleTimer() {
+            clearTimeout(struggleTimer);
+            struggleTimer = setTimeout(() => {
+                if (window.motivation) window.motivation.showEncouragement();
+            }, 60000); // 1 minute of inactivity triggers encouragement
+        }
+
         async function markAsComplete(lessonId) {
             try {
                 await api.fetch(`/api/courses/${courseId}/progress`, {
@@ -243,17 +252,18 @@
 
                 await api.addXP(50); // Earn 50 XP per lesson!
 
+                if (window.motivation) window.motivation.celebrate();
+
                 completedLessons.push(lessonId);
                 renderLessons();
                 document.getElementById('complete-btn').style.display = 'none';
 
                 // If all lessons complete, show success
                 if (completedLessons.length === currentCourse.lessons.length) {
-                    alert(i18n.translations['player_congrats'] || 'Congratulations! You have completed all lessons in this course.');
+                    setTimeout(() => {
+                        alert(i18n.translations['player_congrats'] || 'Congratulations! You have completed all lessons in this course.');
+                    }, 1000);
                 }
-
-                // Refresh topbar for streak update
-                location.reload();
             } catch (error) {
                 console.error('Failed to mark complete:', error);
             }
@@ -300,7 +310,12 @@
             if (currentLessonIndex < currentCourse.lessons.length - 1) loadLesson(currentLessonIndex + 1);
         });
 
-        document.addEventListener('DOMContentLoaded', initPlayer);
+        document.addEventListener('DOMContentLoaded', () => {
+            initPlayer();
+            resetStruggleTimer();
+            window.addEventListener('mousemove', resetStruggleTimer);
+            window.addEventListener('keypress', resetStruggleTimer);
+        });
     </script>
     <script src="js/chat.js"></script>
 </body>

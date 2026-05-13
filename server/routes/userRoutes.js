@@ -17,4 +17,14 @@ router.put('/profile', authenticateToken, (req, res) => {
     res.json(safeUser);
 });
 
+router.get('/leaderboard', authenticateToken, (req, res) => {
+    const { readDB } = require('../models/db');
+    const db = readDB();
+    const leaderboard = db.users
+        .map(u => ({ name: u.nickname || u.name, xp: u.xp || 0, streak: u.streak || 0 }))
+        .sort((a, b) => b.xp - a.xp)
+        .slice(0, 5);
+    res.json(leaderboard);
+});
+
 module.exports = router;

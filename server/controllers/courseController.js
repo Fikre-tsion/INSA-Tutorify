@@ -1,4 +1,5 @@
 const { readDB, writeDB } = require('../models/db');
+const indexContent = require('../../index_content');
 
 exports.getCourseById = (req, res) => {
     const db = readDB();
@@ -91,6 +92,7 @@ exports.createCourse = (req, res) => {
 
     db.courses.push(newCourse);
     writeDB(db);
+    indexContent().catch(console.error); // Auto-update search index
     res.status(201).json({ message: 'Course created successfully', course: newCourse });
 };
 
@@ -107,6 +109,7 @@ exports.updateCourse = (req, res) => {
 
     db.courses[index] = { ...db.courses[index], ...req.body, id: parseInt(id) };
     writeDB(db);
+    indexContent().catch(console.error); // Auto-update search index
     res.json({ message: 'Course updated successfully', course: db.courses[index] });
 };
 
@@ -132,6 +135,13 @@ exports.deleteCourse = (req, res) => {
 exports.getProgress = (req, res) => {
     const db = readDB();
     const courseId = parseInt(req.params.id);
+
+    // Security check: Must be enrolled to see progress/content
+    const isEnrolled = db.enrollments.find(e => e.userId === req.user.id && e.courseId === courseId);
+    if (!isEnrolled && req.user.role !== 'admin') {
+        return res.status(403).json({ message: 'Enrollment required' });
+    }
+
     const progress = db.progress.find(p => p.userId === req.user.id && p.courseId === courseId);
     res.json(progress || { completedLessons: [] });
 };

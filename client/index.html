@@ -30,6 +30,12 @@
 
     <header>
         <div class="container header__container">
+            <div id="leaderboard-sidebar" style="position: fixed; left: 20px; top: 8rem; width: 200px; background: var(--color-bg1); padding: 1rem; border-radius: 1rem; border: 1px solid var(--glass-border); z-index: 100;" class="hidden-mobile">
+                <h4 style="margin-bottom: 0.5rem;"><i class="uil uil-trophy" style="color: #f1c40f;"></i> Top Learners</h4>
+                <div id="leaderboard-list" style="font-size: 0.8rem;">
+                    <!-- Leaderboard -->
+                </div>
+            </div>
             <div class="header__left">
                 <h1 data-i18n="hero_title">Welcome to Tutorify</h1>
                 <p data-i18n="hero_subtitle">Discover step-by-step tutorials, interactive lessons, and expert guidance to help you achieve your goals—no experience required!</p>
@@ -222,11 +228,26 @@
             } catch (e) { console.error(e); }
         }
 
+        async function loadLeaderboard() {
+            if (!localStorage.getItem('token')) return;
+            try {
+                const leaderboard = await api.fetch('/api/users/leaderboard');
+                const container = document.getElementById('leaderboard-list');
+                container.innerHTML = leaderboard.map((u, i) => `
+                    <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--glass-border);">
+                        <span>${i+1}. ${u.name}</span>
+                        <span style="font-weight: bold;">${u.xp} XP</span>
+                    </div>
+                `).join('');
+            } catch (e) { console.error(e); }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             loadCourses();
             loadMyCourses();
             loadRecommended();
             loadTrending();
+            loadLeaderboard();
         });
     </script>
     <script src="js/chat.js"></script>

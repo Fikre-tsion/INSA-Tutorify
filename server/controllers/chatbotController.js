@@ -69,7 +69,19 @@ function findAnswer(query, kb, lang, user = null) {
         ? " By the way, your 0-day streak is making me very sad. If you don't start a lesson soon, I might have to haunt your dreams. 🦉🔪"
         : "";
 
-    // Simple rule-based engine
+    // 1. Check for specific Course Match
+    const courseMatch = kb.courses.find(c => query.includes(c.title.toLowerCase()) || query.includes(c.category.toLowerCase()));
+    if (courseMatch) {
+        return `Oh, you're asking about ${courseMatch.title}! It's a fantastic course in ${courseMatch.category}. It currently has ${courseMatch.likes || 0} likes. Want to enroll?`;
+    }
+
+    // 2. Search Page Content
+    const pageMatch = kb.pages.find(p => p.content.toLowerCase().includes(query));
+    if (pageMatch) {
+        return `I found something related to that on our ${pageMatch.name.replace('.html', '')} page: "${pageMatch.content.substring(0, 150)}..."`;
+    }
+
+    // 3. Rule-based engine (Fallback)
     if (query.includes('hello') || query.includes('hi')) {
         return `${greeting} I'm here to help you find the best courses on Tutorify.${interestMsg} What are you interested in learning today?${personality}`;
     }
