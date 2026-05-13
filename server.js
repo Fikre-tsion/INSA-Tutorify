@@ -53,6 +53,30 @@ app.post('/api/register', async (req, res) => {
     res.status(201).json({ message: 'User registered successfully' });
 });
 
+// Contact endpoint
+app.post('/api/contact', async (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    const db = readDB();
+
+    if (!db.contacts) {
+        db.contacts = [];
+    }
+
+    const newContact = {
+        id: db.contacts.length + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    db.contacts.push(newContact);
+    writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
+});
+
 // Login endpoint
 app.post('/api/login', async (req, res) => {
     const { email, password, role } = req.body;
