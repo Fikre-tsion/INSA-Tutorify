@@ -32,6 +32,7 @@
       <div class="input-box">
         <select id="loginRole">
           <option value="user">User</option>
+          <option value="teacher">Teacher</option>
           <option value="admin">Admin</option>
         </select>
       </div>
@@ -46,6 +47,7 @@
       <div class="input-box">
         <select id="regRole">
           <option value="user">User</option>
+          <option value="teacher">Teacher</option>
           <option value="admin">Admin</option>
         </select>
       </div>
@@ -88,7 +90,9 @@
                     localStorage.setItem('user', JSON.stringify(data.user));
                     showMsg(successMsg, false);
                     setTimeout(() => {
-                        window.location.href = data.user.role === 'admin' ? 'dashboard.html' : 'index.html';
+                        if (data.user.role === 'admin') window.location.href = 'dashboard.html';
+                        else if (data.user.role === 'teacher') window.location.href = 'teacher-dashboard.html';
+                        else window.location.href = 'index.html';
                     }, 1000);
                 } else {
                     showMsg(successMsg, false);

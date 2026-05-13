@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+      .filters { margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+      .filters select, .filters input { padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); background: var(--color-bg1); color: var(--color-text); }
+  </style>
 </head>
 <body>
   <nav>
@@ -24,7 +28,27 @@
   </nav>
 
   <section class="courses" style="padding: 6rem 0;">
-    <h2>Our Full Course Catalog</h2>
+    <h2 style="margin-bottom: 1rem;">Explore Our Courses</h2>
+
+    <div class="container">
+        <div class="filters">
+            <select id="filter-category" onchange="loadAllCourses()">
+                <option value="">All Categories</option>
+                <option value="Programming">Programming</option>
+                <option value="Design">Design</option>
+                <option value="Business">Business</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Technology">Technology</option>
+            </select>
+            <select id="sort-by" onchange="loadAllCourses()">
+                <option value="popularity">Popularity</option>
+                <option value="date">Newest First</option>
+                <option value="title">Alphabetical</option>
+            </select>
+            <input type="text" id="search-input" placeholder="Search courses..." onkeyup="filterBySearch()">
+        </div>
+    </div>
+
     <div class="container courses__container" id="all-courses-container">
         <!-- Courses loaded from API -->
     </div>
@@ -34,7 +58,7 @@
     <div class="container footer__container">
         <div class="footer__1">
             <a href="index.html" class="footer__logo"><h4>Tutorify</h4></a>
-            <p>Our mission is to empower individuals with the knowledge and skills.</p>
+            <p>Our mission is to empower individuals with the knowledge and skills to succeed.</p>
         </div>
         <div class="footer__2">
             <h4>Permalinks</h4>
@@ -55,21 +79,46 @@
 
   <script src="js/main.js"></script>
   <script>
+    let allLoadedCourses = [];
+
     async function loadAllCourses() {
+        const category = document.getElementById('filter-category').value;
+        const sort = document.getElementById('sort-by').value;
+
+        let url = `/api/courses?sort=${sort}`;
+        if (category) url += `&category=${category}`;
+
         try {
-            const courses = await api.fetch('/api/courses');
-            const container = document.getElementById('all-courses-container');
-            container.innerHTML = courses.map(course => `
-                <article class="course">
-                    <div class="course__image"><img src="${course.image}" alt="${course.title}"></div>
-                    <div class="course__info">
-                        <h4>${course.title}</h4>
-                        <p>${course.description}</p>
-                        <button onclick="enroll(${course.id})" class="btn btn-primary">Enroll Now</button>
-                    </div>
-                </article>
-            `).join('');
+            allLoadedCourses = await api.fetch(url);
+            renderCourses(allLoadedCourses);
         } catch (e) { console.error(e); }
+    }
+
+    function renderCourses(courses) {
+        const container = document.getElementById('all-courses-container');
+        container.innerHTML = courses.map(course => `
+            <article class="course">
+                <div class="course__image"><img src="${course.image}" alt="${course.title}"></div>
+                <div class="course__info">
+                    <span style="font-size: 0.8rem; color: var(--color-primary);">${course.category}</span>
+                    <h4>${course.title}</h4>
+                    <p>${course.description}</p>
+                    <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: auto;">
+                        <button onclick="enroll(${course.id})" class="btn btn-primary">Enroll Now</button>
+                        <span style="font-size: 0.8rem; color: var(--color-text-light);"><i class="uil uil-star"></i> ${course.popularity}</span>
+                    </div>
+                </div>
+            </article>
+        `).join('');
+    }
+
+    function filterBySearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const filtered = allLoadedCourses.filter(c =>
+            c.title.toLowerCase().includes(query) ||
+            c.description.toLowerCase().includes(query)
+        );
+        renderCourses(filtered);
     }
 
     async function enroll(courseId) {

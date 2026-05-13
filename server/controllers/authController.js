@@ -6,12 +6,13 @@ exports.register = async (req, res) => {
     const { name, email, password, role } = req.body;
     const db = readDB();
 
-    if (db.users.find(u => u.email === email)) {
+    if (db.users.find(u => u.email === email.toLowerCase())) {
         return res.status(400).json({ message: 'User already exists' });
     }
 
-    // Security: Only allow self-registration as 'user'
-    const finalRole = role === 'admin' ? 'user' : role;
+    // Security: Only allow self-registration as 'user' or 'teacher' (for demo)
+    // In real app, teachers might need verification
+    const finalRole = (role === 'admin') ? 'user' : role;
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
         id: Date.now(),

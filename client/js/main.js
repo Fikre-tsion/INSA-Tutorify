@@ -15,7 +15,6 @@ const api = {
             const data = await response.json();
 
             if (response.status === 401 || response.status === 403) {
-                // Token expired or invalid
                 if (token) {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
@@ -107,13 +106,20 @@ const user = JSON.parse(localStorage.getItem('user'));
 const authLink = document.getElementById('auth-link');
 
 if (token && user && authLink) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
+    let dashboardLink = '';
+    if (user.role === 'admin') dashboardLink = '<li><a href="dashboard.html">Admin</a></li>';
+    if (user.role === 'teacher') dashboardLink = '<li><a href="teacher-dashboard.html">Teach</a></li>';
+
+    authLink.outerHTML = `
+        ${dashboardLink}
+        <li id="auth-link"><a href="#" onclick="logout()">${user.name} (Logout)</a></li>
+    `;
 }
 
 function logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.reload();
+    window.location.href = 'index.html';
 }
 window.logout = logout;
 window.api = api;

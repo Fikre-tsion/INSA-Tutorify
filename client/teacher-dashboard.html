@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard - Tutorify</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+      .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+      .modal-content { background: var(--color-bg1); margin: 10% auto; padding: 20px; border-radius: 15px; width: 50%; color: var(--color-text); }
+      .form-group { margin-bottom: 1rem; }
+      .form-group label { display: block; margin-bottom: 0.5rem; }
+      .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--color-bg2); background: var(--color-bg); color: var(--color-text); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="navigation">
+      <ul>
+        <li><a href="#"><span class="icon"><ion-icon name="school-outline"></ion-icon></span><span class="title">Teacher Panel</span></a></li>
+        <li><a href="index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="title">Home</span></a></li>
+        <li><a href="#" class="active"><span class="icon"><ion-icon name="book-outline"></ion-icon></span><span class="title">My Courses</span></a></li>
+        <li><a href="#" onclick="logout()"><span class="icon"><ion-icon name="log-out-outline"></ion-icon></span><span class="title">Logout</span></a></li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <div class="topbar">
+        <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
+        <div class="user">
+          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem;"><ion-icon name="sunny-outline"></ion-icon></div>
+          <div class="imgBx"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=100&h=100" alt="Teacher"></div>
+        </div>
+      </div>
+
+      <div class="details" style="grid-template-columns: 1fr;">
+        <div class="recentOrders">
+          <div class="cardHeader">
+            <h2>My Courses</h2>
+            <button class="btn" onclick="openModal()">Add New Course</button>
+          </div>
+          <table id="teacher-courses-table">
+            <thead>
+              <tr><td>Title</td><td>Category</td><td>Popularity</td><td>Created</td><td>Action</td></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Course Modal -->
+  <div id="courseModal" class="modal">
+      <div class="modal-content">
+          <h2 id="modalTitle">Add New Course</h2>
+          <form id="courseForm">
+              <input type="hidden" id="courseId">
+              <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" id="title" required>
+              </div>
+              <div class="form-group">
+                  <label>Category</label>
+                  <select id="category">
+                      <option value="Programming">Programming</option>
+                      <option value="Design">Design</option>
+                      <option value="Business">Business</option>
+                      <option value="Marketing">Marketing</option>
+                      <option value="Technology">Technology</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label>Image URL</label>
+                  <input type="text" id="image" placeholder="https://unsplash.com/...">
+              </div>
+              <div class="form-group">
+                  <label>Description</label>
+                  <textarea id="description" rows="4" required></textarea>
+              </div>
+              <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                  <button type="button" class="btn" style="background: var(--color-danger);" onclick="closeModal()">Cancel</button>
+                  <button type="submit" class="btn">Save Course</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/teacher-dashboard.js"></script>
+</body>
+</html>
