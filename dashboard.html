@@ -73,7 +73,7 @@
           </label>
         </div>
         <div class="user">
-          <img src="./images2/image.png" alt="User Profile" width="120" height="120">
+          <img loading="lazy" src="./images2/image.png" alt="User Profile" width="120" height="120">
         </div>
       </div>
 
@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div id="profileViews" class="numbers">0</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div id="tutorials" class="numbers">0</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,7 +99,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
+            <div id="comments" class="numbers">0</div>
             <div class="cardName">Comments</div>
           </div>
           <div class="iconBx">
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div id="earnings" class="numbers">0</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -190,7 +190,7 @@
             <table>
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img loading="lazy" src="./images2/2.jpg" alt="Customer"></div>
                 </td>
                 <td>
                   <h4>Gebre<br><span>Grade 12</span></h4>
@@ -199,7 +199,7 @@
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img loading="lazy" src="./images2/1.jpg" alt="Customer"></div>
                 </td>
                 <td>
                   <h4>Selam<br><span>Grade 11</span></h4>
@@ -207,7 +207,7 @@
 
                 <tr>
                   <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
+                    <div class="imgBx"><img loading="lazy" src="./images2/4.jpg" alt="Customer"></div>
                   </td>
                   <td>
                     <h4>Yonas<br><span>Grade 10</span></h4>
@@ -216,7 +216,7 @@
 
                 <tr>
                   <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
+                    <div class="imgBx"><img loading="lazy" src="./images2/student.png" alt="Customer"></div>
                   </td>
                   <td>
                     <h4>Meron<br><span>Grade 9</span></h4>
@@ -225,7 +225,7 @@
 
                 <tr>
                   <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
+                    <div class="imgBx"><img loading="lazy" src="./images2/5.jpg" alt="Customer"></div>
                   </td>
                   <td>
                     <h4>Daniel<br><span>Grade 12</span></h4>
@@ -257,6 +257,20 @@
       localStorage.removeItem('user');
       window.location.href = 'login.html';
     }
+
+    async function fetchStats() {
+      try {
+        const response = await fetch('/api/admin/stats');
+        const stats = await response.json();
+        document.getElementById('profileViews').textContent = stats.profileViews || 0;
+        document.getElementById('tutorials').textContent = stats.tutorials || 0;
+        document.getElementById('comments').textContent = stats.comments || 0;
+        document.getElementById('earnings').textContent = stats.earnings || 0;
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    }
+    fetchStats();
 
     let toggle = document.querySelector('.toggle');
     let navigation = document.querySelector('.navigation');
