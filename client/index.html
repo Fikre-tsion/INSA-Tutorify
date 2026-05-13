@@ -16,11 +16,11 @@
         <div class="container nav__container">
             <a href="index.html"><h4>Tutorify</h4></a>
             <ul class="nav__menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li id="auth-link"><a href="login.html">Login</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+                <li id="auth-link"><a href="login.html" data-i18n="nav_login">Login</a></li>
                 <li><button id="theme-toggle"><i class="uil uil-sun"></i></button></li>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
@@ -31,10 +31,9 @@
     <header>
         <div class="container header__container">
             <div class="header__left">
-                <h1>Welcome to Tutorify</h1>
-                <h2>Unlock Your Potential: <span style="color: #ff6a00;">Learn Anything</span> From Scratch</h2>
-                <p>Discover step-by-step tutorials, interactive lessons, and expert guidance to help you achieve your goals—no experience required!</p>
-                <a href="courses.html" class="btn btn-primary">Get Started</a>
+                <h1 data-i18n="hero_title">Welcome to Tutorify</h1>
+                <p data-i18n="hero_subtitle">Discover step-by-step tutorials, interactive lessons, and expert guidance to help you achieve your goals—no experience required!</p>
+                <a href="courses.html" class="btn btn-primary" data-i18n="get_started">Get Started</a>
             </div>
             <div class="header__right">
                 <div class="header__right-image">
@@ -46,7 +45,7 @@
 
     <section class="my-courses hidden" id="my-courses-section">
         <div class="container">
-            <h2>My Enrolled Courses</h2>
+            <h2 data-i18n="enrolled_courses">My Enrolled Courses</h2>
             <div class="courses__container" id="my-courses-container"></div>
         </div>
     </section>
@@ -54,37 +53,37 @@
     <section class="categories">
         <div class="container categories__container">
             <div class="categories__left">
-                <h1>Categories</h1>
-                <p>Explore a variety of categories including Programming, Web Development, Data Science, Design, Marketing, and more.</p>
-                <a href="#" class="btn">Learn More</a>
+                <h1 data-i18n="categories_title">Categories</h1>
+                <p data-i18n="categories_desc">Explore a variety of categories including Programming, Web Development, Data Science, Design, Marketing, and more.</p>
+                <a href="courses.html" class="btn" data-i18n="learn_more">Learn More</a>
             </div>
             <div class="categories__right">
                 <article class="category">
                     <span class="category__icon"><i class="uil uil-bitcoin"></i></span>
-                    <h5>Blockchain</h5>
-                    <p>Learn blockchain fundamentals, smart contracts, and decentralized apps.</p>
+                    <h5 data-i18n="cat_blockchain">Blockchain</h5>
+                    <p data-i18n="cat_blockchain_desc">Learn blockchain fundamentals, smart contracts, and decentralized apps.</p>
                 </article>
                 <article class="category">
                     <span class="category__icon"><i class="uil uil-brackets-curly"></i></span>
-                    <h5>Programming</h5>
-                    <p>Master algorithms, data structures, and popular languages.</p>
+                    <h5 data-i18n="cat_programming">Programming</h5>
+                    <p data-i18n="cat_programming_desc">Master algorithms, data structures, and popular languages.</p>
                 </article>
                 <article class="category">
                     <span class="category__icon"><i class="uil uil-chart-line"></i></span>
-                    <h5>Finance</h5>
-                    <p>Learn investing, budgeting, and strategies for success.</p>
+                    <h5 data-i18n="cat_finance">Finance</h5>
+                    <p data-i18n="cat_finance_desc">Learn investing, budgeting, and strategies for success.</p>
                 </article>
                 <article class="category">
                     <span class="category__icon"><i class="uil uil-swatchbook"></i></span>
-                    <h5>Design</h5>
-                    <p>Discover typography, color theory, and visual communication.</p>
+                    <h5 data-i18n="cat_design">Design</h5>
+                    <p data-i18n="cat_design_desc">Discover typography, color theory, and visual communication.</p>
                 </article>
             </div>
         </div>
     </section>
 
     <section class="courses">
-        <h2>Our Popular Courses</h2>
+        <h2 data-i18n="popular_courses">Our Popular Courses</h2>
         <div class="container courses__container" id="popular-courses-container"></div>
     </section>
 
@@ -92,27 +91,27 @@
         <div class="container footer__container">
             <div class="footer__1">
                 <a href="index.html" class="footer__logo"><h4>Tutorify</h4></a>
-                <p>Our mission is to empower individuals with the knowledge and skills.</p>
+                <p data-i18n="footer_mission">Our mission is to empower individuals with the knowledge and skills.</p>
             </div>
             <div class="footer__2">
-                <h4>Permalinks</h4>
+                <h4 data-i18n="footer_permalinks">Permalinks</h4>
                 <ul class="permalinks">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                    <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                    <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+                    <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer__3">
-                <h4>Privacy</h4>
+                <h4 data-i18n="footer_privacy">Privacy</h4>
                 <ul class="privacy">
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms</a></li>
-                    <li><a href="refund.html">Refund Policy</a></li>
+                    <li><a href="#" data-i18n="privacy_policy">Privacy Policy</a></li>
+                    <li><a href="#" data-i18n="terms_of_use">Terms</a></li>
+                    <li><a href="#" data-i18n="refund_policy">Refund Policy</a></li>
                 </ul>
             </div>
             <div class="footer__4">
-                <h4>Contact Us</h4>
+                <h4 data-i18n="footer_contact">Contact Us</h4>
                 <p>+251966418467 / +251928505904</p>
                 <p>tutorifytutoring@gmail.com</p>
             </div>
@@ -137,8 +136,8 @@
                                 <h4>${course.title}</h4>
                                 <p>${course.description}</p>
                                 <div style="display:flex; gap: 1rem;">
-                                    <a href="course.html?id=${course.id}" class="btn btn-primary">Learn More</a>
-                                    <button onclick="enroll(${course.id})" class="btn">Enroll</button>
+                                    <a href="course.html?id=${course.id}" class="btn btn-primary" data-i18n="learn_more">${i18n.translations['learn_more'] || 'Learn More'}</a>
+                                    <button onclick="enroll(${course.id})" class="btn" data-i18n="enroll_now">${i18n.translations['enroll_now'] || 'Enroll'}</button>
                                 </div>
                             </div>
                         </article>
@@ -157,8 +156,8 @@
                         <article class="course">
                             <div class="course__info">
                                 <h4>${course.title}</h4>
-                                <p>Status: Enrolled</p>
-                                <a href="course.html?id=${course.id}" class="btn btn-primary">Go to Course</a>
+                                <p>${i18n.translations['status_enrolled'] || 'Status: Enrolled'}</p>
+                                <a href="course.html?id=${course.id}" class="btn btn-primary" data-i18n="go_to_course">${i18n.translations['go_to_course'] || 'Go to Course'}</a>
                             </div>
                         </article>
                     `).join('');
@@ -178,6 +177,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Re-run translations after dynamic load if necessary,
+            // but here we use i18n.translations directly in templates.
             loadCourses();
             loadMyCourses();
         });

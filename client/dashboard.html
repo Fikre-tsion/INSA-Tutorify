@@ -5,68 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - Tutorify</title>
   <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+      #lang-selector-nav { margin-left: 1rem; }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="navigation">
-      <ul>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="bulb-outline"></ion-icon></span>
-            <span class="title">Tutorify</span>
-          </a>
-        </li>
-        <li>
-          <a href="index.html">
-            <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-            <span class="title">Home</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-            <span class="title">Users</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-            <span class="title">Messages</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-            <span class="title">Settings</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" onclick="logout()">
-            <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
-            <span class="title">Logout</span>
-          </a>
-        </li>
+      <ul id="nav-list">
+        <li><a href="#"><span class="icon"><ion-icon name="bulb-outline"></ion-icon></span><span class="title">Tutorify</span></a></li>
+        <li><a href="index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="title" data-i18n="nav_home">Home</span></a></li>
+        <li><a href="#"><span class="icon"><ion-icon name="person-outline"></ion-icon></span><span class="title" data-i18n="nav_users">Users</span></a></li>
+        <li><a href="#"><span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span><span class="title" data-i18n="nav_messages">Messages</span></a></li>
+        <li><a href="#"><span class="icon"><ion-icon name="settings-outline"></ion-icon></span><span class="title" data-i18n="nav_settings">Settings</span></a></li>
+        <li><a href="#" onclick="logout()"><span class="icon"><ion-icon name="log-out-outline"></ion-icon></span><span class="title" data-i18n="nav_logout">Logout</span></a></li>
       </ul>
     </div>
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
-          <ion-icon name="menu-outline"></ion-icon>
-        </div>
+        <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
         <div class="search">
-          <label>
-            <input type="text" placeholder="Search here">
-            <ion-icon name="search-outline"></ion-icon>
-          </label>
-        </div>
+            <label>
+              <input type="text" data-i18n="search_placeholder" placeholder="Search here">
+              <ion-icon name="search-outline"></ion-icon>
+            </label>
+          </div>
         <div class="user">
-          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem; display: flex; align-items: center;">
+          <div id="lang-selector-nav"></div>
+          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; margin: 0 1rem;">
             <ion-icon name="sunny-outline"></ion-icon>
           </div>
-          <div class="imgBx">
-            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80" alt="Admin">
-          </div>
+          <div class="imgBx"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80" alt="Admin"></div>
         </div>
       </div>
 
@@ -74,89 +44,87 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">0</div>
-            <div class="cardName">Total Users</div>
+            <div class="numbers" id="stat-users">0</div>
+            <div class="cardName" data-i18n="stat_total_users">Total Users</div>
           </div>
-          <div class="iconBx">
-            <ion-icon name="people-outline"></ion-icon>
-          </div>
+          <div class="iconBx"><ion-icon name="people-outline"></ion-icon></div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">0</div>
-            <div class="cardName">Courses</div>
+            <div class="numbers" id="stat-courses">0</div>
+            <div class="cardName" data-i18n="nav_courses">Courses</div>
           </div>
-          <div class="iconBx">
-            <ion-icon name="book-outline"></ion-icon>
-          </div>
+          <div class="iconBx"><ion-icon name="book-outline"></ion-icon></div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">0</div>
-            <div class="cardName">Enrollments</div>
+            <div class="numbers" id="stat-enrollments">0</div>
+            <div class="cardName" data-i18n="stat_enrollments">Enrollments</div>
           </div>
-          <div class="iconBx">
-            <ion-icon name="school-outline"></ion-icon>
-          </div>
+          <div class="iconBx"><ion-icon name="school-outline"></ion-icon></div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">0</div>
-            <div class="cardName">Messages</div>
+            <div class="numbers" id="stat-messages">0</div>
+            <div class="cardName" data-i18n="nav_messages">Messages</div>
           </div>
-          <div class="iconBx">
-            <ion-icon name="mail-outline"></ion-icon>
-          </div>
+          <div class="iconBx"><ion-icon name="mail-outline"></ion-icon></div>
         </div>
       </div>
 
-      <!-- details lists -->
-        <div class="details">
-          <div class="recentOrders">
-            <div class="cardHeader">
-              <h2>Recent Users</h2>
-              <a href="#" class="btn">View All</a>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <td>Name</td>
-                  <td>Email</td>
-                  <td>Role</td>
-                  <td>Status</td>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Populated by JS -->
-              </tbody>
-            </table>
+      <div class="details">
+        <div class="recentOrders">
+          <div class="cardHeader">
+            <h2 data-i18n="recent_users">Recent Users</h2>
+            <a href="#" class="btn" data-i18n="view_all">View All</a>
           </div>
-
-          <!-- New Customers -->
-           <div class="recentCustomers">
-            <div class="cardHeader">
-              <h2>Recent Messages</h2>
-            </div>
-            <table>
-              <!-- Populated by JS -->
-            </table>
-           </div>
-
+          <table>
+            <thead>
+              <tr>
+                <td data-i18n="name_label">Name</td>
+                <td data-i18n="email_placeholder">Email</td>
+                <td data-i18n="role_label">Role</td>
+                <td data-i18n="status_label">Status</td>
+              </tr>
+            </thead>
+            <tbody id="users-tbody"></tbody>
+          </table>
         </div>
+
+        <div class="recentCustomers">
+          <div class="cardHeader">
+            <h2 data-i18n="recent_messages">Recent Messages</h2>
+          </div>
+          <table id="messages-table"></table>
+        </div>
+      </div>
     </div>
   </div>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
+  <script src="js/main.js"></script>
   <script>
     // Check authentication
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
+    if (!localStorage.getItem('token')) window.location.href = 'login.html';
 
-    if (!token || !user || user.role !== 'admin') {
-      alert('Access denied. Please login as admin.');
-      window.location.href = 'login.html';
+    // Override language selector for dashboard topbar
+    const originalRender = i18n.renderLanguageSelector;
+    i18n.renderLanguageSelector = function() {
+        const container = document.getElementById('lang-selector-nav');
+        if (!container) return;
+
+        container.innerHTML = `
+            <select id="lang-selector" style="background:var(--color-bg1); color:var(--color-text); border:1px solid var(--glass-border); border-radius:5px; padding:5px; cursor:pointer;">
+                ${Object.entries(this.languages).map(([code, name]) =>
+                    `<option value="${code}" ${code === this.currentLang ? 'selected' : ''}>${name}</option>`
+                ).join('')}
+            </select>
+        `;
+        document.getElementById('lang-selector').addEventListener('change', async (e) => {
+            await this.loadTranslations(e.target.value);
+            this.translatePage();
+        });
     }
   </script>
   <script src="js/dashboard.js"></script>

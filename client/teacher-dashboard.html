@@ -11,16 +11,17 @@
       .form-group { margin-bottom: 1rem; }
       .form-group label { display: block; margin-bottom: 0.5rem; }
       .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--color-bg2); background: var(--color-bg); color: var(--color-text); }
+      #lang-selector-nav { margin-left: 1rem; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="navigation">
       <ul>
-        <li><a href="#"><span class="icon"><ion-icon name="school-outline"></ion-icon></span><span class="title">Teacher Panel</span></a></li>
-        <li><a href="index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="title">Home</span></a></li>
-        <li><a href="#" class="active"><span class="icon"><ion-icon name="book-outline"></ion-icon></span><span class="title">My Courses</span></a></li>
-        <li><a href="#" onclick="logout()"><span class="icon"><ion-icon name="log-out-outline"></ion-icon></span><span class="title">Logout</span></a></li>
+        <li><a href="#"><span class="icon"><ion-icon name="school-outline"></ion-icon></span><span class="title" data-i18n="role_teacher">Teacher Panel</span></a></li>
+        <li><a href="index.html"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="title" data-i18n="nav_home">Home</span></a></li>
+        <li><a href="#" class="active"><span class="icon"><ion-icon name="book-outline"></ion-icon></span><span class="title" data-i18n="nav_courses">My Courses</span></a></li>
+        <li><a href="#" onclick="logout()"><span class="icon"><ion-icon name="log-out-outline"></ion-icon></span><span class="title" data-i18n="nav_logout">Logout</span></a></li>
       </ul>
     </div>
 
@@ -28,7 +29,8 @@
       <div class="topbar">
         <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
         <div class="user">
-          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem;"><ion-icon name="sunny-outline"></ion-icon></div>
+          <div id="lang-selector-nav"></div>
+          <div id="theme-toggle" style="cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; margin: 0 1rem;"><ion-icon name="sunny-outline"></ion-icon></div>
           <div class="imgBx"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?fit=crop&w=100&h=100" alt="Teacher"></div>
         </div>
       </div>
@@ -36,12 +38,18 @@
       <div class="details" style="grid-template-columns: 1fr;">
         <div class="recentOrders">
           <div class="cardHeader">
-            <h2>My Courses</h2>
-            <button class="btn" onclick="openModal()">Add New Course</button>
+            <h2 data-i18n="nav_courses">My Courses</h2>
+            <button class="btn" onclick="openModal()" data-i18n="add_new_course">Add New Course</button>
           </div>
           <table id="teacher-courses-table">
             <thead>
-              <tr><td>Title</td><td>Category</td><td>Popularity</td><td>Created</td><td>Action</td></tr>
+              <tr>
+                  <td data-i18n="title_label">Title</td>
+                  <td data-i18n="cat_label">Category</td>
+                  <td data-i18n="popularity_label">Popularity</td>
+                  <td data-i18n="created_label">Created</td>
+                  <td data-i18n="action_label">Action</td>
+              </tr>
             </thead>
             <tbody></tbody>
           </table>
@@ -53,34 +61,34 @@
   <!-- Add Course Modal -->
   <div id="courseModal" class="modal">
       <div class="modal-content">
-          <h2 id="modalTitle">Add New Course</h2>
+          <h2 id="modalTitle" data-i18n="add_new_course">Add New Course</h2>
           <form id="courseForm">
               <input type="hidden" id="courseId">
               <div class="form-group">
-                  <label>Title</label>
+                  <label data-i18n="title_label">Title</label>
                   <input type="text" id="title" required>
               </div>
               <div class="form-group">
-                  <label>Category</label>
+                  <label data-i18n="cat_label">Category</label>
                   <select id="category">
-                      <option value="Programming">Programming</option>
-                      <option value="Design">Design</option>
-                      <option value="Business">Business</option>
-                      <option value="Marketing">Marketing</option>
-                      <option value="Technology">Technology</option>
+                      <option value="Programming" data-i18n="cat_programming">Programming</option>
+                      <option value="Design" data-i18n="cat_design">Design</option>
+                      <option value="Business" data-i18n="cat_business">Business</option>
+                      <option value="Marketing" data-i18n="cat_marketing">Marketing</option>
+                      <option value="Technology" data-i18n="cat_technology">Technology</option>
                   </select>
               </div>
               <div class="form-group">
-                  <label>Image URL</label>
+                  <label data-i18n="img_url_label">Image URL</label>
                   <input type="text" id="image" placeholder="https://unsplash.com/...">
               </div>
               <div class="form-group">
-                  <label>Description</label>
+                  <label data-i18n="msg_label">Description</label>
                   <textarea id="description" rows="4" required></textarea>
               </div>
               <div style="display: flex; gap: 1rem; justify-content: flex-end;">
-                  <button type="button" class="btn" style="background: var(--color-danger);" onclick="closeModal()">Cancel</button>
-                  <button type="submit" class="btn">Save Course</button>
+                  <button type="button" class="btn" style="background: var(--color-danger);" onclick="closeModal()" data-i18n="cancel_btn">Cancel</button>
+                  <button type="submit" class="btn" data-i18n="save_btn">Save Course</button>
               </div>
           </form>
       </div>
@@ -89,6 +97,29 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // Check authentication
+    if (!localStorage.getItem('token')) window.location.href = 'login.html';
+
+    // Override language selector for dashboard topbar
+    const originalRender = i18n.renderLanguageSelector;
+    i18n.renderLanguageSelector = function() {
+        const container = document.getElementById('lang-selector-nav');
+        if (!container) return;
+
+        container.innerHTML = `
+            <select id="lang-selector" style="background:var(--color-bg1); color:var(--color-text); border:1px solid var(--glass-border); border-radius:5px; padding:5px; cursor:pointer;">
+                ${Object.entries(this.languages).map(([code, name]) =>
+                    `<option value="${code}" ${code === this.currentLang ? 'selected' : ''}>${name}</option>`
+                ).join('')}
+            </select>
+        `;
+        document.getElementById('lang-selector').addEventListener('change', async (e) => {
+            await this.loadTranslations(e.target.value);
+            this.translatePage();
+        });
+    }
+  </script>
   <script src="js/teacher-dashboard.js"></script>
 </body>
 </html>

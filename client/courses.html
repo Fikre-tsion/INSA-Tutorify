@@ -17,35 +17,35 @@
     <div class="container nav__container">
       <a href="index.html"><h4>Tutorify</h4></a>
       <ul class="nav__menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="courses.html" class="active">Courses</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li id="auth-link"><a href="login.html">Login</a></li>
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
+        <li><a href="courses.html" class="active" data-i18n="nav_courses">Courses</a></li>
+        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
+        <li id="auth-link"><a href="login.html" data-i18n="nav_login">Login</a></li>
         <li><button id="theme-toggle"><i class="uil uil-sun"></i></button></li>
       </ul>
     </div>
   </nav>
 
   <section class="courses" style="padding: 6rem 0;">
-    <h2 style="margin-bottom: 1rem;">Explore Our Courses</h2>
+    <h2 style="margin-bottom: 1rem;" data-i18n="explore_courses">Explore Our Courses</h2>
 
     <div class="container">
         <div class="filters">
             <select id="filter-category" onchange="loadAllCourses()">
-                <option value="">All Categories</option>
-                <option value="Programming">Programming</option>
-                <option value="Design">Design</option>
-                <option value="Business">Business</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Technology">Technology</option>
+                <option value="" data-i18n="all_categories">All Categories</option>
+                <option value="Programming" data-i18n="cat_programming">Programming</option>
+                <option value="Design" data-i18n="cat_design">Design</option>
+                <option value="Business" data-i18n="cat_business">Business</option>
+                <option value="Marketing" data-i18n="cat_marketing">Marketing</option>
+                <option value="Technology" data-i18n="cat_technology">Technology</option>
             </select>
             <select id="sort-by" onchange="loadAllCourses()">
-                <option value="popularity">Popularity</option>
-                <option value="date">Newest First</option>
-                <option value="title">Alphabetical</option>
+                <option value="popularity" data-i18n="sort_popularity">Popularity</option>
+                <option value="date" data-i18n="sort_newest">Newest First</option>
+                <option value="title" data-i18n="sort_alphabetical">Alphabetical</option>
             </select>
-            <input type="text" id="search-input" placeholder="Search courses..." onkeyup="filterBySearch()">
+            <input type="text" id="search-input" data-i18n="search_placeholder" placeholder="Search courses..." onkeyup="filterBySearch()">
         </div>
     </div>
 
@@ -58,19 +58,19 @@
     <div class="container footer__container">
         <div class="footer__1">
             <a href="index.html" class="footer__logo"><h4>Tutorify</h4></a>
-            <p>Our mission is to empower individuals with the knowledge and skills to succeed.</p>
+            <p data-i18n="footer_mission">Our mission is to empower individuals with the knowledge and skills to succeed.</p>
         </div>
         <div class="footer__2">
-            <h4>Permalinks</h4>
+            <h4 data-i18n="footer_permalinks">Permalinks</h4>
             <ul class="permalinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="about.html" data-i18n="nav_about">About</a></li>
+                <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+                <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
             </ul>
         </div>
         <div class="footer__4">
-            <h4>Contact Us</h4>
+            <h4 data-i18n="footer_contact">Contact Us</h4>
             <p>+251966418467 / +251928505904</p>
             <p>tutorifytutoring@gmail.com</p>
         </div>
@@ -104,7 +104,7 @@
                     <h4>${course.title}</h4>
                     <p>${course.description}</p>
                     <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: auto;">
-                        <button onclick="enroll(${course.id})" class="btn btn-primary">Enroll Now</button>
+                        <button onclick="enroll(${course.id})" class="btn btn-primary" data-i18n="enroll_now">${i18n.translations['enroll_now'] || 'Enroll Now'}</button>
                         <span style="font-size: 0.8rem; color: var(--color-text-light);"><i class="uil uil-star"></i> ${course.popularity}</span>
                     </div>
                 </div>

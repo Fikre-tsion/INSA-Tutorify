@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-  
+
   <link rel="stylesheet" href="css/style.css">
 
 </head>
@@ -22,12 +22,12 @@
     <div class="container nav__container">
       <a href="index.html"><h4>Tutorify</h4></a>
       <ul class="nav__menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="courses.html">Courses</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="about.html" data-i18n="nav_about">About</a></li>
+        <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+        <li><a href="contact.html" class="active" data-i18n="nav_contact">Contact</a></li>
+        <li id="auth-link"><a href="login.html" data-i18n="nav_login">Login</a></li>
         <li><button id="theme-toggle"><i class="uil uil-sun"></i></button></li>
-        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -37,43 +37,30 @@
 
     <section class="contact">
       <div class="container contact__container">
-          <aside class="contact__aside">  
+          <aside class="contact__aside">
               <div class="aside__image">
                   <img src="https://via.placeholder.com/400x300?text=Contact+Us" alt="Contact Image">
               </div>
-              <h2>Contact Us</h2>
-              <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
+              <h2 data-i18n="contact_title">Contact Us</h2>
+              <p data-i18n="contact_subtitle">We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
               <ul class="contact__details">
                   <li><i class="uil uil-phone"></i><h5>+251966418467 / +251928505904</h5></li>
                   <li><i class="uil uil-envelope"></i><h5>tutorifytutoring@gmail.com</h5></li>
                   <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
-                <li id="auth-link"><a href="login.html">Login</a></li>
-      </ul>
-              <ul class="contact__socials">  
-                  <li><a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a></li>
-                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a></li>
-                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a></li>
-                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a></li>
-                <li id="auth-link"><a href="login.html">Login</a></li>
-      </ul>
+              </ul>
           </aside>
-  
+
           <form id="contact-form" class="contact__form" style="display: flex; flex-direction: column; gap: 1rem;">
               <div class="form__name" style="display: flex; gap: 1rem;">
-                  <input type="text" id="firstName" placeholder="First Name" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
-                  <input type="text" id="lastName"  placeholder="Last Name" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
+                  <input type="text" id="firstName" data-i18n="fname_placeholder" placeholder="First Name" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
+                  <input type="text" id="lastName"  data-i18n="lname_placeholder" placeholder="Last Name" required style="width: 100%; padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
               </div>
-              <input type="email" id="email" placeholder="Your Email Address" required style="padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
-              <textarea id="message" rows="7" placeholder="Message" required style="padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);"></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" id="email" data-i18n="email_placeholder" placeholder="Your Email Address" required style="padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);">
+              <textarea id="message" rows="7" data-i18n="msg_placeholder" placeholder="Message" required style="padding: 1rem; border-radius: 0.5rem; background: var(--color-bg1); color: var(--color-text); border: 1px solid var(--glass-border);"></textarea>
+              <button type="submit" class="btn btn-primary" data-i18n="send_msg">Send Message</button>
           </form>
       </div>
   </section>
-
-
-
-
-
 
       <!-- ==================== FOOTER ==================== -->
   <footer>
@@ -81,41 +68,33 @@
 
       <div class="footer__1">
         <a href="index.html" class="footer__logo"><h4>Tutorify</h4></a>
-        <p>Our mission is to empower individuals with the knowledge and skills to succeed.</p>
+        <p data-i18n="footer_mission">Our mission is to empower individuals with the knowledge and skills to succeed.</p>
       </div>
 
       <div class="footer__2">
-        <h4>Permalinks</h4>
+        <h4 data-i18n="footer_permalinks">Permalinks</h4>
         <ul class="permalinks">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li id="auth-link"><a href="login.html">Login</a></li>
+          <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+          <li><a href="about.html" data-i18n="nav_about">About</a></li>
+          <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+          <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
       </ul>
       </div>
 
       <div class="footer__3">
-        <h4>Privacy</h4>
+        <h4 data-i18n="footer_privacy">Privacy</h4>
         <ul class="privacy">
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms and Conditions</a></li>
-          <li><a href="refund.html">Refund Policy</a></li>
-          <li id="auth-link"><a href="login.html">Login</a></li>
+          <li><a href="#" data-i18n="privacy_policy">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="terms_of_use">Terms and Conditions</a></li>
+          <li><a href="#" data-i18n="refund_policy">Refund Policy</a></li>
       </ul>
       </div>
 
       <div class="footer__4">
-        <h4>Contact Us</h4>
+        <h4 data-i18n="footer_contact">Contact Us</h4>
         <div>
           <p>+251966418467 / +251928505904</p>
           <p>tutorifytutoring@gmail.com</p>
-        </div>
-        <div class="footer__socials">
-          <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-          <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-          <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-          <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
         </div>
       </div>
     </div>

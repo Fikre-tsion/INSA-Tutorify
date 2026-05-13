@@ -33,6 +33,82 @@ const api = {
     }
 };
 
+// --- i18n System ---
+const i18n = {
+    languages: {
+        en: "English",
+        am: "አማርኛ",
+        om: "Afaan Oromoo",
+        ti: "ትግርኛ",
+        es: "Español",
+        fr: "Français"
+    },
+    currentLang: localStorage.getItem('lang') || 'en',
+    translations: {},
+
+    async init() {
+        await this.loadTranslations(this.currentLang);
+        this.translatePage();
+        this.renderLanguageSelector();
+    },
+
+    async loadTranslations(lang) {
+        try {
+            const response = await fetch(`/locales/${lang}.json`);
+            this.translations = await response.json();
+            this.currentLang = lang;
+            localStorage.setItem('lang', lang);
+        } catch (error) {
+            console.error(`Failed to load translations for ${lang}:`, error);
+        }
+    },
+
+    translatePage() {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (this.translations[key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = this.translations[key];
+                } else {
+                    el.textContent = this.translations[key];
+                }
+            }
+        });
+        // Handle special cases like dynamic title updates
+        if (this.translations['nav_login'] && document.getElementById('formTitle')) {
+             // Form title logic might be better handled in page specific script
+        }
+    },
+
+    renderLanguageSelector() {
+        const navMenu = document.querySelector('.nav__menu');
+        if (!navMenu) return;
+
+        let langSelector = document.getElementById('lang-selector-li');
+        if (!langSelector) {
+            langSelector = document.createElement('li');
+            langSelector.id = 'lang-selector-li';
+            langSelector.innerHTML = `
+                <select id="lang-selector" style="background:transparent; color:inherit; border:1px solid var(--glass-border); border-radius:5px; padding:2px 5px; cursor:pointer;">
+                    ${Object.entries(this.languages).map(([code, name]) =>
+                        `<option value="${code}" ${code === this.currentLang ? 'selected' : ''}>${name}</option>`
+                    ).join('')}
+                </select>
+            `;
+            navMenu.appendChild(langSelector);
+
+            document.getElementById('lang-selector').addEventListener('change', async (e) => {
+                await this.loadTranslations(e.target.value);
+                this.translatePage();
+                // Optionally reload to re-run scripts that might have generated content
+                // window.location.reload();
+            });
+        }
+    }
+};
+
+// --- Common UI Logic ---
+
 // Changing navbar style when scrolling
 window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
@@ -82,11 +158,15 @@ const setTheme = (theme) => {
     if (theme === 'light') {
         document.body.classList.add('light-mode');
         document.body.classList.remove('dark-mode');
-        if (themeToggle) themeToggle.innerHTML = '<i class="uil uil-moon"></i>';
+        if (themeToggle && themeToggle.querySelector('i')) {
+             themeToggle.querySelector('i').className = 'uil uil-moon';
+        }
     } else {
         document.body.classList.remove('light-mode');
         document.body.classList.add('dark-mode');
-        if (themeToggle) themeToggle.innerHTML = '<i class="uil uil-sun"></i>';
+        if (themeToggle && themeToggle.querySelector('i')) {
+             themeToggle.querySelector('i').className = 'uil uil-sun';
+        }
     }
 }
 
@@ -101,19 +181,21 @@ if (themeToggle) {
 }
 
 // Auth display logic
-const token = localStorage.getItem('token');
-const user = JSON.parse(localStorage.getItem('user'));
-const authLink = document.getElementById('auth-link');
+function updateAuthUI() {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const authLink = document.getElementById('auth-link');
 
-if (token && user && authLink) {
-    let dashboardLink = '';
-    if (user.role === 'admin') dashboardLink = '<li><a href="dashboard.html">Admin</a></li>';
-    if (user.role === 'teacher') dashboardLink = '<li><a href="teacher-dashboard.html">Teach</a></li>';
+    if (token && user && authLink) {
+        let dashboardLink = '';
+        if (user.role === 'admin') dashboardLink = `<li><a href="dashboard.html" data-i18n="nav_admin">${i18n.translations['nav_admin'] || 'Admin'}</a></li>`;
+        if (user.role === 'teacher') dashboardLink = `<li><a href="teacher-dashboard.html" data-i18n="nav_teach">${i18n.translations['nav_teach'] || 'Teach'}</a></li>`;
 
-    authLink.outerHTML = `
-        ${dashboardLink}
-        <li id="auth-link"><a href="#" onclick="logout()">${user.name} (Logout)</a></li>
-    `;
+        authLink.outerHTML = `
+            ${dashboardLink}
+            <li id="auth-link"><a href="#" onclick="logout()">${user.name} (<span data-i18n="nav_logout">${i18n.translations['nav_logout'] || 'Logout'}</span>)</a></li>
+        `;
+    }
 }
 
 function logout() {
@@ -121,5 +203,14 @@ function logout() {
     localStorage.removeItem('user');
     window.location.href = 'index.html';
 }
+
+// Global Exports
 window.logout = logout;
 window.api = api;
+window.i18n = i18n;
+
+// Initialization
+document.addEventListener('DOMContentLoaded', async () => {
+    await i18n.init();
+    updateAuthUI();
+});

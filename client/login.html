@@ -24,39 +24,43 @@
 <body>
 
   <div class="container">
-    <h2 id="formTitle">Login</h2>
+    <h2 id="formTitle" data-i18n="login_title">Login</h2>
 
     <div id="loginForm">
-      <div class="input-box"><input type="email" id="loginEmail" placeholder="Email" required></div>
-      <div class="input-box"><input type="password" id="loginPassword" placeholder="Password" required></div>
+      <div class="input-box"><input type="email" id="loginEmail" data-i18n="email_placeholder" placeholder="Email" required></div>
+      <div class="input-box"><input type="password" id="loginPassword" data-i18n="password_placeholder" placeholder="Password" required></div>
       <div class="input-box">
         <select id="loginRole">
-          <option value="user">User</option>
-          <option value="teacher">Teacher</option>
-          <option value="admin">Admin</option>
+          <option value="user" data-i18n="role_user">User</option>
+          <option value="teacher" data-i18n="role_teacher">Teacher</option>
+          <option value="admin" data-i18n="role_admin">Admin</option>
         </select>
       </div>
-      <button id="loginBtn">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <button id="loginBtn" data-i18n="login_btn">Login</button>
+      <div class="toggle" onclick="toggleForm()" data-i18n="toggle_to_register">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
-      <div class="input-box"><input type="text" id="regName" placeholder="Full Name" required></div>
-      <div class="input-box"><input type="email" id="regEmail" placeholder="Email" required></div>
-      <div class="input-box"><input type="password" id="regPassword" placeholder="Password" required></div>
+      <div class="input-box"><input type="text" id="regName" data-i18n="fullname_placeholder" placeholder="Full Name" required></div>
+      <div class="input-box"><input type="email" id="regEmail" data-i18n="email_placeholder" placeholder="Email" required></div>
+      <div class="input-box"><input type="password" id="regPassword" data-i18n="password_placeholder" placeholder="Password" required></div>
       <div class="input-box">
         <select id="regRole">
-          <option value="user">User</option>
-          <option value="teacher">Teacher</option>
-          <option value="admin">Admin</option>
+          <option value="user" data-i18n="role_user">User</option>
+          <option value="teacher" data-i18n="role_teacher">Teacher</option>
+          <option value="admin" data-i18n="role_admin">Admin</option>
         </select>
       </div>
-      <button id="regBtn">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <button id="regBtn" data-i18n="register_btn">Register</button>
+      <div class="toggle" onclick="toggleForm()" data-i18n="toggle_to_login">Already have an account? Login</div>
     </div>
     <div id="message"></div>
+    <div id="lang-selector-container" style="margin-top: 1rem; text-align: center;">
+        <!-- Language selector will be injected here if main.js is loaded -->
+    </div>
   </div>
 
+  <script src="js/main.js"></script>
   <script>
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
@@ -71,7 +75,9 @@
     function toggleForm() {
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
-      formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
+      const isLogin = !loginForm.classList.contains('hidden');
+      formTitle.textContent = isLogin ? (i18n.translations['login_title'] || 'Login') : (i18n.translations['register_title'] || 'Register');
+      formTitle.setAttribute('data-i18n', isLogin ? 'login_title' : 'register_title');
       msgEl.textContent = '';
     }
 
@@ -120,6 +126,28 @@
         const role = document.getElementById('regRole').value;
         handleAuth('/api/auth/register', { name, email, password, role }, 'Registration successful! Please login.');
     };
+
+    // Override i18n language selector render for login page to put it in the container
+    const originalRender = i18n.renderLanguageSelector;
+    i18n.renderLanguageSelector = function() {
+        const container = document.getElementById('lang-selector-container');
+        if (!container) return originalRender.call(this);
+
+        container.innerHTML = `
+            <select id="lang-selector" style="background:#3a506b; color:#fff; border:none; border-radius:5px; padding:5px; cursor:pointer;">
+                ${Object.entries(this.languages).map(([code, name]) =>
+                    `<option value="${code}" ${code === this.currentLang ? 'selected' : ''}>${name}</option>`
+                ).join('')}
+            </select>
+        `;
+        document.getElementById('lang-selector').addEventListener('change', async (e) => {
+            await this.loadTranslations(e.target.value);
+            this.translatePage();
+            // Update title specifically after translation load
+            const isLogin = !loginForm.classList.contains('hidden');
+            formTitle.textContent = isLogin ? (i18n.translations['login_title'] || 'Login') : (i18n.translations['register_title'] || 'Register');
+        });
+    }
   </script>
 </body>
 </html>
