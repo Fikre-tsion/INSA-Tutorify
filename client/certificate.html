@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate - Tutorify</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .certificate {
+            width: 800px;
+            height: 600px;
+            background: white;
+            border: 20px solid var(--color-primary, #6c63ff);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 30px rgba(0,0,0,0.2);
+        }
+        .certificate::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #6c63ff;
+            pointer-events: none;
+        }
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 0;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+        .content {
+            margin-top: 50px;
+        }
+        .present {
+            font-size: 1.5rem;
+            color: #555;
+        }
+        .name {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #6c63ff;
+            margin: 20px 0;
+            border-bottom: 2px solid #eee;
+            display: inline-block;
+            padding: 0 50px;
+        }
+        .has-completed {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .course-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+            margin: 15px 0;
+        }
+        .footer {
+            margin-top: 60px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+        .sig {
+            border-top: 1px solid #aaa;
+            padding-top: 10px;
+            width: 200px;
+        }
+        .watermark {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.1;
+            font-size: 5rem;
+            font-weight: bold;
+            z-index: 0;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .certificate { box-shadow: none; border-color: #6c63ff !important; }
+            .no-print { display: none; }
+        }
+        .no-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .btn {
+            background: #6c63ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="no-print">
+        <button class="btn" onclick="window.print()">Download / Print PDF</button>
+    </div>
+
+    <div class="certificate">
+        <div class="watermark">TUTORIFY</div>
+        <div class="header">
+            <div class="subtitle" data-i18n="cert_title">Certificate of Completion</div>
+            <h1>Tutorify</h1>
+        </div>
+
+        <div class="content">
+            <p class="present" data-i18n="cert_certify">This is to certify that</p>
+            <div class="name" id="student-name">Loading...</div>
+            <p class="has-completed" data-i18n="cert_completed">has successfully completed the online course</p>
+            <div class="course-title" id="course-name">Loading...</div>
+            <p id="date">Issued on: --/--/----</p>
+        </div>
+
+        <div class="footer">
+            <div class="sig">
+                <strong>Director</strong>
+                <p>Tutorify Education</p>
+            </div>
+            <div class="sig">
+                <strong>Instructor</strong>
+                <p id="instructor-name">Lead Educator</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId');
+        const studentName = urlParams.get('studentName');
+        const courseTitle = urlParams.get('courseTitle');
+        const date = new Date().toLocaleDateString();
+
+        document.getElementById('student-name').textContent = studentName || 'Student Name';
+        document.getElementById('course-name').textContent = courseTitle || 'Professional Course';
+        const label = i18n.translations['cert_issued'] || 'Issued on';
+        document.getElementById('date').textContent = `${label}: ${date}`;
+    </script>
+</body>
+</html>

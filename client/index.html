@@ -123,6 +123,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/my-courses.js"></script>
     <script>
         async function loadCourses() {
             try {
@@ -146,24 +147,6 @@
             } catch (e) { console.error(e); }
         }
 
-        async function loadMyCourses() {
-            if (!localStorage.getItem('token')) return;
-            try {
-                const courses = await api.fetch('/api/courses/my-courses');
-                if (courses.length > 0) {
-                    document.getElementById('my-courses-section').classList.remove('hidden');
-                    document.getElementById('my-courses-container').innerHTML = courses.map(course => `
-                        <article class="course">
-                            <div class="course__info">
-                                <h4>${course.title}</h4>
-                                <p>${i18n.translations['status_enrolled'] || 'Status: Enrolled'}</p>
-                                <a href="course.html?id=${course.id}" class="btn btn-primary" data-i18n="go_to_course">${i18n.translations['go_to_course'] || 'Go to Course'}</a>
-                            </div>
-                        </article>
-                    `).join('');
-                }
-            } catch (e) { console.error(e); }
-        }
 
         async function enroll(courseId) {
             try {

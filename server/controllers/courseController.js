@@ -1,5 +1,12 @@
 const { readDB, writeDB } = require('../models/db');
 
+exports.getCourseById = (req, res) => {
+    const db = readDB();
+    const course = db.courses.find(c => c.id === parseInt(req.params.id));
+    if (!course) return res.status(404).json({ message: 'Course not found' });
+    res.json(course);
+};
+
 exports.getAllCourses = (req, res) => {
     const db = readDB();
     let courses = [...db.courses];
@@ -114,4 +121,74 @@ exports.deleteCourse = (req, res) => {
 
     writeDB(db);
     res.json({ message: 'Course deleted successfully' });
+};
+
+// Progress Tracking
+exports.getProgress = (req, res) => {
+    const db = readDB();
+    const courseId = parseInt(req.params.id);
+    const progress = db.progress.find(p => p.userId === req.user.id && p.courseId === courseId);
+    res.json(progress || { completedLessons: [] });
+};
+
+exports.updateProgress = (req, res) => {
+    const db = readDB();
+    const courseId = parseInt(req.params.id);
+    const { lessonId } = req.body;
+
+    let progressIndex = db.progress.findIndex(p => p.userId === req.user.id && p.courseId === courseId);
+
+    if (progressIndex === -1) {
+        db.progress.push({
+            userId: req.user.id,
+            courseId: courseId,
+            completedLessons: [parseInt(lessonId)]
+        });
+    } else {
+        if (!db.progress[progressIndex].completedLessons.includes(parseInt(lessonId))) {
+            db.progress[progressIndex].completedLessons.push(parseInt(lessonId));
+        }
+    }
+
+    writeDB(db);
+    res.json({ message: 'Progress updated' });
+};
+
+// Reviews
+exports.getReviews = (req, res) => {
+    const db = readDB();
+    const courseId = parseInt(req.params.id);
+    const reviews = db.reviews.filter(r => r.courseId === courseId);
+    res.json(reviews);
+};
+
+exports.addReview = (req, res) => {
+    const db = readDB();
+    const courseId = parseInt(req.params.id);
+    const { rating, comment } = req.body;
+
+    const newReview = {
+        id: Date.now(),
+        userId: req.user.id,
+        userName: req.user.name,
+        courseId,
+        rating: parseFloat(rating),
+        comment,
+        createdAt: new Date().toISOString()
+    };
+
+    db.reviews.push(newReview);
+
+    // Update course average rating
+    const courseReviews = db.reviews.filter(r => r.courseId === courseId);
+    const avgRating = courseReviews.reduce((sum, r) => sum + r.rating, 0) / courseReviews.length;
+
+    const courseIndex = db.courses.findIndex(c => c.id === courseId);
+    if (courseIndex !== -1) {
+        db.courses[courseIndex].rating = parseFloat(avgRating.toFixed(1));
+        db.courses[courseIndex].reviewCount = courseReviews.length;
+    }
+
+    writeDB(db);
+    res.status(201).json({ message: 'Review added', review: newReview });
 };

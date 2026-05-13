@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Player - Tutorify</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        .player-container {
+            display: flex;
+            height: calc(100vh - 5rem);
+            margin-top: 5rem;
+            background: var(--color-bg1);
+        }
+        .player-sidebar {
+            width: 300px;
+            background: var(--color-bg2);
+            border-right: 1px solid var(--glass-border);
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .player-main {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .lesson-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-bg1);
+        }
+        .lesson-item:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        .lesson-item.active {
+            background: var(--color-primary);
+            color: white;
+        }
+        .lesson-item.completed i {
+            color: #4cd137;
+        }
+        .content-box {
+            background: var(--color-bg2);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--glass-border);
+            min-height: 300px;
+        }
+        .player-footer {
+            margin-top: auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--color-bg2);
+            border-top: 1px solid var(--glass-border);
+        }
+        @media screen and (max-width: 1024px) {
+            .player-container {
+                flex-direction: column;
+            }
+            .player-sidebar {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav__container">
+            <a href="index.html"><h4>TUTORIFY</h4></a>
+            <ul class="nav__menu">
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="courses.html" data-i18n="nav_courses">Courses</a></li>
+                <li id="auth-link"><a href="login.html" data-i18n="nav_login">Login</a></li>
+            </ul>
+            <button id="theme-toggle" style="background:transparent; border:none; cursor:pointer; color:white; font-size:1.2rem; margin-left:1rem;">
+                <i class="uil uil-sun"></i>
+            </button>
+            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+        </div>
+    </nav>
+
+    <div class="player-container">
+        <aside class="player-sidebar">
+            <h3 id="course-title" style="margin-bottom: 1rem;">Course Title</h3>
+            <div id="lesson-list">
+                <!-- Lessons will be injected here -->
+            </div>
+        </aside>
+
+        <main class="player-main">
+            <div class="content-header">
+                <h2 id="lesson-title" data-i18n="player_select_lesson">Select a lesson</h2>
+            </div>
+            <div class="content-box" id="lesson-content">
+                <p>Click on a lesson to start learning.</p>
+            </div>
+            <div class="player-footer">
+                <button class="btn" id="prev-btn" disabled data-i18n="player_prev">Previous</button>
+                <button class="btn btn-primary" id="complete-btn" style="display: none;" data-i18n="player_complete">Mark as Completed</button>
+                <button class="btn btn-primary" id="next-btn" disabled data-i18n="player_next">Next</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id');
+        let currentCourse = null;
+        let currentLessonIndex = -1;
+        let completedLessons = [];
+
+        async function initPlayer() {
+            if (!courseId) {
+                window.location.href = 'courses.html';
+                return;
+            }
+
+            try {
+                // Fetch course data
+                currentCourse = await api.fetch(`/api/courses/${courseId}`);
+                document.getElementById('course-title').textContent = currentCourse.title;
+
+                // Fetch progress
+                const progressData = await api.fetch(`/api/courses/${courseId}/progress`);
+                completedLessons = progressData.completedLessons || [];
+
+                renderLessons();
+
+                // Load first lesson if available
+                if (currentCourse.lessons && currentCourse.lessons.length > 0) {
+                    loadLesson(0);
+                }
+            } catch (error) {
+                console.error('Failed to load player:', error);
+                alert('Please enroll in the course to view content.');
+                window.location.href = 'courses.html';
+            }
+        }
+
+        function renderLessons() {
+            const list = document.getElementById('lesson-list');
+            list.innerHTML = currentCourse.lessons.map((lesson, index) => `
+                <div class="lesson-item ${completedLessons.includes(lesson.id) ? 'completed' : ''}"
+                     id="lesson-${index}"
+                     onclick="loadLesson(${index})">
+                    <i class="${completedLessons.includes(lesson.id) ? 'uil uil-check-circle' : 'uil uil-play-circle'}"></i>
+                    <span>${lesson.title}</span>
+                </div>
+            `).join('');
+        }
+
+        async function loadLesson(index) {
+            currentLessonIndex = index;
+            const lesson = currentCourse.lessons[index];
+
+            // Update UI
+            document.querySelectorAll('.lesson-item').forEach(el => el.classList.remove('active'));
+            document.getElementById(`lesson-${index}`).classList.add('active');
+            document.getElementById('lesson-title').textContent = lesson.title;
+            document.getElementById('lesson-content').innerHTML = `<p>${lesson.content}</p>`;
+
+            // Update Navigation Buttons
+            document.getElementById('prev-btn').disabled = index === 0;
+            document.getElementById('next-btn').disabled = index === currentCourse.lessons.length - 1;
+
+            const completeBtn = document.getElementById('complete-btn');
+            completeBtn.style.display = completedLessons.includes(lesson.id) ? 'none' : 'inline-block';
+            completeBtn.onclick = () => markAsComplete(lesson.id);
+        }
+
+        async function markAsComplete(lessonId) {
+            try {
+                await api.fetch(`/api/courses/${courseId}/progress`, {
+                    method: 'POST',
+                    body: JSON.stringify({ lessonId })
+                });
+
+                completedLessons.push(lessonId);
+                renderLessons();
+                document.getElementById('complete-btn').style.display = 'none';
+
+                // If all lessons complete, show success
+                if (completedLessons.length === currentCourse.lessons.length) {
+                    alert(i18n.translations['player_congrats'] || 'Congratulations! You have completed all lessons in this course.');
+                }
+            } catch (error) {
+                console.error('Failed to mark complete:', error);
+            }
+        }
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentLessonIndex > 0) loadLesson(currentLessonIndex - 1);
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (currentLessonIndex < currentCourse.lessons.length - 1) loadLesson(currentLessonIndex + 1);
+        });
+
+        document.addEventListener('DOMContentLoaded', initPlayer);
+    </script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

@@ -100,12 +100,15 @@
             <article class="course">
                 <div class="course__image"><img src="${course.image}" alt="${course.title}"></div>
                 <div class="course__info">
-                    <span style="font-size: 0.8rem; color: var(--color-primary);">${course.category}</span>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.8rem; color: var(--color-primary);">${course.category}</span>
+                        <span style="font-size: 0.8rem; color: #f1c40f;"><i class="uil uil-star"></i> ${course.rating || 'New'}</span>
+                    </div>
                     <h4>${course.title}</h4>
                     <p>${course.description}</p>
                     <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: auto;">
                         <button onclick="enroll(${course.id})" class="btn btn-primary" data-i18n="enroll_now">${i18n.translations['enroll_now'] || 'Enroll Now'}</button>
-                        <span style="font-size: 0.8rem; color: var(--color-text-light);"><i class="uil uil-star"></i> ${course.popularity}</span>
+                        <span style="font-size: 0.8rem; color: var(--color-text-light);">(${course.reviewCount || 0} reviews)</span>
                     </div>
                 </div>
             </article>

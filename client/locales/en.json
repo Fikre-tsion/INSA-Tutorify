@@ -94,5 +94,14 @@
   "save_btn": "Save Course",
   "chat_title": "Tutorify AI Assistant",
   "chat_placeholder": "Ask a question...",
-  "chat_welcome": "Hello! I'm your Tutorify assistant. How can I help you today?"
+  "chat_welcome": "Hello! I'm your Tutorify assistant. How can I help you today?",
+  "player_select_lesson": "Select a lesson",
+  "player_prev": "Previous",
+  "player_next": "Next",
+  "player_complete": "Mark as Completed",
+  "player_congrats": "Congratulations! You have completed all lessons in this course.",
+  "cert_title": "Certificate of Completion",
+  "cert_certify": "This is to certify that",
+  "cert_completed": "has successfully completed the online course",
+  "cert_issued": "Issued on"
 }

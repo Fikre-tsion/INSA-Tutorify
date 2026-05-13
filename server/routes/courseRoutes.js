@@ -6,10 +6,15 @@ const { hasRole } = require('../middleware/roleCheck');
 
 // Public routes
 router.get('/', courseController.getAllCourses);
+router.get('/:id', courseController.getCourseById);
+router.get('/:id/reviews', courseController.getReviews);
 
 // Student routes
 router.get('/my-courses', authenticateToken, courseController.getMyCourses);
 router.post('/enroll', authenticateToken, courseController.enroll);
+router.get('/:id/progress', authenticateToken, courseController.getProgress);
+router.post('/:id/progress', authenticateToken, courseController.updateProgress);
+router.post('/:id/reviews', authenticateToken, courseController.addReview);
 
 // Teacher/Admin routes
 router.get('/teacher', authenticateToken, hasRole(['teacher', 'admin']), courseController.getTeacherCourses);

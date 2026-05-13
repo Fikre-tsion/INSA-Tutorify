@@ -90,7 +90,29 @@
       "category": "Design",
       "createdAt": "2024-01-15T10:00:00Z",
       "popularity": 85,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 2,
@@ -100,7 +122,29 @@
       "category": "Technology",
       "createdAt": "2024-02-10T14:30:00Z",
       "popularity": 92,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 3,
@@ -110,7 +154,29 @@
       "category": "Programming",
       "createdAt": "2024-03-05T09:00:00Z",
       "popularity": 98,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 4,
@@ -120,7 +186,29 @@
       "category": "Programming",
       "createdAt": "2024-04-12T11:20:00Z",
       "popularity": 95,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 5,
@@ -130,7 +218,29 @@
       "category": "Marketing",
       "createdAt": "2024-05-20T16:45:00Z",
       "popularity": 78,
-      "instructorId": 3
+      "instructorId": 3,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 6,
@@ -140,7 +250,29 @@
       "category": "Design",
       "createdAt": "2024-06-01T08:15:00Z",
       "popularity": 88,
-      "instructorId": 3
+      "instructorId": 3,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 7,
@@ -150,7 +282,29 @@
       "category": "Business",
       "createdAt": "2024-07-10T13:00:00Z",
       "popularity": 82,
-      "instructorId": 3
+      "instructorId": 3,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 8,
@@ -160,7 +314,29 @@
       "category": "Technology",
       "createdAt": "2024-08-15T15:30:00Z",
       "popularity": 90,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 9,
@@ -170,7 +346,29 @@
       "category": "Programming",
       "createdAt": "2024-09-05T10:10:00Z",
       "popularity": 87,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 10,
@@ -180,7 +378,29 @@
       "category": "Design",
       "createdAt": "2024-10-20T09:40:00Z",
       "popularity": 94,
-      "instructorId": 3
+      "instructorId": 3,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 11,
@@ -190,7 +410,29 @@
       "category": "Business",
       "createdAt": "2024-11-12T14:00:00Z",
       "popularity": 75,
-      "instructorId": 3
+      "instructorId": 3,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 12,
@@ -200,7 +442,29 @@
       "category": "Technology",
       "createdAt": "2024-12-01T11:50:00Z",
       "popularity": 96,
-      "instructorId": 2
+      "instructorId": 2,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 1778641886916,
@@ -210,7 +474,29 @@
       "category": "Programming",
       "createdAt": "2026-05-13T03:11:26.916Z",
       "popularity": 0,
-      "instructorId": 1778641882935
+      "instructorId": 1778641882935,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 1778641991376,
@@ -220,7 +506,29 @@
       "category": "Programming",
       "createdAt": "2026-05-13T03:13:11.376Z",
       "popularity": 0,
-      "instructorId": 1778641987413
+      "instructorId": 1778641987413,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     },
     {
       "id": 1778642058972,
@@ -230,7 +538,29 @@
       "category": "Programming",
       "createdAt": "2026-05-13T03:14:18.972Z",
       "popularity": 0,
-      "instructorId": 1778642055010
+      "instructorId": 1778642055010,
+      "lessons": [
+        {
+          "id": 1,
+          "title": "Introduction",
+          "content": "Welcome to this course! In this lesson we cover the basics.",
+          "type": "text"
+        },
+        {
+          "id": 2,
+          "title": "Main Concepts",
+          "content": "Here we dive deeper into the core subject matter.",
+          "type": "text"
+        },
+        {
+          "id": 3,
+          "title": "Final Project",
+          "content": "Apply what you've learned in a comprehensive project.",
+          "type": "text"
+        }
+      ],
+      "rating": 4.5,
+      "reviewCount": 0
     }
   ],
   "enrollments": [
@@ -245,5 +575,7 @@
       "enrolledAt": "2026-05-12T19:38:30.838Z"
     }
   ],
-  "contacts": []
+  "contacts": [],
+  "reviews": [],
+  "progress": []
 }
