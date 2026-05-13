@@ -192,6 +192,8 @@
                     body: JSON.stringify({ lessonId })
                 });
 
+                await api.addXP(50); // Earn 50 XP per lesson!
+
                 completedLessons.push(lessonId);
                 renderLessons();
                 document.getElementById('complete-btn').style.display = 'none';

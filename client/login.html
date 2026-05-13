@@ -96,9 +96,15 @@
                     localStorage.setItem('user', JSON.stringify(data.user));
                     showMsg(successMsg, false);
                     setTimeout(() => {
-                        if (data.user.role === 'admin') window.location.href = 'dashboard.html';
-                        else if (data.user.role === 'teacher') window.location.href = 'teacher-dashboard.html';
-                        else window.location.href = 'index.html';
+                        if (data.user.onboardingStatus === 'pending') {
+                            window.location.href = 'onboarding.html';
+                        } else if (data.user.role === 'admin') {
+                            window.location.href = 'dashboard.html';
+                        } else if (data.user.role === 'teacher') {
+                            window.location.href = 'teacher-dashboard.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
                     }, 1000);
                 } else {
                     showMsg(successMsg, false);

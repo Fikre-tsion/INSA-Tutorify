@@ -20,7 +20,12 @@ exports.register = async (req, res) => {
         email: email.toLowerCase(),
         password: hashedPassword,
         role: finalRole,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        nickname: "",
+        socialLinks: { linkedin: "", youtube: "", telegram: "", tiktok: "" },
+        interests: [],
+        onboardingStatus: finalRole === 'user' ? 'pending' : 'completed',
+        xp: 0
     };
 
     db.users.push(newUser);
@@ -44,5 +49,17 @@ exports.login = async (req, res) => {
         { expiresIn: '1h' }
     );
 
-    res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
+    res.json({
+        token,
+        user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            onboardingStatus: user.onboardingStatus,
+            nickname: user.nickname,
+            interests: user.interests,
+            xp: user.xp
+        }
+    });
 };

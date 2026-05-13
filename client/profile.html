@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - Tutorify</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        .profile-container { max-width: 800px; margin: 8rem auto 4rem; padding: 2rem; background: var(--color-bg1); border-radius: 2rem; border: 1px solid var(--glass-border); }
+        .social-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .input-group input { padding: 0.8rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); background: var(--color-bg2); color: white; }
+        .input-group label i { margin-right: 0.5rem; color: var(--color-primary); }
+        .profile-header { display: flex; align-items: center; gap: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 2rem; }
+        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background: var(--color-primary); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: white; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav__container">
+            <a href="index.html"><h4>TUTORIFY</h4></a>
+            <ul class="nav__menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="courses.html">Courses</a></li>
+                <li id="auth-link"></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar" id="avatar-initial">U</div>
+            <div>
+                <h2 id="display-name">User Name</h2>
+                <p id="user-email">email@example.com</p>
+                <div style="margin-top:0.5rem">
+                    <span class="btn btn-primary" style="padding: 0.2rem 1rem; font-size: 0.8rem;" id="user-role">Student</span>
+                    <span class="btn" style="padding: 0.2rem 1rem; font-size: 0.8rem; background: #f1c40f; color: #000;" id="user-xp">XP: 0</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="profile-form">
+            <h3>Basic Info</h3>
+            <div class="social-inputs" style="grid-template-columns: 1fr;">
+                <div class="input-group">
+                    <label>Nickname</label>
+                    <input type="text" id="nickname" placeholder="Your display nickname">
+                </div>
+            </div>
+
+            <h3 style="margin-top: 2rem;">Social Media Links <small>(Optional but beneficial for networking!)</small></h3>
+            <div class="social-inputs">
+                <div class="input-group">
+                    <label><i class="uil uil-linkedin"></i> LinkedIn</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/username">
+                </div>
+                <div class="input-group">
+                    <label><i class="uil uil-youtube"></i> YouTube</label>
+                    <input type="url" id="youtube" placeholder="https://youtube.com/@channel">
+                </div>
+                <div class="input-group">
+                    <label><i class="uil uil-telegram"></i> Telegram</label>
+                    <input type="url" id="telegram" placeholder="https://t.me/username">
+                </div>
+                <div class="input-group">
+                    <label><i class="uil uil-video"></i> TikTok</label>
+                    <input type="url" id="tiktok" placeholder="https://tiktok.com/@username">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 2.5rem; width: 100%;">Save Profile Changes</button>
+        </form>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        async function loadProfile() {
+            try {
+                const user = await api.fetch('/api/users/profile');
+                document.getElementById('display-name').textContent = user.nickname || user.name;
+                document.getElementById('user-email').textContent = user.email;
+                document.getElementById('nickname').value = user.nickname || '';
+                document.getElementById('user-role').textContent = user.role.toUpperCase();
+                document.getElementById('user-xp').textContent = `XP: ${user.xp || 0}`;
+                document.getElementById('avatar-initial').textContent = (user.nickname || user.name).charAt(0).toUpperCase();
+
+                if (user.socialLinks) {
+                    document.getElementById('linkedin').value = user.socialLinks.linkedin || '';
+                    document.getElementById('youtube').value = user.socialLinks.youtube || '';
+                    document.getElementById('telegram').value = user.socialLinks.telegram || '';
+                    document.getElementById('tiktok').value = user.socialLinks.tiktok || '';
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        document.getElementById('profile-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const body = {
+                nickname: document.getElementById('nickname').value,
+                socialLinks: {
+                    linkedin: document.getElementById('linkedin').value,
+                    youtube: document.getElementById('youtube').value,
+                    telegram: document.getElementById('telegram').value,
+                    tiktok: document.getElementById('tiktok').value
+                }
+            };
+
+            try {
+                await api.fetch('/api/users/profile', {
+                    method: 'PUT',
+                    body: JSON.stringify(body)
+                });
+                alert('Profile updated successfully!');
+
+                // Update local cache
+                const user = JSON.parse(localStorage.getItem('user'));
+                user.nickname = body.nickname;
+                localStorage.setItem('user', JSON.stringify(user));
+
+                loadProfile();
+            } catch (error) {
+                alert(error.message);
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+</html>

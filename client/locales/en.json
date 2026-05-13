@@ -103,5 +103,6 @@
   "cert_title": "Certificate of Completion",
   "cert_certify": "This is to certify that",
   "cert_completed": "has successfully completed the online course",
-  "cert_issued": "Issued on"
+  "cert_issued": "Issued on",
+  "recommended_for_you": "Recommended for You"
 }

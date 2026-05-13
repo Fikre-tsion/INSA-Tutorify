@@ -1,4 +1,5 @@
 const db = require('../models/db');
+const UserService = require('../services/userService');
 const fs = require('fs').promises;
 const path = require('path');
 
@@ -7,7 +8,7 @@ const SEARCH_INDEX_PATH = path.join(__dirname, '../data/search_index.json');
 // Simple keyword-based intent detection and retrieval
 const chatbotController = {
     async handleChat(req, res) {
-        const { query, lang, history } = req.body;
+        const { query, lang, history, userId } = req.body;
 
         if (!query) {
             return res.status(400).json({ message: 'Query is required' });
@@ -23,8 +24,14 @@ const chatbotController = {
                 knowledgeBase = await getKnowledgeBaseFromDB();
             }
 
+            // 1.5 Get User Info for personalization
+            let userInfo = null;
+            if (userId) {
+                userInfo = UserService.getUserById(userId);
+            }
+
             // 2. Simple matching logic (Foundation for future LLM integration)
-            const answer = findAnswer(query.toLowerCase(), knowledgeBase, lang || 'en');
+            const answer = findAnswer(query.toLowerCase(), knowledgeBase, lang || 'en', userInfo);
 
             res.json({ answer });
         } catch (error) {
@@ -50,10 +57,16 @@ async function getKnowledgeBaseFromDB() {
     };
 }
 
-function findAnswer(query, kb, lang) {
+function findAnswer(query, kb, lang, user = null) {
+    const name = user ? (user.nickname || user.name) : '';
+    const greeting = name ? `Hello ${name}!` : "Hello!";
+    const interestMsg = (user && user.interests && user.interests.length > 0)
+        ? ` Since you're interested in ${user.interests.join(', ')}, I highly recommend checking out our latest courses in those fields.`
+        : "";
+
     // Simple rule-based engine
     if (query.includes('hello') || query.includes('hi')) {
-        return "Hello! I'm here to help you find the best courses on Tutorify. What are you interested in learning?";
+        return `${greeting} I'm here to help you find the best courses on Tutorify.${interestMsg} What are you interested in learning today?`;
     }
 
     if (query.includes('course') || query.includes('learn') || query.includes('classes')) {

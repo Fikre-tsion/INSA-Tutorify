@@ -82,6 +82,11 @@
         </div>
     </section>
 
+    <section class="courses recommended hidden" id="recommended-section">
+        <h2 data-i18n="recommended_for_you">Recommended for You</h2>
+        <div class="container courses__container" id="recommended-courses-container"></div>
+    </section>
+
     <section class="courses">
         <h2 data-i18n="popular_courses">Our Popular Courses</h2>
         <div class="container courses__container" id="popular-courses-container"></div>
@@ -159,11 +164,38 @@
             } catch (e) { alert(e.message); }
         }
 
+        async function loadRecommended() {
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (!user || !user.interests || user.interests.length === 0) return;
+
+            try {
+                const courses = await api.fetch('/api/courses');
+                const recommended = courses.filter(c => user.interests.includes(c.category));
+
+                if (recommended.length > 0) {
+                    const section = document.getElementById('recommended-section');
+                    section.classList.remove('hidden');
+                    const container = document.getElementById('recommended-courses-container');
+                    container.innerHTML = recommended.slice(0, 3).map(course => `
+                        <article class="course">
+                            <div class="course__image"><img src="${course.image}" alt="${course.title}"></div>
+                            <div class="course__info">
+                                <span style="font-size: 0.8rem; color: var(--color-primary);">${course.category}</span>
+                                <h4>${course.title}</h4>
+                                <div style="display:flex; gap: 1rem; margin-top: auto;">
+                                    <a href="course.html?id=${course.id}" class="btn btn-primary" data-i18n="learn_more">${i18n.translations['learn_more'] || 'Learn More'}</a>
+                                </div>
+                            </div>
+                        </article>
+                    `).join('');
+                }
+            } catch (e) { console.error(e); }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-run translations after dynamic load if necessary,
-            // but here we use i18n.translations directly in templates.
             loadCourses();
             loadMyCourses();
+            loadRecommended();
         });
     </script>
     <script src="js/chat.js"></script>

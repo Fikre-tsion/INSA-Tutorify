@@ -6,7 +6,17 @@
       "email": "admin@tutorify.com",
       "password": "$2a$10$rC414zkreKeOxJtkUTixzeHSOKs1ZLuQKaX4sS.8ehbQJfqOUSrQ6",
       "role": "admin",
-      "createdAt": "2025-01-01T00:00:00.000Z"
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
     },
     {
       "id": 1778612605636,
@@ -14,7 +24,17 @@
       "email": "test@example.com",
       "password": "$2a$10$iENpLn.IAeiJNJ8BvAgVyuBCEm1I96RWZ1HUEkxaPJAjxCbC5OzBW",
       "role": "user",
-      "createdAt": "2026-05-12T19:03:25.636Z"
+      "createdAt": "2026-05-12T19:03:25.636Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "pending",
+      "xp": 0
     },
     {
       "id": 1778614588314,
@@ -22,7 +42,17 @@
       "email": "tester_1778614587@example.com",
       "password": "$2a$10$FKii6zbE1mgfDFqHPkcqXenSpOE7BiMPdCZYXy54FsphYMVT/eGUe",
       "role": "user",
-      "createdAt": "2026-05-12T19:36:28.314Z"
+      "createdAt": "2026-05-12T19:36:28.314Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "pending",
+      "xp": 0
     },
     {
       "id": 1778614707214,
@@ -30,7 +60,17 @@
       "email": "tester_1778614706@example.com",
       "password": "$2a$10$ZatS0413U0xEUkvTfKgbYe8FWaqRdCLq78BnWymGevQ3cW1OZtv/O",
       "role": "user",
-      "createdAt": "2026-05-12T19:38:27.214Z"
+      "createdAt": "2026-05-12T19:38:27.214Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "pending",
+      "xp": 0
     },
     {
       "id": 2,
@@ -38,7 +78,17 @@
       "email": "teacher@tutorify.com",
       "password": "$2a$10$rC414zkreKeOxJtkUTixzeHSOKs1ZLuQKaX4sS.8ehbQJfqOUSrQ6",
       "role": "teacher",
-      "createdAt": "2025-01-01T00:00:00Z"
+      "createdAt": "2025-01-01T00:00:00Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
     },
     {
       "id": 3,
@@ -46,7 +96,17 @@
       "email": "sarah@tutorify.com",
       "password": "$2a$10$rC414zkreKeOxJtkUTixzeHSOKs1ZLuQKaX4sS.8ehbQJfqOUSrQ6",
       "role": "teacher",
-      "createdAt": "2025-01-01T00:00:00Z"
+      "createdAt": "2025-01-01T00:00:00Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
     },
     {
       "id": 1778641767547,
@@ -54,7 +114,17 @@
       "email": "teacher_8303@example.com",
       "password": "$2a$10$sqYaomp3j3ZTnSyU8dVv/.Ws8LPTD7iiJK1MYD8/m7zjf5z8f8LS6",
       "role": "teacher",
-      "createdAt": "2026-05-13T03:09:27.547Z"
+      "createdAt": "2026-05-13T03:09:27.547Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
     },
     {
       "id": 1778641882935,
@@ -62,7 +132,17 @@
       "email": "teacher_8645@example.com",
       "password": "$2a$10$7vWbP2wHkW6OKITzaSlizuGMbMH2ZOe/BPWwbqzvQuE712MPsS0.u",
       "role": "teacher",
-      "createdAt": "2026-05-13T03:11:22.935Z"
+      "createdAt": "2026-05-13T03:11:22.935Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
     },
     {
       "id": 1778641987413,
@@ -70,7 +150,17 @@
       "email": "teacher_4945@example.com",
       "password": "$2a$10$bdVZurw7XGxKXKTO2Rt2WObXSB8V4u/4vD5LQG3uINkIc282laZ2K",
       "role": "teacher",
-      "createdAt": "2026-05-13T03:13:07.413Z"
+      "createdAt": "2026-05-13T03:13:07.413Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
     },
     {
       "id": 1778642055010,
@@ -78,7 +168,35 @@
       "email": "teacher_6354@example.com",
       "password": "$2a$10$2iY0A2eHk/nOqkBh3SwMwuBl2lGFmkoR43SCtNElZzqJM.qvbTrTK",
       "role": "teacher",
-      "createdAt": "2026-05-13T03:14:15.010Z"
+      "createdAt": "2026-05-13T03:14:15.010Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "completed",
+      "xp": 0
+    },
+    {
+      "id": 1778649133055,
+      "name": "New User",
+      "email": "new@example.com",
+      "password": "$2a$10$AyCspfKjLrKw96.sqdt9UOUMNblSuCWbI2Hp1/2kB2HXuIg6EO6FG",
+      "role": "user",
+      "createdAt": "2026-05-13T05:12:13.055Z",
+      "nickname": "",
+      "socialLinks": {
+        "linkedin": "",
+        "youtube": "",
+        "telegram": "",
+        "tiktok": ""
+      },
+      "interests": [],
+      "onboardingStatus": "pending",
+      "xp": 0
     }
   ],
   "courses": [

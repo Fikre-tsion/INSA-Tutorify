@@ -1,5 +1,20 @@
 // --- Reusable API Service ---
 const api = {
+    async addXP(amount) {
+        try {
+            await this.fetch('/api/users/profile', {
+                method: 'PUT',
+                body: JSON.stringify({ xp_increment: amount })
+            });
+            // Update local storage XP if possible
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                user.xp = (user.xp || 0) + amount;
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+        } catch (e) { console.error('XP Error:', e); }
+    },
+
     async fetch(url, options = {}) {
         const token = localStorage.getItem('token');
         const headers = {
@@ -191,9 +206,12 @@ function updateAuthUI() {
         if (user.role === 'admin') dashboardLink = `<li><a href="dashboard.html" data-i18n="nav_admin">${i18n.translations['nav_admin'] || 'Admin'}</a></li>`;
         if (user.role === 'teacher') dashboardLink = `<li><a href="teacher-dashboard.html" data-i18n="nav_teach">${i18n.translations['nav_teach'] || 'Teach'}</a></li>`;
 
+        const displayName = user.nickname || user.name;
+
         authLink.outerHTML = `
             ${dashboardLink}
-            <li id="auth-link"><a href="#" onclick="logout()">${user.name} (<span data-i18n="nav_logout">${i18n.translations['nav_logout'] || 'Logout'}</span>)</a></li>
+            <li><a href="profile.html"><i class="uil uil-user-circle"></i> ${displayName}</a></li>
+            <li id="auth-link"><a href="#" onclick="logout()">(<span data-i18n="nav_logout">${i18n.translations['nav_logout'] || 'Logout'}</span>)</a></li>
         `;
     }
 }

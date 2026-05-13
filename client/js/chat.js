@@ -99,11 +99,13 @@ const chatbot = {
         // Show typing indicator or something?
         // For now just call backend
         try {
+            const user = JSON.parse(localStorage.getItem('user'));
             const response = await window.api.fetch('/api/chat', {
                 method: 'POST',
                 body: JSON.stringify({
                     query,
                     lang: window.i18n ? window.i18n.currentLang : 'en',
+                    userId: user ? user.id : null,
                     history: this.messages.slice(-5) // Send last few messages for context
                 })
             });
