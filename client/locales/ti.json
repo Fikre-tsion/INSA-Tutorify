@@ -41,5 +41,8 @@
   "msg_label": "መልእኽቲ",
   "send_msg": "መልእኽቲ ስደድ",
   "about_title": "ብዛዕባና",
-  "about_text": "ቲዩተሪፋይ (Tutorify) ፅሬት ዘለዎ ትምህርቲ ንኹሉ ሰብ ኣብ ዝኾነ ቦታ ንምቕራብ ዝተጣየሸ ብልህ ናይ ትምህርቲ መድረኽ እዩ።"
+  "about_text": "ቲዩተሪፋይ (Tutorify) ፅሬት ዘለዎ ትምህርቲ ንኹሉ ሰብ ኣብ ዝኾነ ቦታ ንምቕራብ ዝተጣየሸ ብልህ ናይ ትምህርቲ መድረኽ እዩ።",
+  "chat_title": "ናይ Tutorify AI ሓጋዚ",
+  "chat_placeholder": "ሕቶ ሕተቱ...",
+  "chat_welcome": "ሰላም! ኣነ ናይ Tutorify ሓጋዚ እየ። ሎሚ ከመይ ገይረ ክሕግዘኩም እኽእል?"
 }

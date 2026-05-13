@@ -91,5 +91,8 @@
   "action_label": "ተግባር",
   "img_url_label": "የምስል አድራሻ (URL)",
   "cancel_btn": "ሰርዝ",
-  "save_btn": "ትምህርቱን አስቀምጥ"
+  "save_btn": "ትምህርቱን አስቀምጥ",
+  "chat_title": "የ Tutorify AI ረዳት",
+  "chat_placeholder": "ጥያቄ ይጠይቁ...",
+  "chat_welcome": "ሰላም! እኔ የእርስዎ Tutorify ረዳት ነኝ። ዛሬ እንዴት ልረዳዎ እችላለሁ?"
 }

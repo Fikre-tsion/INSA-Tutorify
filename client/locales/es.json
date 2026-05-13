@@ -41,5 +41,8 @@
   "msg_label": "Mensaje",
   "send_msg": "Enviar mensaje",
   "about_title": "Acerca de nosotros",
-  "about_text": "Tutorify es una plataforma de tutoría inteligente dedicada a brindar educación de alta calidad a todos, en todas partes."
+  "about_text": "Tutorify es una plataforma de tutoría inteligente dedicada a brindar educación de alta calidad a todos, en todas partes.",
+  "chat_title": "Asistente AI de Tutorify",
+  "chat_placeholder": "Hacer una pregunta...",
+  "chat_welcome": "¡Hola! Soy tu asistente de Tutorify. ¿Cómo puedo ayudarte hoy?"
 }

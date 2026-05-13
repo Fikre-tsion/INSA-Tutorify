@@ -41,5 +41,8 @@
   "msg_label": "Ergaa",
   "send_msg": "Ergaa Ergi",
   "about_title": "Waa'ee Keenya",
-  "about_text": "Tutorify'n madaltee barsiisuu qaxaree Barnoota qulqullina qabu hundaaf, bakka hundatti dhiyeessuuf of kenneedha."
+  "about_text": "Tutorify'n madaltee barsiisuu qaxaree Barnoota qulqullina qabu hundaaf, bakka hundatti dhiyeessuuf of kenneedha.",
+  "chat_title": "Tutorify AI Gargaaraa",
+  "chat_placeholder": "Gaaffii gaafadhu...",
+  "chat_welcome": "Akkam! Ani gargaaraa kee Tutorify dha. Har'a akkamitti si gargaaruu danda'a?"
 }

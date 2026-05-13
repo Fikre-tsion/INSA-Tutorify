@@ -91,5 +91,8 @@
   "action_label": "Action",
   "img_url_label": "Image URL",
   "cancel_btn": "Cancel",
-  "save_btn": "Save Course"
+  "save_btn": "Save Course",
+  "chat_title": "Tutorify AI Assistant",
+  "chat_placeholder": "Ask a question...",
+  "chat_welcome": "Hello! I'm your Tutorify assistant. How can I help you today?"
 }
