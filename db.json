@@ -6,6 +6,42 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "name": "Test",
+      "email": "test@example.com",
+      "message": "Hello",
+      "date": "2026-05-14T21:32:28.160Z"
+    }
+  ],
+  "stats": {
+    "profileViews": "1,504",
+    "tutorials": "80",
+    "comments": "284",
+    "earnings": "7,842"
+  }
 }
