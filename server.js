@@ -18,10 +18,12 @@ app.use(express.static(__dirname));
 // Helper function to read database
 const readDB = () => {
     if (!fs.existsSync(DB_FILE)) {
-        return { users: [] };
+        return { users: [], messages: [] };
     }
     const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data);
+    const db = JSON.parse(data);
+    if (!db.messages) db.messages = [];
+    return db;
 };
 
 // Helper function to write to database
@@ -71,6 +73,29 @@ app.post('/api/login', async (req, res) => {
 
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
+});
+
+// Contact endpoint
+app.post('/api/contact', (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    if (!firstName || !lastName || !email || !message) {
+        return res.status(400).json({ message: 'All fields are required' });
+    }
+
+    const db = readDB();
+    const newMessage = {
+        id: (db.messages.length > 0 ? db.messages[db.messages.length - 1].id : 0) + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    db.messages.push(newMessage);
+    writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
 });
 
 app.listen(PORT, () => {
