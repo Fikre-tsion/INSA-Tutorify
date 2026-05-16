@@ -1,7 +1,18 @@
+// Throttle function to limit the number of times a function is called
+const throttle = (callback, delay) => {
+    let lastCall = 0;
+    return (...args) => {
+        const now = new Date().getTime();
+        if (now - lastCall < delay) return;
+        lastCall = now;
+        return callback(...args);
+    };
+};
+
 //changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+window.addEventListener('scroll', throttle(() => {
+    document.querySelector('nav').classList.toggle('window-scroll', window.scrollY > 0);
+}, 100));
 
 
 
