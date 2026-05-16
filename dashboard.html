@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div id="profileViews" class="numbers">0</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div id="tutorialsCount" class="numbers">0</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,7 +99,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
+            <div id="commentsCount" class="numbers">0</div>
             <div class="cardName">Comments</div>
           </div>
           <div class="iconBx">
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div id="earningsAmount" class="numbers">0</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -251,6 +251,21 @@
       alert('Access denied. Please login as admin.');
       window.location.href = 'login.html';
     }
+
+    async function loadStats() {
+        try {
+            const response = await fetch('/api/admin/stats');
+            const stats = await response.json();
+            document.getElementById('profileViews').textContent = stats.profileViews;
+            document.getElementById('tutorialsCount').textContent = stats.tutorials;
+            document.getElementById('commentsCount').textContent = stats.comments;
+            document.getElementById('earningsAmount').textContent = stats.earnings;
+        } catch (error) {
+            console.error('Error loading stats:', error);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadStats);
 
     function logout() {
       localStorage.removeItem('token');

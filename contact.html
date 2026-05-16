@@ -58,15 +58,53 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contact-form" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
               <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
+
+<script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector('button');
+        const originalBtnText = btn.textContent;
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            const data = await response.json();
+            if (response.ok) {
+                alert('Thank you! Your message has been sent.');
+                e.target.reset();
+            } else {
+                alert(data.message || 'Failed to send message.');
+            }
+        } catch (error) {
+            console.error('Error submitting contact form:', error);
+            alert('An error occurred. Please try again later.');
+        } finally {
+            btn.textContent = originalBtnText;
+            btn.disabled = false;
+        }
+    });
+</script>
       </div>
   </section>
 
