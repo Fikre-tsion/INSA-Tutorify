@@ -7,5 +7,39 @@
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
     }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello",
+      "date": "2026-05-16T21:24:14.995Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Verify",
+      "lastName": "Step",
+      "email": "verify@example.com",
+      "message": "Verification message",
+      "date": "2026-05-16T21:25:48.303Z"
+    },
+    {
+      "id": 3,
+      "firstName": "Frontend",
+      "lastName": "Verification",
+      "email": "verify@frontend.com",
+      "message": "Testing the new backend integration.",
+      "date": "2026-05-16T21:27:52.330Z"
+    },
+    {
+      "id": 4,
+      "firstName": "Frontend",
+      "lastName": "Verification",
+      "email": "verify@frontend.com",
+      "message": "Testing the new backend integration.",
+      "date": "2026-05-16T21:29:03.390Z"
+    }
   ]
 }
