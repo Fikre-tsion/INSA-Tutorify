@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li id="auth-link"><a href="login.html">Login</a></li>
+                <li class="auth-link"></li>
             </ul>
             <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
             <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -57,6 +57,7 @@
             </div>
             <div class="header__right">
                 <div class="header__right-image"></div>
+                    <!-- Above the fold image - NOT lazy loaded for performance (LCP) -->
                     <img src="./images/header.svg" alt="Kids Learning and having fun with their friends">
                 </div>
             </div>
@@ -132,7 +133,7 @@
     <!-- Course 1 -->
     <article class="course">
       <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
+        <img src="./images/course1.jpg" alt="Course 1" loading="lazy">
       </div>
       <div class="course__info">
         <h4>Responsive Social Media Website UI Design</h4>
@@ -146,7 +147,7 @@
     <!-- Course 2 -->
     <article class="course">
       <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
+        <img src="./images/course2.jpg" alt="Course 2" loading="lazy">
       </div>
       <div class="course__info">
         <h4>Responsive SmartHome Website Design</h4>
@@ -160,7 +161,7 @@
     <!-- Course 3 -->
     <article class="course">
       <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
+        <img src="./images/course3.jpg" alt="Course 3" loading="lazy">
       </div>
       <div class="course__info">
         <h4>Responsive Admin Dashboard UI Design</h4>
@@ -274,7 +275,7 @@
   <div class="swiper-wrapper">
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar1.jpg" alt="Avatar 1">
+        <img src="./images/avatar1.jpg" alt="Avatar 1" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Wudasie Dawit</h5>
@@ -289,7 +290,7 @@
 
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar2.jpg" alt="Avatar 2">
+        <img src="./images/avatar2.jpg" alt="Avatar 2" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Leul Shewa</h5>
@@ -304,7 +305,7 @@
 
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar3.jpg" alt="Avatar 3">
+        <img src="./images/avatar3.jpg" alt="Avatar 3" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Zeamanuel Jembere</h5>
@@ -319,7 +320,7 @@
 
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar4.jpg" alt="Avatar 4">
+        <img src="./images/avatar4.jpg" alt="Avatar 4" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Yeshi Fikre</h5>
@@ -334,7 +335,7 @@
 
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar5.jpg" alt="Avatar 5">
+        <img src="./images/avatar5.jpg" alt="Avatar 5" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Atsede Teferi</h5>
@@ -432,21 +433,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
-  // Auth display logic
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const authLink = document.getElementById('auth-link');
-
-  if (token && user) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
-  }
-
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
-
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
