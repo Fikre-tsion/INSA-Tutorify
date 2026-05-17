@@ -29,6 +29,18 @@ const writeDB = (data) => {
     fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
 };
 
+// Middleware to verify JWT token
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+    if (!token) return res.status(403).json({ message: 'No token provided' });
+
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+        if (err) return res.status(500).json({ message: 'Failed to authenticate token' });
+        req.user = decoded;
+        next();
+    });
+};
+
 // Register endpoint
 app.post('/api/register', async (req, res) => {
     const { name, email, password, role } = req.body;
@@ -71,6 +83,47 @@ app.post('/api/login', async (req, res) => {
 
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
+});
+
+// Contact endpoint
+app.post('/api/contact', async (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    const db = readDB();
+
+    if (!db.contacts) db.contacts = [];
+
+    const newContact = {
+        id: db.contacts.length + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    db.contacts.push(newContact);
+    writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
+});
+
+// Courses endpoint
+app.get('/api/courses', (req, res) => {
+    const db = readDB();
+    res.json(db.courses || []);
+});
+
+// Admin stats endpoint
+app.get('/api/admin/stats', verifyToken, (req, res) => {
+    if (req.user.role !== 'admin') {
+        return res.status(403).json({ message: 'Require Admin Role' });
+    }
+    const db = readDB();
+    res.json({
+        stats: db.stats,
+        tutors: db.tutors,
+        customers: db.customers
+    });
 });
 
 app.listen(PORT, () => {

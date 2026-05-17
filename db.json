@@ -6,6 +6,234 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$Y0F0RuTRbMtB6rJV5R0P7efAxH.4MJaiFpxHLNf/Ti7MF7q1zBW3W",
+      "role": "admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "image": "./images/course1.jpg",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "image": "./images/course2.jpg",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "image": "./images/course3.jpg",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "image": "./images/course4.jpg",
+      "description": "Learn the fundamentals of productivity and focus, including time management, goal setting, and effective work habits. This course is designed for beginners looking to enhance their productivity skills."
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "image": "./images/course5.jpg",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives."
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "image": "./images/course6.jpg",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "image": "./images/digitalmarketing.png",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media marketing, email marketing, and content marketing. This course is designed for beginners looking to enhance their marketing skills."
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "image": "./images/self.png",
+      "description": "Learn the fundamentals os self-confidence and success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives."
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "image": "./images/course9.jpg",
+      "description": "Learn how to create a responsive Netflix website clone using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "image": "./images/course10.jpg",
+      "description": "Learn how to create a responsive Digital Newspaper website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "image": "./images/course11.jpg",
+      "description": "Learn the fundamentals of Logo and Graphic Designing, including design principles, color theory, and typography. This course is designed for beginners looking to enhance their design skills."
+    },
+    {
+      "id": 12,
+      "title": "Responsive Admin Dashboard UI Design",
+      "image": "./images/course12.jpg",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "image": "./images/blockchain.png",
+      "description": "Learn the fundamentals of Blockchain Technology, including its architecture, consensus mechanisms, and real-world applications. This course is designed for beginners looking to understand the basics of blockchain."
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "image": "./images/course14.jpg",
+      "description": "Learn how to create a responsive Contact Form design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "image": "./images/course15.jpg",
+      "description": "Learn how to create a responsive Landing Page design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 16,
+      "title": "world Class Portfolio Website development",
+      "image": "./images/course16.jpg",
+      "description": "Learn how to create a world Class Portfolio Website using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashbard UI Design",
+      "image": "./images/course17.jpg",
+      "description": "Learn how to create a responsive Business manager dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "image": "./images/course18.jpg",
+      "description": "Learn how to create a responsive Smart home Application UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces."
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-05-17T21:22:34.588Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "This is a test message from Playwright.",
+      "date": "2026-05-17T21:23:53.190Z"
+    },
+    {
+      "id": 3,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "This is a test message from Playwright.",
+      "date": "2026-05-17T21:24:19.760Z"
+    },
+    {
+      "id": 4,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "This is a final test message.",
+      "date": "2026-05-17T21:27:56.688Z"
+    }
+  ],
+  "stats": {
+    "profileViews": "1,504",
+    "tutorials": "80",
+    "comments": "284",
+    "earnings": "7,842"
+  },
+  "tutors": [
+    {
+      "name": "Haile",
+      "course": "Mathematics",
+      "payment": "ETB 450/hr",
+      "status": "delivered"
+    },
+    {
+      "name": "Fikre",
+      "course": "Physics",
+      "payment": "ETB 500/hr",
+      "status": "pending"
+    },
+    {
+      "name": "Tsion",
+      "course": "Chemistry",
+      "payment": "ETB 400/hr",
+      "status": "return"
+    },
+    {
+      "name": "Abebe",
+      "course": "Biology",
+      "payment": "ETB 350/hr",
+      "status": "inprogress"
+    },
+    {
+      "name": "Almaz",
+      "course": "English",
+      "payment": "ETB 300/hr",
+      "status": "delivered"
+    },
+    {
+      "name": "Samson",
+      "course": "History",
+      "payment": "ETB 250/hr",
+      "status": "pending"
+    },
+    {
+      "name": "Mengistu",
+      "course": "Geography",
+      "payment": "ETB 200/hr",
+      "status": "inprogress"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Gebre",
+      "grade": "Grade 12",
+      "image": "./images2/2.jpg"
+    },
+    {
+      "name": "Selam",
+      "grade": "Grade 11",
+      "image": "./images2/1.jpg"
+    },
+    {
+      "name": "Yonas",
+      "grade": "Grade 10",
+      "image": "./images2/4.jpg"
+    },
+    {
+      "name": "Meron",
+      "grade": "Grade 9",
+      "image": "./images2/student.png"
+    },
+    {
+      "name": "Daniel",
+      "grade": "Grade 12",
+      "image": "./images2/5.jpg"
     }
   ]
 }
