@@ -58,14 +58,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
                   <input type="text" name="firstName" placeholder="First Name" required>
                   <input type="text" name="lastName"  placeholder="Last Name" required>
               </div>
               <input type="email" name="email" placeholder="Your Email Address" required>
               <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+              <p id="formStatus" style="margin-top: 1rem; display: none;"></p>
           </form>
       </div>
   </section>
@@ -123,5 +124,50 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
+
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Sending...';
+      formStatus.style.display = 'block';
+      formStatus.style.color = '#fff';
+      formStatus.innerText = 'Sending your message...';
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          formStatus.style.color = '#4BB543';
+          formStatus.innerText = 'Thank you! Your message has been sent.';
+          contactForm.reset();
+        } else {
+          formStatus.style.color = '#ff3333';
+          formStatus.innerText = result.message || 'Something went wrong. Please try again.';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        formStatus.style.color = '#ff3333';
+        formStatus.innerText = 'Network error. Please check your connection.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Send Message';
+      }
+    });
+  </script>
 </body>
 </html>
