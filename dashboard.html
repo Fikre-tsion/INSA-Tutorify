@@ -274,6 +274,63 @@
         li.classList.add('hovered');
       });
     });
+
+    // Fetch and display dashboard stats
+    async function loadStats() {
+      try {
+        const response = await fetch('/api/admin/stats', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (response.ok) {
+          const data = await response.json();
+
+          // Update stats cards
+          const stats = data.stats;
+          const numbers = document.querySelectorAll('.numbers');
+          numbers[0].textContent = stats.profileViews;
+          numbers[1].textContent = stats.tutorials;
+          numbers[2].textContent = stats.comments;
+          numbers[3].textContent = stats.earnings;
+
+          // Update tutors table
+          const tutorsBody = document.querySelector('.recentOrders tbody');
+          tutorsBody.innerHTML = '';
+          data.tutors.forEach(tutor => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${tutor.name}</td>
+              <td>${tutor.course}</td>
+              <td>${tutor.payment}</td>
+              <td><span class="status ${tutor.status.replace(' ', '')}">${tutor.status}</span></td>
+            `;
+            tutorsBody.appendChild(tr);
+          });
+
+          // Update customers table
+          const customersTable = document.querySelector('.recentCustomers table');
+          customersTable.innerHTML = ''; // Keep header if exists or just redraw
+          data.customers.forEach(customer => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td width="60px">
+                <div class="imgBx"><img src="${customer.image}" alt="${customer.name}"></div>
+              </td>
+              <td>
+                <h4>${customer.name}<br><span>${customer.grade}</span></h4>
+              </td>
+            `;
+            customersTable.appendChild(tr);
+          });
+
+        } else {
+          console.error('Failed to fetch stats');
+        }
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    loadStats();
   </script>
 </body>
 </html>

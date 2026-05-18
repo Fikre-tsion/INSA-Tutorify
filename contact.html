@@ -58,15 +58,61 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
               <button type="submit" class="btn btn-primary">Send Message</button>
+              <p id="formStatus" style="margin-top: 1rem; display: none;"></p>
           </form>
+
+          <script>
+            document.getElementById('contactForm').addEventListener('submit', async (e) => {
+              e.preventDefault();
+              const status = document.getElementById('formStatus');
+              const btn = e.target.querySelector('button');
+
+              const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+              };
+
+              btn.disabled = true;
+              btn.textContent = 'Sending...';
+              status.style.display = 'block';
+              status.textContent = 'Sending message...';
+              status.style.color = 'white';
+
+              try {
+                const response = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                  status.textContent = 'Message sent successfully!';
+                  status.style.color = '#00bf8e';
+                  e.target.reset();
+                } else {
+                  status.textContent = 'Failed to send message. Please try again.';
+                  status.style.color = '#f75842';
+                }
+              } catch (error) {
+                console.error('Error:', error);
+                status.textContent = 'An error occurred. Please try again later.';
+                status.style.color = '#f75842';
+              } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Message';
+              }
+            });
+          </script>
       </div>
   </section>
 
