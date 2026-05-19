@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="./CSS/style.css">
+    <style>
+        .loading-container {
+            grid-column: 1 / -1;
+            padding: 3rem;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,16 +36,15 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li id="auth-link"><a href="login.html">Login</a></li>
             </ul>
-            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+            <button id="open-menu-btn" aria-label="Open Navigation Menu"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn" aria-label="Close Navigation Menu"><i class="uil uil-multiply"></i></button>
             
         </div>
     </nav>
 
 
-    /*==================== END OF NAV ====================*/
+    <!-- ==================== END OF NAV ==================== -->
 
 
     <header>
@@ -127,51 +135,8 @@
 
 <section class="courses">
   <h2>Our Popular Courses</h2>
-  <div class="container courses__container">
-
-    <!-- Course 1 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Social Media Website UI Design</h4>
-        <p>
-          Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 2 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
-      </div>
-      <div class="course__info">
-        <h4>Responsive SmartHome Website Design</h4>
-        <p>
-          Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 3 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
+  <div class="container courses__container" id="popular-courses-container">
+    <div class="loading-container">Loading courses...</div>
   </div>
 </section>
 <!-- ==================== END OF COURSES ==================== -->
@@ -414,10 +379,10 @@
 
 
     <div class="footer__socials">
-      <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-      <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-      <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-      <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+      <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+      <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+      <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+      <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
     </div>
   </div>
 
@@ -432,20 +397,37 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
-  // Auth display logic
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const authLink = document.getElementById('auth-link');
+    async function fetchPopularCourses() {
+        const container = document.getElementById('popular-courses-container');
+        try {
+            const response = await fetch('/api/courses');
+            const courses = await response.json();
 
-  if (token && user) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
-  }
+            // Just show the first 3 on home page
+            const popularCourses = courses.slice(0, 3);
 
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
+            if (popularCourses.length === 0) {
+                container.innerHTML = '<div class="loading-container">No courses available.</div>';
+                return;
+            }
+
+            container.innerHTML = popularCourses.map(course => `
+                <article class="course">
+                    <div class="course__image">
+                        <img src="${course.image}" alt="${course.title}">
+                    </div>
+                    <div class="course__info">
+                        <h4>${course.title}</h4>
+                        <p>${course.description}</p>
+                        <a href="#" class="btn btn-primary">Learn More</a>
+                    </div>
+                </article>
+            `).join('');
+        } catch (error) {
+            console.error('Error fetching popular courses:', error);
+            container.innerHTML = '<div class="loading-container">Failed to load courses.</div>';
+        }
+    }
 
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
@@ -460,6 +442,8 @@
       1024: { slidesPerView: 3 }
     }
   });
+
+  document.addEventListener('DOMContentLoaded', fetchPopularCourses);
 </script>
 
 
