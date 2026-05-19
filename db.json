@@ -6,6 +6,69 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin Bolt",
+      "email": "admin@bolt.com",
+      "password": "$2a$10$r2usfhnaZlyBpeILXoO3Q.oimVuSrWw4D7inYjduzyAM8Hbc3t4qS",
+      "role": "admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "image": "./images/course1.jpg",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS."
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "image": "./images/course2.jpg",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS."
+    }
+  ],
+  "stats": {
+    "profileViews": "1,504",
+    "tutorials": "80",
+    "comments": "284",
+    "earnings": "7,842"
+  },
+  "tutors": [
+    {
+      "name": "Haile",
+      "course": "Mathematics",
+      "payment": "ETB 450/hr",
+      "status": "delivered"
+    },
+    {
+      "name": "Fikre",
+      "course": "Physics",
+      "payment": "ETB 500/hr",
+      "status": "pending"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Gebre",
+      "grade": "Grade 12",
+      "image": "./images2/2.jpg"
+    },
+    {
+      "name": "Selam",
+      "grade": "Grade 11",
+      "image": "./images2/1.jpg"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello",
+      "date": "2026-05-19T21:27:00.399Z"
     }
   ]
 }
