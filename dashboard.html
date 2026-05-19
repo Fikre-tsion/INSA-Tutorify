@@ -78,53 +78,18 @@
       </div>
 
       <!-- Cards -->
-      <div class="cardBox">
-        <div class="card">
-          <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
-          </div>
-          <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
-          </div>
-          <div class="iconBx">
-            <ion-icon name="school-outline"></ion-icon>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
-          </div>
-          <div class="iconBx">
-            <ion-icon name="chatbubbles-outline"></ion-icon>
-          </div>
-        </div>
-        <div class="card">
-          <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
-          </div>
-          <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
-          </div>
-        </div>
+      <div class="cardBox" id="cardBox">
+        <!-- Dynamic content -->
       </div>
 
-      <!-- datails lists -->
+      <!-- details lists -->
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
               <h2>Recent Tutors</h2>
               <a href="#" class="btn">View All</a>
             </div>
-            <table>
+            <table id="tutorsTable">
               <thead>
                 <tr>
                   <td>Tutor</td>
@@ -133,51 +98,8 @@
                   <td>Status</td>
                 </tr>
               </thead>
-
               <tbody>
-                <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
+                <!-- Dynamic content -->
               </tbody>
             </table>
           </div>
@@ -187,51 +109,8 @@
             <div class="cardHeader">
               <h2>Recent Customers</h2>
             </div>
-            <table>
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Gebre<br><span>Grade 12</span></h4>
-                </td>
-              </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
+            <table id="customersTable">
+               <!-- Dynamic content -->
             </table>
            </div>
 
@@ -251,6 +130,79 @@
       alert('Access denied. Please login as admin.');
       window.location.href = 'login.html';
     }
+
+    async function fetchStats() {
+      try {
+        const response = await fetch('/api/admin/stats', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (!response.ok) throw new Error('Failed to fetch stats');
+        const data = await response.json();
+
+        displayStats(data);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+
+    function displayStats(data) {
+      const cardBox = document.getElementById('cardBox');
+      const stats = data.stats;
+      cardBox.innerHTML = `
+        <div class="card">
+          <div>
+            <div class="numbers">${stats.profileViews}</div>
+            <div class="cardName">Profile Views</div>
+          </div>
+          <div class="iconBx"><ion-icon name="eye-outline"></ion-icon></div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">${stats.tutorials}</div>
+            <div class="cardName">Tutorials</div>
+          </div>
+          <div class="iconBx"><ion-icon name="school-outline"></ion-icon></div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">${stats.comments}</div>
+            <div class="cardName">Comments</div>
+          </div>
+          <div class="iconBx"><ion-icon name="chatbubbles-outline"></ion-icon></div>
+        </div>
+        <div class="card">
+          <div>
+            <div class="numbers">${stats.earnings}</div>
+            <div class="cardName">Earnings</div>
+          </div>
+          <div class="iconBx"><ion-icon name="cash-outline"></ion-icon></div>
+        </div>
+      `;
+
+      const tutorsTable = document.querySelector('#tutorsTable tbody');
+      tutorsTable.innerHTML = data.tutors.map(t => `
+        <tr>
+          <td>${t.name}</td>
+          <td>${t.course}</td>
+          <td>${t.payment}</td>
+          <td><span class="status ${t.status}">${t.status.charAt(0).toUpperCase() + t.status.slice(1)}</span></td>
+        </tr>
+      `).join('');
+
+      const customersTable = document.getElementById('customersTable');
+      customersTable.innerHTML = data.customers.map(c => `
+        <tr>
+          <td width="60px">
+            <div class="imgBx"><img src="${c.image}" alt="Customer"></div>
+          </td>
+          <td>
+            <h4>${c.name}<br><span>${c.grade}</span></h4>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.onload = fetchStats;
 
     function logout() {
       localStorage.removeItem('token');

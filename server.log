@@ -1,0 +1,7 @@
+
+> tutorify-backend@1.0.0 start /app
+> node server.js
+
+Server is running on http://localhost:3000
+Terminated
+ ELIFECYCLE  Command failed with exit code 143.
