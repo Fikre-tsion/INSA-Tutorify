@@ -65,12 +65,33 @@ app.post('/api/login', async (req, res) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-        // Fallback for initial placeholder users if needed, but we'll re-register them or just use hashed passwords
         return res.status(400).json({ message: 'Invalid email, password or role' });
     }
 
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
+});
+
+// Contact endpoint
+app.post('/api/contact', async (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    const db = readDB();
+
+    if (!db.contacts) db.contacts = [];
+
+    const newContact = {
+        id: Date.now(),
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    db.contacts.push(newContact);
+    writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
 });
 
 app.listen(PORT, () => {

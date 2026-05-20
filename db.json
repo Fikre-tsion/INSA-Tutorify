@@ -7,5 +7,23 @@
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
     }
+  ],
+  "contacts": [
+    {
+      "id": 1779313651506,
+      "firstName": "Palette",
+      "lastName": "Artist",
+      "email": "palette@example.com",
+      "message": "This is a UX verification message.",
+      "date": "2026-05-20T21:47:31.506Z"
+    },
+    {
+      "id": 1779313736404,
+      "firstName": "Palette",
+      "lastName": "Artist",
+      "email": "palette@example.com",
+      "message": "This is a UX verification message.",
+      "date": "2026-05-20T21:48:56.404Z"
+    }
   ]
 }
