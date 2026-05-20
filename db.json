@@ -6,6 +6,177 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Admin Test",
+      "email": "admintest@example.com",
+      "password": "$2a$10$QvrZ3iULvLSClEKCOgIk0.YxDECH5msqzCqVl8qJkhlk2IjktIAQa",
+      "role": "admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management, goal setting, and effective work habits.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and effective communication.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media marketing, email marketing, and content marketing.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Learn the fundamentals of self-confidence and success, including mindset, goal setting, and effective communication.",
+      "image": "./images/self.png"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1779311970209,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello",
+      "date": "2026-05-20T21:19:30.209Z"
+    },
+    {
+      "id": 1779312124026,
+      "firstName": "Bolt",
+      "lastName": "Optimizer",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-05-20T21:22:04.026Z"
+    },
+    {
+      "id": 1779312212224,
+      "firstName": "Bolt",
+      "lastName": "Optimizer",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-05-20T21:23:32.224Z"
+    },
+    {
+      "id": 1779312259728,
+      "firstName": "Bolt",
+      "lastName": "Optimizer",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-05-20T21:24:19.728Z"
+    },
+    {
+      "id": 1779312296886,
+      "firstName": "Bolt",
+      "lastName": "Optimizer",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-05-20T21:24:56.886Z"
+    }
+  ],
+  "stats": {
+    "profileViews": 1504,
+    "tutorials": 80,
+    "comments": 284,
+    "earnings": 7842
+  },
+  "tutors": [
+    {
+      "name": "Haile",
+      "course": "Mathematics",
+      "payment": "ETB 450/hr",
+      "status": "delivered"
+    },
+    {
+      "name": "Fikre",
+      "course": "Physics",
+      "payment": "ETB 500/hr",
+      "status": "pending"
+    },
+    {
+      "name": "Tsion",
+      "course": "Chemistry",
+      "payment": "ETB 400/hr",
+      "status": "return"
+    },
+    {
+      "name": "Abebe",
+      "course": "Biology",
+      "payment": "ETB 350/hr",
+      "status": "inprogress"
+    },
+    {
+      "name": "Almaz",
+      "course": "English",
+      "payment": "ETB 300/hr",
+      "status": "delivered"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Gebre",
+      "grade": "Grade 12",
+      "image": "./images2/2.jpg"
+    },
+    {
+      "name": "Selam",
+      "grade": "Grade 11",
+      "image": "./images2/1.jpg"
+    },
+    {
+      "name": "Yonas",
+      "grade": "Grade 10",
+      "image": "./images2/4.jpg"
+    },
+    {
+      "name": "Meron",
+      "grade": "Grade 9",
+      "image": "./images2/student.png"
+    },
+    {
+      "name": "Daniel",
+      "grade": "Grade 12",
+      "image": "./images2/5.jpg"
     }
   ]
 }
