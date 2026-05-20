@@ -1,7 +1,18 @@
-//changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+// Throttle function to improve scroll performance by limiting event firing rate
+const throttle = (callback, delay) => {
+    let lastTime = 0;
+    return (...args) => {
+        const now = new Date().getTime();
+        if (now - lastTime < delay) return;
+        lastTime = now;
+        callback(...args);
+    };
+};
+
+// Changing navbar style when scrolling (optimized with throttle)
+window.addEventListener('scroll', throttle(() => {
+    document.querySelector('nav').classList.toggle('window-scroll', window.scrollY > 0);
+}, 100));
 
 
 
