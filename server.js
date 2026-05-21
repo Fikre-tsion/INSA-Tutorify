@@ -8,8 +8,23 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = 'your_secret_key';
+const SECRET_KEY = process.env.SECRET_KEY || 'dev_secret_key';
 const DB_FILE = path.join(__dirname, 'db.json');
+
+// Middleware to verify JWT
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization'];
+    if (!token) return res.status(403).json({ message: 'No token provided' });
+
+    const bearerToken = token.startsWith('Bearer ') ? token.slice(7) : token;
+
+    jwt.verify(bearerToken, SECRET_KEY, (err, decoded) => {
+        if (err) return res.status(500).json({ message: 'Failed to authenticate token' });
+        req.userId = decoded.id;
+        req.userRole = decoded.role;
+        next();
+    });
+};
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -71,6 +86,48 @@ app.post('/api/login', async (req, res) => {
 
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
+});
+
+// Courses endpoint
+app.get('/api/courses', (req, res) => {
+    const db = readDB();
+    res.json(db.courses || []);
+});
+
+// Contact endpoint
+app.post('/api/contact', (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    const db = readDB();
+
+    if (!db.contacts) db.contacts = [];
+
+    const newContact = {
+        id: db.contacts.length + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    db.contacts.push(newContact);
+    writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
+});
+
+// Admin stats endpoint
+app.get('/api/admin/stats', verifyToken, (req, res) => {
+    if (req.userRole !== 'admin') {
+        return res.status(403).json({ message: 'Require Admin Role' });
+    }
+    const db = readDB();
+    res.json(db.stats || {
+        profileViews: "1,504",
+        tutorials: "80",
+        comments: "284",
+        earnings: "7,842"
+    });
 });
 
 app.listen(PORT, () => {
