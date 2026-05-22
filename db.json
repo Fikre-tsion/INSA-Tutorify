@@ -6,6 +6,69 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin Bolt",
+      "email": "admin@example.com",
+      "password": "$2a$10$3zR/H27XmZ.L5Hh9UoY3I.iX0H7ZfM9H.6f3u8V2T.S6y6R5X5Z6e",
+      "role": "admin"
     }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology, including its architecture and consensus mechanisms.",
+      "image": "./images/blockchain.png"
+    },
+    {
+      "id": 6,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media marketing, and more.",
+      "image": "./images/digitalmarketing.png"
+    }
+  ],
+  "contacts": [],
+  "stats": {
+    "profileViews": "1,504",
+    "tutorials": "80",
+    "comments": "284",
+    "earnings": "$7,842"
+  },
+  "tutors": [
+    { "name": "Haile", "course": "Mathematics", "payment": "ETB 450/hr", "status": "delivered" },
+    { "name": "Fikre", "course": "Physics", "payment": "ETB 500/hr", "status": "pending" },
+    { "name": "Tsion", "course": "Chemistry", "payment": "ETB 400/hr", "status": "return" },
+    { "name": "Abebe", "course": "Biology", "payment": "ETB 350/hr", "status": "inprogress" }
+  ],
+  "customers": [
+    { "name": "Gebre", "grade": "Grade 12", "image": "./images2/2.jpg" },
+    { "name": "Selam", "grade": "Grade 11", "image": "./images2/1.jpg" },
+    { "name": "Yonas", "grade": "Grade 10", "image": "./images2/4.jpg" }
   ]
 }
