@@ -15,5 +15,8 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "node-fetch": "^2.7.0"
   }
 }

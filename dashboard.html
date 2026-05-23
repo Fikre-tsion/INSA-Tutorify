@@ -17,9 +17,9 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-            <span class="title">Dashboard</span>
+            <span class="title">Home</span>
           </a>
         </li>
         <li>
@@ -73,7 +73,7 @@
           </label>
         </div>
         <div class="user">
-          <img src="./images2/image.png" alt="User Profile" width="120" height="120">
+          <img src="./images2/image.png" alt="User Profile" width="120" height="120" loading="lazy">
         </div>
       </div>
 
@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-profile-views">0</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div class="numbers" id="stat-tutorials">0</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,7 +99,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
+            <div class="numbers" id="stat-comments">0</div>
             <div class="cardName">Comments</div>
           </div>
           <div class="iconBx">
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers" id="stat-earnings">0</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -117,7 +117,7 @@
         </div>
       </div>
 
-      <!-- datails lists -->
+      <!-- details lists -->
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
@@ -133,51 +133,8 @@
                   <td>Status</td>
                 </tr>
               </thead>
-
-              <tbody>
-                <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
+              <tbody id="tutors-table-body">
+                <!-- Tutors will be loaded here -->
               </tbody>
             </table>
           </div>
@@ -187,54 +144,10 @@
             <div class="cardHeader">
               <h2>Recent Customers</h2>
             </div>
-            <table>
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Gebre<br><span>Grade 12</span></h4>
-                </td>
-              </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
+            <table id="customers-table">
+              <!-- Customers will be loaded here -->
             </table>
            </div>
-
         </div>
     </div>
   </div>
@@ -266,14 +179,94 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
-  </script>
-  <script>
+
     document.querySelectorAll('.navigation ul li').forEach(li => {
       li.addEventListener('click', () => {
         document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
         li.classList.add('hovered');
       });
     });
+
+    // Fetch stats
+    async function loadStats() {
+      try {
+        const response = await fetch('/api/admin/stats', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch stats');
+
+        const stats = await response.json();
+
+        document.getElementById('stat-profile-views').textContent = stats.profileViews;
+        document.getElementById('stat-tutorials').textContent = stats.tutorials;
+        document.getElementById('stat-comments').textContent = stats.comments;
+        document.getElementById('stat-earnings').textContent = stats.earnings;
+
+        const tutorsBody = document.getElementById('tutors-table-body');
+        tutorsBody.innerHTML = '';
+        stats.recentTutors.forEach(tutor => {
+          const tr = document.createElement('tr');
+
+          const tdName = document.createElement('td');
+          tdName.textContent = tutor.name;
+
+          const tdCourse = document.createElement('td');
+          tdCourse.textContent = tutor.course;
+
+          const tdPayment = document.createElement('td');
+          tdPayment.textContent = tutor.payment;
+
+          const tdStatus = document.createElement('td');
+          const span = document.createElement('span');
+          span.className = `status ${tutor.status}`;
+          span.textContent = tutor.status.charAt(0).toUpperCase() + tutor.status.slice(1);
+          tdStatus.appendChild(span);
+
+          tr.appendChild(tdName);
+          tr.appendChild(tdCourse);
+          tr.appendChild(tdPayment);
+          tr.appendChild(tdStatus);
+          tutorsBody.appendChild(tr);
+        });
+
+        const customersTable = document.getElementById('customers-table');
+        customersTable.innerHTML = '';
+        stats.recentCustomers.forEach(customer => {
+          const tr = document.createElement('tr');
+
+          const tdImg = document.createElement('td');
+          tdImg.width = '60px';
+          const imgBx = document.createElement('div');
+          imgBx.className = 'imgBx';
+          const img = document.createElement('img');
+          img.src = customer.image;
+          img.alt = customer.name;
+          img.loading = 'lazy';
+          imgBx.appendChild(img);
+          tdImg.appendChild(imgBx);
+
+          const tdInfo = document.createElement('td');
+          const h4 = document.createElement('h4');
+          h4.textContent = customer.name;
+          const br = document.createElement('br');
+          const span = document.createElement('span');
+          span.textContent = customer.grade;
+          h4.appendChild(br);
+          h4.appendChild(span);
+          tdInfo.appendChild(h4);
+
+          tr.appendChild(tdImg);
+          tr.appendChild(tdInfo);
+          customersTable.appendChild(tr);
+        });
+
+      } catch (error) {
+        console.error('Error loading stats:', error);
+      }
+    }
+
+    loadStats();
   </script>
 </body>
 </html>
