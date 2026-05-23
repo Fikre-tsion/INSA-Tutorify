@@ -16,7 +16,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
     }
     .container {
       background: #1c2541;
@@ -56,6 +57,11 @@
     button:hover {
       background: #6fffe9;
     }
+    button:disabled {
+      background: #3a506b;
+      cursor: not-allowed;
+      color: #aaa;
+    }
     .toggle {
       text-align: center;
       margin-top: 1rem;
@@ -85,7 +91,7 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
+      <button id="loginBtn" onclick="login()">Login</button>
       <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
     </div>
 
@@ -105,7 +111,7 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
+      <button id="regBtn" onclick="register()">Register</button>
       <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
     </div>
   </div>
@@ -114,6 +120,8 @@
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
+    const loginBtn = document.getElementById('loginBtn');
+    const regBtn = document.getElementById('regBtn');
 
     function toggleForm() {
       loginForm.classList.toggle('hidden');
@@ -132,6 +140,9 @@
         return;
       }
 
+      regBtn.textContent = 'Registering...';
+      regBtn.disabled = true;
+
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
@@ -148,6 +159,9 @@
       } catch (error) {
         console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        regBtn.textContent = 'Register';
+        regBtn.disabled = false;
       }
     }
 
@@ -155,6 +169,9 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+
+      loginBtn.textContent = 'Logging in...';
+      loginBtn.disabled = true;
 
       try {
         const response = await fetch('/api/login', {
@@ -178,6 +195,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        loginBtn.textContent = 'Login';
+        loginBtn.disabled = false;
       }
     }
   </script>

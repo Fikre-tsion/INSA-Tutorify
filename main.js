@@ -1,24 +1,43 @@
+// Throttle function to improve scroll performance
+const throttle = (func, limit) => {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    }
+}
+
 //changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
-
-
-
+window.addEventListener('scroll', throttle(() => {
+    document.querySelector('nav').classList.toggle('window-scroll', window.scrollY > 0);
+}, 100));
 
 //show/hide faq answer
-const faqs=document.querySelectorAll('.faq');
-faqs.forEach(faq=>{
-    faq.addEventListener('click',()=>{
+const faqs = document.querySelectorAll('.faq');
+faqs.forEach(faq => {
+    faq.addEventListener('click', () => {
         faq.classList.toggle('open');
 
-//changing icon on faq click
-        const icon=faq.querySelector('.faq_icon i');
-        if(icon.className==='uil uil-plus'){
-            icon.className='uil uil-minus';
+        //changing icon on faq click
+        const icon = faq.querySelector('.faq_icon i');
+        if (icon.className === 'uil uil-plus') {
+            icon.className = 'uil uil-minus';
         }
-        else{
-            icon.className='uil uil-plus';
+        else {
+            icon.className = 'uil uil-plus';
         }
     })
 });
@@ -29,7 +48,7 @@ const menu = document.querySelector(".nav__menu");
 const menuBtn = document.querySelector("#open-menu-btn");
 const closeBtn = document.querySelector("#close-menu-btn");
 
-menuBtn.addEventListener('click', ()=>{
+menuBtn.addEventListener('click', () => {
     menu.style.display = "flex";
     closeBtn.style.display = "inline-block";
     menuBtn.style.display = "none";
@@ -37,9 +56,30 @@ menuBtn.addEventListener('click', ()=>{
 
 //close nav menu
 const closeNav = () => {
-    menu.style.display="none";
+    menu.style.display = "none";
     closeBtn.style.display = "none";
-    menuBtn.style.display ="inline-block";
+    menuBtn.style.display = "inline-block";
 }
 
-closeBtn.addEventListener('click',closeNav)
+closeBtn.addEventListener('click', closeNav)
+
+// Auth display logic (Centralized to avoid redundancy and fix XSS)
+document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const authLink = document.getElementById('auth-link');
+
+    if (token && user && authLink) {
+        const logoutLink = document.createElement('a');
+        logoutLink.href = '#';
+        logoutLink.textContent = `${user.name} (Logout)`;
+        logoutLink.onclick = (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.reload();
+        };
+        authLink.innerHTML = '';
+        authLink.appendChild(logoutLink);
+    }
+});
