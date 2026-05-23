@@ -85,7 +85,8 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
+      <button id="loginBtn" onclick="login()">Login</button>
+      <div id="loginStatus" style="margin-top: 10px; font-size: 14px; text-align: center;"></div>
       <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
     </div>
 
@@ -105,7 +106,8 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
+      <button id="regBtn" onclick="register()">Register</button>
+      <div id="regStatus" style="margin-top: 10px; font-size: 14px; text-align: center;"></div>
       <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
     </div>
   </div>
@@ -126,13 +128,18 @@
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
+      const status = document.getElementById('regStatus');
+      const btn = document.getElementById('regBtn');
 
       if (!name || !email || !password) {
-        alert('Please fill in all fields.');
+        status.textContent = 'Please fill in all fields.';
+        status.style.color = '#ff6b6b';
         return;
       }
 
       try {
+        btn.disabled = true;
+        btn.textContent = 'Registering...';
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -140,14 +147,20 @@
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          status.textContent = 'Registration successful! Redirecting...';
+          status.style.color = '#5bc0be';
+          setTimeout(toggleForm, 2000);
         } else {
-          alert(data.message || 'Registration failed');
+          status.textContent = data.message || 'Registration failed';
+          status.style.color = '#ff6b6b';
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        status.textContent = 'An error occurred during registration.';
+        status.style.color = '#ff6b6b';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Register';
       }
     }
 
@@ -155,8 +168,12 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const status = document.getElementById('loginStatus');
+      const btn = document.getElementById('loginBtn');
 
       try {
+        btn.disabled = true;
+        btn.textContent = 'Logging in...';
         const response = await fetch('/api/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -166,18 +183,26 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          status.textContent = `Welcome ${data.user.name}! Redirecting...`;
+          status.style.color = '#5bc0be';
+          setTimeout(() => {
+            if (role === 'admin') {
+              window.location.href = 'dashboard.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 1500);
         } else {
-          alert(data.message || 'Login failed');
+          status.textContent = data.message || 'Login failed';
+          status.style.color = '#ff6b6b';
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        status.textContent = 'An error occurred during login.';
+        status.style.color = '#ff6b6b';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Login';
       }
     }
   </script>

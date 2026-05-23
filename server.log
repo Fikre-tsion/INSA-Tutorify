@@ -1,0 +1,2 @@
+WARNING: JWT_SECRET is not defined. Using a generated random key for development.
+Server is running on http://localhost:3000
