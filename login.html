@@ -16,7 +16,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
     }
     .container {
       background: #1c2541;
@@ -65,6 +66,14 @@
     .hidden {
       display: none;
     }
+    .status-msg {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        min-height: 1.2rem;
+    }
+    .success { color: #5bc0be; }
+    .error { color: #ff6a00; }
   </style>
 </head>
 <body>
@@ -85,7 +94,7 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
+      <button id="loginBtn" onclick="login()">Login</button>
       <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
     </div>
 
@@ -105,20 +114,28 @@
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
+      <button id="regBtn" onclick="register()">Register</button>
       <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
     </div>
+    <div id="statusMsg" class="status-msg"></div>
   </div>
 
   <script>
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
+    const statusMsg = document.getElementById('statusMsg');
 
     function toggleForm() {
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
+      statusMsg.textContent = '';
+    }
+
+    function setStatus(msg, isError = false) {
+        statusMsg.textContent = msg;
+        statusMsg.className = 'status-msg ' + (isError ? 'error' : 'success');
     }
 
     async function register() {
@@ -126,11 +143,16 @@
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
+      const regBtn = document.getElementById('regBtn');
 
       if (!name || !email || !password) {
-        alert('Please fill in all fields.');
+        setStatus('Please fill in all fields.', true);
         return;
       }
+
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
+      setStatus('');
 
       try {
         const response = await fetch('/api/register', {
@@ -140,14 +162,22 @@
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          setStatus('Registration successful! Redirecting to login...');
+          setTimeout(() => {
+              toggleForm();
+              regBtn.disabled = false;
+              regBtn.textContent = 'Register';
+          }, 2000);
         } else {
-          alert(data.message || 'Registration failed');
+          setStatus(data.message || 'Registration failed', true);
+          regBtn.disabled = false;
+          regBtn.textContent = 'Register';
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        setStatus('An error occurred during registration.', true);
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
@@ -155,6 +185,11 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const loginBtn = document.getElementById('loginBtn');
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
+      setStatus('');
 
       try {
         const response = await fetch('/api/login', {
@@ -166,18 +201,24 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          setStatus(`Welcome ${data.user.name}! Redirecting...`);
+          setTimeout(() => {
+              if (role === 'admin') {
+                window.location.href = 'dashboard.html';
+              } else {
+                window.location.href = 'index.html';
+              }
+          }, 1000);
         } else {
-          alert(data.message || 'Login failed');
+          setStatus(data.message || 'Login failed', true);
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Login';
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        setStatus('An error occurred during login.', true);
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>
