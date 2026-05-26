@@ -250,6 +250,21 @@
     if (!token || !user || user.role !== 'admin') {
       alert('Access denied. Please login as admin.');
       window.location.href = 'login.html';
+    } else {
+      // Fetch stats from API
+      fetch('/api/admin/stats', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.profileViews) {
+          document.querySelector('.card:nth-child(1) .numbers').textContent = data.profileViews;
+          document.querySelector('.card:nth-child(2) .numbers').textContent = data.tutorials;
+          document.querySelector('.card:nth-child(3) .numbers').textContent = data.comments;
+          document.querySelector('.card:nth-child(4) .numbers').textContent = data.earnings;
+        }
+      })
+      .catch(err => console.error('Error fetching stats:', err));
     }
 
     function logout() {
