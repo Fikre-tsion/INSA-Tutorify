@@ -6,6 +6,59 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$PaY5n5.Kx8VrNd5uo6TbsuZF9DXyFcYLYfgT1RLq6/ukDuNTbPE7W",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "image": "./images/course1.jpg",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS."
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "image": "./images/course2.jpg",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS."
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello",
+      "date": "2026-05-26T21:12:48.360Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Palette",
+      "lastName": "Tester",
+      "email": "palette@example.com",
+      "message": "This is a test message for UX verification.",
+      "date": "2026-05-26T21:13:50.901Z"
+    },
+    {
+      "id": 3,
+      "firstName": "Palette",
+      "lastName": "Tester",
+      "email": "palette@example.com",
+      "message": "This is a test message for UX verification.",
+      "date": "2026-05-26T21:14:11.146Z"
+    }
+  ],
+  "stats": {
+    "profileViews": "1,504",
+    "tutorials": "80",
+    "comments": "284",
+    "earnings": "7,842"
+  }
 }

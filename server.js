@@ -73,6 +73,59 @@ app.post('/api/login', async (req, res) => {
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
 });
 
+// Get all courses
+app.get('/api/courses', (req, res) => {
+    const db = readDB();
+    res.json(db.courses || []);
+});
+
+// Contact form submission
+app.post('/api/contact', (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    const db = readDB();
+
+    if (!db.contacts) db.contacts = [];
+
+    const newContact = {
+        id: db.contacts.length + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    db.contacts.push(newContact);
+    writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
+});
+
+// Admin stats
+app.get('/api/admin/stats', (req, res) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    try {
+        const decoded = jwt.verify(token, SECRET_KEY);
+        if (decoded.role !== 'admin') {
+            return res.status(403).json({ message: 'Forbidden' });
+        }
+        const db = readDB();
+        res.json(db.stats || {
+            profileViews: "1,504",
+            tutorials: "80",
+            comments: "284",
+            earnings: "7,842"
+        });
+    } catch (err) {
+        res.status(401).json({ message: 'Invalid token' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
