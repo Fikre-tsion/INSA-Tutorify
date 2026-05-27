@@ -51,21 +51,21 @@
                   <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
               </ul>
               <ul class="contact__socials">  
-                  <li><a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a></li>
-                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a></li>
-                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a></li>
-                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a></li>
+                  <li><a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a></li>
+                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a></li>
+                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a></li>
+                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a></li>
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form" id="contactForm">
               <div class="form__name">
                   <input type="text" name="firstName" placeholder="First Name" required>
                   <input type="text" name="lastName"  placeholder="Last Name" required>
               </div>
               <input type="email" name="email" placeholder="Your Email Address" required>
               <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
           </form>
       </div>
   </section>
@@ -110,10 +110,10 @@
           <p>tutorifytutoring@gmail.com</p>
         </div>
         <div class="footer__socials">
-          <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-          <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-          <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-          <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+          <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+          <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+          <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+          <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -123,5 +123,15 @@
     </div>
   </footer>
 
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+
+    contactForm.addEventListener('submit', () => {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.style.opacity = '0.7';
+        submitBtn.style.cursor = 'not-allowed';
+    });
+  </script>
 </body>
 </html>
