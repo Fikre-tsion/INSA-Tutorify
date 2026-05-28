@@ -63,7 +63,7 @@
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
+        <div class="toggle" role="button" tabindex="0" aria-label="Toggle Sidebar Menu">
           <ion-icon name="menu-outline"></ion-icon>
         </div>
         <div class="search">
@@ -265,6 +265,12 @@
     toggle.onclick = function() {
       navigation.classList.toggle('active');
       main.classList.toggle('active');
+    }
+    toggle.onkeydown = function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle.onclick();
+      }
     }
   </script>
   <script>
