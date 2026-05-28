@@ -6,6 +6,31 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Bolt User",
+      "email": "bolt_user@example.com",
+      "password": "$2a$10$b19b7WnAFdI3n.ln7PXsU.Bxg/qj5RwYn/q/2SGaqRQexzXzq9yGm",
+      "role": "user"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Bolt",
+      "lastName": "Tester",
+      "email": "bolt@example.com",
+      "message": "Hello from Bolt!",
+      "date": "2026-05-28T21:15:07.102Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Bolt",
+      "lastName": "Tester",
+      "email": "bolt@example.com",
+      "message": "This is a test message from Bolt.",
+      "date": "2026-05-28T21:16:53.852Z"
     }
   ]
 }
