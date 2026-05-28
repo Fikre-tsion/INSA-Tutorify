@@ -6,6 +6,13 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2a$10$hX9a2iVTA5b7/Ul6culFTuwGLthbOCCRAXlaSi0s7PI0BHtv6Q1t2",
+      "role": "user"
     }
   ]
 }

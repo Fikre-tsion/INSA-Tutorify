@@ -1,0 +1,3 @@
+## 2025-05-14 - [Accessibility and Interaction Feedback Patterns]
+**Learning:** Icon-only buttons and links are common in this design system (mobile menus, social media links) but lacked `aria-label` attributes. Additionally, asynchronous operations like login/registration lacked visual feedback, leading to a static feel during network requests.
+**Action:** Always ensure `aria-label` attributes are present for icon-only interactive elements. Use `role="button"` and `tabindex="0"` for non-button elements that act as buttons, and remember to add keyboard event listeners (Enter/Space) for full accessibility. Implement loading states (e.g., "Processing...") to provide immediate feedback for async actions.
