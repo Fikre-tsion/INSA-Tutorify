@@ -6,6 +6,38 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Bolt",
+      "email": "bolt@example.com",
+      "password": "$2a$10$mk/AeJy23VB6TDIjDxvaueQEO35.UxOlW0dqav6YIUnUCxn3mGky.",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "name": "Frontend Tester",
+      "email": "tester@example.com",
+      "password": "$2a$10$9z8HNbNJYPgiTuQal7u4k.zOjRgF9tFlzqn0melSBbu5Uv7B7lsKK",
+      "role": "user"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-05-29T21:20:31.711Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Bolt",
+      "lastName": "Agent",
+      "email": "bolt@example.com",
+      "message": "Testing the new local contact endpoint!",
+      "date": "2026-05-29T21:26:18.762Z"
     }
   ]
 }
