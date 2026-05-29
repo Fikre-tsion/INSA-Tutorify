@@ -65,12 +65,23 @@
     .hidden {
       display: none;
     }
+    #formStatus {
+      padding: 10px;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 0.9rem;
+      display: none;
+    }
+    #formStatus.status-success { background: #d4edda; color: #155724; display: block; }
+    #formStatus.status-error { background: #f8d7da; color: #721c24; display: block; }
   </style>
 </head>
 <body>
 
   <div class="container">
     <h2 id="formTitle">Login</h2>
+    <div id="formStatus"></div>
 
     <div id="loginForm">
       <div class="input-box">
@@ -114,11 +125,18 @@
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
+    const formStatus = document.getElementById('formStatus');
 
     function toggleForm() {
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
+      formStatus.className = '';
+    }
+
+    function showStatus(msg, isError) {
+      formStatus.textContent = msg;
+      formStatus.className = isError ? 'status-error' : 'status-success';
     }
 
     async function register() {
@@ -126,12 +144,12 @@
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
+      const btn = document.querySelector('#registerForm button');
 
-      if (!name || !email || !password) {
-        alert('Please fill in all fields.');
-        return;
-      }
+      if (!name || !email || !password) return showStatus('Please fill in all fields.', true);
 
+      btn.disabled = true;
+      btn.textContent = 'Registering...';
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
@@ -140,14 +158,16 @@
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          showStatus('Registration successful! Loading login...', false);
+          setTimeout(toggleForm, 1500);
         } else {
-          alert(data.message || 'Registration failed');
+          showStatus(data.message || 'Registration failed', true);
         }
       } catch (error) {
-        console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        showStatus('An error occurred during registration.', true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Register';
       }
     }
 
@@ -155,7 +175,10 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const btn = document.querySelector('#loginForm button');
 
+      btn.disabled = true;
+      btn.textContent = 'Logging in...';
       try {
         const response = await fetch('/api/login', {
           method: 'POST',
@@ -166,18 +189,18 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          showStatus(`Welcome ${data.user.name}! Redirecting...`, false);
+          setTimeout(() => {
+            window.location.href = role === 'admin' ? 'dashboard.html' : 'index.html';
+          }, 1000);
         } else {
-          alert(data.message || 'Login failed');
+          showStatus(data.message || 'Login failed', true);
         }
       } catch (error) {
-        console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        showStatus('An error occurred during login.', true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Login';
       }
     }
   </script>
