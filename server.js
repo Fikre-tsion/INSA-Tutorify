@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -15,24 +15,32 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-// Helper function to read database
-const readDB = () => {
-    if (!fs.existsSync(DB_FILE)) {
-        return { users: [] };
+// Simple queue mechanism to prevent race conditions during DB writes
+let dbQueue = Promise.resolve();
+
+const readDB = async () => {
+    try {
+        const data = await fs.readFile(DB_FILE, 'utf8');
+        return JSON.parse(data);
+    } catch (error) {
+        return { users: [], courses: [], contacts: [] };
     }
-    const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data);
 };
 
-// Helper function to write to database
-const writeDB = (data) => {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+const writeDB = async (data) => {
+    // Add write operation to queue
+    dbQueue = dbQueue.then(async () => {
+        await fs.writeFile(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+    }).catch(err => {
+        console.error("Queue write error:", err);
+    });
+    return dbQueue;
 };
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
     const { name, email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     if (db.users.find(u => u.email === email)) {
         return res.status(400).json({ message: 'User already exists' });
@@ -48,7 +56,7 @@ app.post('/api/register', async (req, res) => {
     };
 
     db.users.push(newUser);
-    writeDB(db);
+    await writeDB(db);
 
     res.status(201).json({ message: 'User registered successfully' });
 });
@@ -56,7 +64,7 @@ app.post('/api/register', async (req, res) => {
 // Login endpoint
 app.post('/api/login', async (req, res) => {
     const { email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     const user = db.users.find(u => u.email === email && u.role === role);
     if (!user) {
@@ -65,12 +73,52 @@ app.post('/api/login', async (req, res) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-        // Fallback for initial placeholder users if needed, but we'll re-register them or just use hashed passwords
         return res.status(400).json({ message: 'Invalid email, password or role' });
     }
 
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role, name: user.name }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
+});
+
+// Courses endpoint
+app.get('/api/courses', async (req, res) => {
+    const db = await readDB();
+    res.json(db.courses || []);
+});
+
+// Contact endpoint
+app.post('/api/contact', async (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    const db = await readDB();
+
+    const newContact = {
+        id: (db.contacts?.length || 0) + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    if (!db.contacts) db.contacts = [];
+    db.contacts.push(newContact);
+    await writeDB(db);
+
+    res.status(201).json({ message: 'Message sent successfully' });
+});
+
+// Stats endpoint
+app.get('/api/stats', async (req, res) => {
+    const db = await readDB();
+    const stats = {
+        profileViews: 1504,
+        tutorials: db.courses?.length || 0,
+        comments: 284,
+        earnings: 7842,
+        users: db.users?.length || 0,
+        contacts: db.contacts?.length || 0
+    };
+    res.json(stats);
 });
 
 app.listen(PORT, () => {

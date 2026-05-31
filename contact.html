@@ -58,14 +58,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contact-form" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                  <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" name="email" id="email" placeholder="Your Email Address" required>
+              <textarea name="message" id="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+              <div id="form-status" style="margin-top: 1rem; display: none;"></div>
           </form>
       </div>
   </section>
@@ -123,5 +124,51 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submit-btn');
+        const statusDiv = document.getElementById('form-status');
+
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        statusDiv.style.display = 'none';
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                statusDiv.textContent = result.message || 'Message sent successfully!';
+                statusDiv.style.color = 'green';
+                document.getElementById('contact-form').reset();
+            } else {
+                statusDiv.textContent = result.message || 'Something went wrong.';
+                statusDiv.style.color = 'red';
+            }
+        } catch (error) {
+            console.error('Contact error:', error);
+            statusDiv.textContent = 'Network error. Please try again later.';
+            statusDiv.style.color = 'red';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+            statusDiv.style.display = 'block';
+        }
+    });
+  </script>
 </body>
 </html>
