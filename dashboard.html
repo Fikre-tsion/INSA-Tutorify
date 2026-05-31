@@ -252,6 +252,26 @@
       window.location.href = 'login.html';
     }
 
+    async function updateStats() {
+      try {
+        const response = await fetch('/api/stats');
+        if (response.ok) {
+          const stats = await response.json();
+          const cards = document.querySelectorAll('.card .numbers');
+          if (cards.length >= 4) {
+            cards[0].textContent = stats.views.toLocaleString();
+            cards[1].textContent = stats.courses.toLocaleString();
+            cards[2].textContent = stats.contacts.toLocaleString();
+            cards[3].textContent = stats.users.toLocaleString();
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    }
+
+    updateStats();
+
     function logout() {
       localStorage.removeItem('token');
       localStorage.removeItem('user');

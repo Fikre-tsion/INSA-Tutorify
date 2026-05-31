@@ -73,6 +73,36 @@ app.post('/api/login', async (req, res) => {
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
 });
 
+// Contact endpoint
+app.post('/api/contact', (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    if (!firstName || !email || !message) {
+        return res.status(400).json({ message: 'Missing required fields' });
+    }
+    const db = readDB();
+    if (!db.contacts) db.contacts = [];
+    const newContact = {
+        id: db.contacts.length + 1,
+        firstName, lastName, email, message,
+        date: new Date().toISOString()
+    };
+    db.contacts.push(newContact);
+    writeDB(db);
+    res.status(201).json({ message: 'Message sent successfully' });
+});
+
+// Stats endpoint
+app.get('/api/stats', (req, res) => {
+    const db = readDB();
+    const stats = {
+        users: (db.users || []).length,
+        contacts: (db.contacts || []).length,
+        courses: (db.courses || []).length,
+        views: 1504 // Placeholder
+    };
+    res.json(stats);
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
