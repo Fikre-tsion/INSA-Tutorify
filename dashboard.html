@@ -11,7 +11,7 @@
     <div class="navigation">
       <ul>
         <li>
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="bulb-outline"></ion-icon></span>
             <span class="title">Tutorify</span>
           </a>
@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-views">1,504</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div class="numbers" id="stat-tutorials">0</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-comments">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers" id="stat-earnings">7,842</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -133,7 +133,6 @@
                   <td>Status</td>
                 </tr>
               </thead>
-
               <tbody>
                 <tr>
                   <td>Haile</td>
@@ -147,37 +146,6 @@
                   <td>ETB 500/hr</td>
                   <td><span class="status pending">Pending</span></td>
                 </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
@@ -196,45 +164,8 @@
                   <h4>Gebre<br><span>Grade 12</span></h4>
                 </td>
               </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
             </table>
            </div>
-
         </div>
     </div>
   </div>
@@ -266,14 +197,23 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
-  </script>
-  <script>
-    document.querySelectorAll('.navigation ul li').forEach(li => {
-      li.addEventListener('click', () => {
-        document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
-        li.classList.add('hovered');
-      });
-    });
+
+    // Dynamic stats update
+    async function updateStats() {
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+
+        document.getElementById('stat-views').textContent = stats.views.toLocaleString();
+        document.getElementById('stat-tutorials').textContent = stats.courses;
+        document.getElementById('stat-comments').textContent = stats.contacts;
+        document.getElementById('stat-earnings').textContent = stats.earnings.toLocaleString();
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    }
+
+    updateStats();
   </script>
 </body>
 </html>
