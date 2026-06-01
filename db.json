@@ -1,11 +1,4 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
-      "role": "user"
-    }
-  ]
+  "users": [],
+  "contacts": []
 }
