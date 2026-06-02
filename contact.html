@@ -30,9 +30,10 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
-      <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-      <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+      <button id="open-menu-btn" aria-label="Open navigation menu"><i class="uil uil-bars"></i></button>
+      <button id="close-menu-btn" aria-label="Close navigation menu"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
     <!-- ==================== END OF NAVBAR ==================== -->
@@ -51,21 +52,22 @@
                   <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
               </ul>
               <ul class="contact__socials">  
-                  <li><a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a></li>
-                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a></li>
-                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a></li>
-                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a></li>
+                  <li><a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a></li>
+                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a></li>
+                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a></li>
+                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a></li>
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+              <div id="formStatus" style="margin-top: 1rem; display: none;"></div>
           </form>
       </div>
   </section>
@@ -110,10 +112,10 @@
           <p>tutorifytutoring@gmail.com</p>
         </div>
         <div class="footer__socials">
-          <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-          <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-          <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-          <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+          <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+          <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+          <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+          <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -122,6 +124,59 @@
       <small>&copy; 2025 <span>Tutorify Tutoring</span>. All Rights Reserved.</small>
     </div>
   </footer>
+
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+      };
+
+      submitBtn.innerText = 'Sending...';
+      submitBtn.disabled = true;
+      formStatus.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          formStatus.innerText = result.message;
+          formStatus.style.color = 'green';
+          formStatus.style.display = 'block';
+          contactForm.reset();
+        } else {
+          formStatus.innerText = result.message || 'Error sending message';
+          formStatus.style.color = 'red';
+          formStatus.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        formStatus.innerText = 'Network error. Please try again.';
+        formStatus.style.color = 'red';
+        formStatus.style.display = 'block';
+      } finally {
+        submitBtn.innerText = 'Send Message';
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>

@@ -1,7 +1,29 @@
-//changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+// Throttle function to limit the execution rate of a function
+const throttle = (func, limit) => {
+    let lastFunc;
+    let lastRan;
+    return function() {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function() {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    }
+}
+
+//changing navbar style when scrolling - optimized with throttle (50ms)
+window.addEventListener('scroll', throttle(() => {
+    document.querySelector('nav').classList.toggle('window-scroll', window.scrollY > 0);
+}, 50));
 
 
 
@@ -43,3 +65,27 @@ const closeNav = () => {
 }
 
 closeBtn.addEventListener('click',closeNav)
+
+
+// Authentication UI Logic
+const updateAuthUI = () => {
+    const authLink = document.getElementById('auth-link');
+    if (!authLink) return;
+
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    if (token && user) {
+        authLink.innerHTML = `<a href="#" id="logout-btn">${user.name} (Logout)</a>`;
+        document.getElementById('logout-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'index.html';
+        });
+    } else {
+        authLink.innerHTML = `<a href="login.html">Login</a>`;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', updateAuthUI);
