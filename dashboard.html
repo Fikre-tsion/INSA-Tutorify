@@ -81,17 +81,17 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
+            <div id="stat-users" class="numbers">0</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div id="stat-courses" class="numbers">0</div>
+            <div class="cardName">Active Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div id="stat-messages" class="numbers">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers">ETB 0</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -274,6 +274,21 @@
         li.classList.add('hovered');
       });
     });
+
+    async function updateStats() {
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+
+        document.getElementById('stat-users').textContent = stats.users;
+        document.getElementById('stat-courses').textContent = stats.courses;
+        document.getElementById('stat-messages').textContent = stats.contacts;
+      } catch (error) {
+        console.error('Failed to fetch stats:', error);
+      }
+    }
+
+    updateStats();
   </script>
 </body>
 </html>
