@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
+  <style>
+    /* Add some styles for stats IDs */
+    .numbers {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: var(--blue);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -17,7 +25,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">Dashboard</span>
           </a>
@@ -53,7 +61,7 @@
           </a>
         </li>
         <li>
-          <a href="#" onclick="logout()">
+          <a href="#" id="logout-btn">
             <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
             <span class="title">Logout</span>
           </a>
@@ -81,7 +89,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-views">1,504</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +98,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div class="numbers" id="stat-tutorials">0</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,7 +107,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
+            <div class="numbers" id="stat-comments">284</div>
             <div class="cardName">Comments</div>
           </div>
           <div class="iconBx">
@@ -108,7 +116,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers" id="stat-earnings">7,842</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -133,7 +141,6 @@
                   <td>Status</td>
                 </tr>
               </thead>
-
               <tbody>
                 <tr>
                   <td>Haile</td>
@@ -165,19 +172,6 @@
                   <td>ETB 300/hr</td>
                   <td><span class="status delivered">Delivered</span></td>
                 </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
@@ -187,7 +181,7 @@
             <div class="cardHeader">
               <h2>Recent Customers</h2>
             </div>
-            <table>
+            <table id="customerTable">
               <tr>
                 <td width="60px">
                   <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
@@ -196,45 +190,8 @@
                   <h4>Gebre<br><span>Grade 12</span></h4>
                 </td>
               </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
             </table>
            </div>
-
         </div>
     </div>
   </div>
@@ -243,33 +200,51 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
   <script>
-    // Check authentication
-    const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Check authentication
+      const token = localStorage.getItem('token');
+      const user = JSON.parse(localStorage.getItem('user'));
 
-    if (!token || !user || user.role !== 'admin') {
-      alert('Access denied. Please login as admin.');
-      window.location.href = 'login.html';
-    }
+      if (!token || !user || user.role !== 'admin') {
+        window.location.href = 'login.html';
+        return;
+      }
 
-    function logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = 'login.html';
-    }
+      // Logout logic
+      document.getElementById('logout-btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = 'login.html';
+      });
 
-    let toggle = document.querySelector('.toggle');
-    let navigation = document.querySelector('.navigation');
-    let main = document.querySelector('.main');
+      // Toggle logic
+      let toggle = document.querySelector('.toggle');
+      let navigation = document.querySelector('.navigation');
+      let main = document.querySelector('.main');
 
-    toggle.onclick = function() {
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-    }
-  </script>
-  <script>
+      toggle.onclick = function() {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+      }
+
+      // Fetch dynamic stats
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+
+        document.getElementById('stat-views').textContent = stats.views;
+        document.getElementById('stat-tutorials').textContent = stats.tutorials;
+        document.getElementById('stat-comments').textContent = stats.comments;
+        document.getElementById('stat-earnings').textContent = stats.earnings;
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    });
+
+    // Hover effect
     document.querySelectorAll('.navigation ul li').forEach(li => {
-      li.addEventListener('click', () => {
+      li.addEventListener('mouseover', () => {
         document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
         li.classList.add('hovered');
       });
