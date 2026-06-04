@@ -1,186 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-    body {
-      background: #0b132b;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background: #1c2541;
-      padding: 2rem;
-      border-radius: 15px;
-      width: 350px;
-      box-shadow: 0 0 10px #3a506b;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #5bc0be;
-    }
-    .input-box {
-      margin-bottom: 1rem;
-    }
-    .input-box input, .input-box select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      background: #3a506b;
-      color: #fff;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #5bc0be;
-      border: none;
-      border-radius: 8px;
-      color: #0b132b;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #6fffe9;
-    }
-    .toggle {
-      text-align: center;
-      margin-top: 1rem;
-      color: #aaa;
-      cursor: pointer;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Tutorify</title>
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./CSS/style.css">
+
+    <style>
+        body {
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .login-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        .btn-block {
+            width: 100%;
+            padding: 0.75rem;
+            background: #4e54c8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-block:hover {
+            background: #3f44a0;
+        }
+        .btn-block:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .toggle-form {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .toggle-form a {
+            color: #4e54c8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        #formStatus {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 5px;
+            display: none;
+            text-align: center;
+        }
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block !important;
+        }
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2 id="formTitle">Login</h2>
-
-    <div id="loginForm">
-      <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
-      </div>
-      <div class="input-box">
-        <select id="loginRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+    <div class="login-container">
+        <h2 id="formTitle">Login</h2>
+        <div id="formStatus"></div>
+        <form id="authForm">
+            <div class="form-group" id="nameGroup" style="display: none;">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select id="role">
+                    <option value="user">Student</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit" id="submitBtn" class="btn-block">Login</button>
+        </form>
+        <div class="toggle-form">
+            <p id="toggleText">Don't have an account? <a href="#" id="toggleLink">Register here</a></p>
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="index.html" style="font-size: 0.8rem; color: #666;">Back to Home</a>
+        </div>
     </div>
 
-    <div id="registerForm" class="hidden">
-      <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
-      </div>
-      <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
-      </div>
-      <div class="input-box">
-        <select id="regRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
-    </div>
-  </div>
+    <script>
+        const authForm = document.getElementById('authForm');
+        const formTitle = document.getElementById('formTitle');
+        const submitBtn = document.getElementById('submitBtn');
+        const nameGroup = document.getElementById('nameGroup');
+        const toggleLink = document.getElementById('toggleLink');
+        const toggleText = document.getElementById('toggleText');
+        const formStatus = document.getElementById('formStatus');
 
-  <script>
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const formTitle = document.getElementById('formTitle');
+        let isLogin = true;
 
-    function toggleForm() {
-      loginForm.classList.toggle('hidden');
-      registerForm.classList.toggle('hidden');
-      formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
-    }
+        function handleToggle(e) {
+            if (e) e.preventDefault();
+            isLogin = !isLogin;
+            formTitle.textContent = isLogin ? 'Login' : 'Register';
+            submitBtn.textContent = isLogin ? 'Login' : 'Register';
+            nameGroup.style.display = isLogin ? 'none' : 'block';
+            toggleText.innerHTML = isLogin ?
+                `Don't have an account? <a href="#" id="toggleLink">Register here</a>` :
+                `Already have an account? <a href="#" id="toggleLink">Login here</a>`;
 
-    async function register() {
-      const name = document.getElementById('regName').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const password = document.getElementById('regPassword').value.trim();
-      const role = document.getElementById('regRole').value;
-
-      if (!name || !email || !password) {
-        alert('Please fill in all fields.');
-        return;
-      }
-
-      try {
-        const response = await fetch('/api/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, role })
-        });
-        const data = await response.json();
-        if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
-        } else {
-          alert(data.message || 'Registration failed');
+            document.getElementById('toggleLink').addEventListener('click', handleToggle);
+            formStatus.className = '';
+            formStatus.textContent = '';
         }
-      } catch (error) {
-        console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
-      }
-    }
 
-    async function login() {
-      const email = document.getElementById('loginEmail').value.trim();
-      const password = document.getElementById('loginPassword').value.trim();
-      const role = document.getElementById('loginRole').value;
+        toggleLink.addEventListener('click', handleToggle);
 
-      try {
-        const response = await fetch('/api/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, role })
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            const name = document.getElementById('name').value;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = isLogin ? 'Logging in...' : 'Registering...';
+            formStatus.className = '';
+            formStatus.textContent = '';
+
+            const endpoint = isLogin ? '/api/login' : '/api/register';
+            const body = isLogin ? { email, password, role } : { name, email, password, role };
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (isLogin) {
+                        localStorage.setItem('token', data.token);
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                        if (data.user.role === 'admin') {
+                            window.location.href = 'dashboard.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    } else {
+                        formStatus.textContent = 'Registration successful! Please login.';
+                        formStatus.className = 'status-success';
+                        handleToggle();
+                    }
+                } else {
+                    formStatus.textContent = data.message || 'An error occurred';
+                    formStatus.className = 'status-error';
+                }
+            } catch (error) {
+                formStatus.textContent = 'Server connection failed';
+                formStatus.className = 'status-error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = isLogin ? 'Login' : 'Register';
+            }
         });
-        const data = await response.json();
-        if (response.ok) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
-        } else {
-          alert(data.message || 'Login failed');
-        }
-      } catch (error) {
-        console.error('Error during login:', error);
-        alert('An error occurred during login.');
-      }
-    }
-  </script>
-
+    </script>
 </body>
 </html>
