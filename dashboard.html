@@ -11,7 +11,7 @@
     <div class="navigation">
       <ul>
         <li>
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="bulb-outline"></ion-icon></span>
             <span class="title">Tutorify</span>
           </a>
@@ -81,17 +81,17 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
+            <div class="numbers" id="stat-users">...</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
           </div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">...</div>
+            <div class="cardName">Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-contacts">...</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers">ETB 7,842</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -159,25 +159,6 @@
                   <td>ETB 350/hr</td>
                   <td><span class="status inprogress">In Progress</span></td>
                 </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
@@ -196,7 +177,6 @@
                   <h4>Gebre<br><span>Grade 12</span></h4>
                 </td>
               </tr>
-
               <tr>
                 <td width="60px">
                   <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
@@ -204,33 +184,6 @@
                 <td>
                   <h4>Selam<br><span>Grade 11</span></h4>
                 </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
               </tr>
             </table>
            </div>
@@ -248,7 +201,6 @@
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!token || !user || user.role !== 'admin') {
-      alert('Access denied. Please login as admin.');
       window.location.href = 'login.html';
     }
 
@@ -266,14 +218,20 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
-  </script>
-  <script>
-    document.querySelectorAll('.navigation ul li').forEach(li => {
-      li.addEventListener('click', () => {
-        document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
-        li.classList.add('hovered');
-      });
-    });
+
+    async function updateStats() {
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+        document.getElementById('stat-users').textContent = stats.users;
+        document.getElementById('stat-courses').textContent = stats.courses;
+        document.getElementById('stat-contacts').textContent = stats.contacts;
+      } catch (error) {
+        console.error('Failed to fetch stats', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', updateStats);
   </script>
 </body>
 </html>
