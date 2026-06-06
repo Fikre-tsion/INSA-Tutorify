@@ -71,6 +71,7 @@
 
   <div class="container">
     <h2 id="formTitle">Login</h2>
+    <div id="formStatus" style="text-align: center; margin-bottom: 1rem; display: none;"></div>
 
     <div id="loginForm">
       <div class="input-box">
@@ -121,6 +122,14 @@
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
+    const formStatus = document.getElementById('formStatus');
+
+    function showStatus(message, isError = false) {
+      formStatus.textContent = message;
+      formStatus.style.display = 'block';
+      formStatus.style.color = isError ? '#f75842' : '#5bc0be';
+    }
+
     async function register() {
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
@@ -128,7 +137,7 @@
       const role = document.getElementById('regRole').value;
 
       if (!name || !email || !password) {
-        alert('Please fill in all fields.');
+        showStatus('Please fill in all fields.', true);
         return;
       }
 
@@ -140,14 +149,14 @@
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          showStatus('Registration successful! You can now log in.');
+          setTimeout(toggleForm, 1500);
         } else {
-          alert(data.message || 'Registration failed');
+          showStatus(data.message || 'Registration failed', true);
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        showStatus('An error occurred during registration.', true);
       }
     }
 
@@ -166,18 +175,20 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          showStatus(`Welcome ${data.user.name}!`);
+          setTimeout(() => {
+            if (role === 'admin') {
+              window.location.href = 'dashboard.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 1000);
         } else {
-          alert(data.message || 'Login failed');
+          showStatus(data.message || 'Login failed', true);
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        showStatus('An error occurred during login.', true);
       }
     }
   </script>
