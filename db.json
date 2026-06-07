@@ -6,6 +6,134 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 1780867049454,
+      "name": "Test User",
+      "email": "test4305@example.com",
+      "password": "$2a$10$LWjPpC0rewZRUy6k8gro3uL4hF0DoLcHU.k6k2OLGFddmp75uvXUW",
+      "role": "user"
+    },
+    {
+      "id": 1780867074217,
+      "name": "Test User",
+      "email": "test9946@example.com",
+      "password": "$2a$10$GaQ1zSAMxJPIuD6auC8MG./hPSr424F9n.YhoBzNZP.cNM2/NLqgS",
+      "role": "user"
+    },
+    {
+      "id": 1780867151338,
+      "name": "Bolt User",
+      "email": "bolt@example.com",
+      "password": "$2a$10$H8FEsOjMVcJYqFtpsdFxq.V4F7I0L4PnXrUt/OhxMj9r2FLrVXP5a",
+      "role": "user"
+    },
+    {
+      "id": 1780867324897,
+      "name": "Test User",
+      "email": "test7037@example.com",
+      "password": "$2a$10$jH6zJ3CExl6QM.lAI7OGI.Egbpt63w2pewkGr/9J.Yc8vdHfVD10C",
+      "role": "user"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management, goal setting, and effective work habits. This course is designed for beginners looking to enhance their productivity skills.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media marketing, email marketing, and content marketing. This course is designed for beginners looking to enhance their marketing skills.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Learn the fundamentals os self-confidence and success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives.",
+      "image": "./images/self.png"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1780867016646,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-07T21:16:56.646Z"
+    },
+    {
+      "id": 1780867052020,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-07T21:17:32.020Z"
+    },
+    {
+      "id": 1780867075433,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-07T21:17:55.433Z"
+    },
+    {
+      "id": 1780867159744,
+      "firstName": "Bolt",
+      "lastName": "Agent",
+      "email": "bolt@example.com",
+      "message": "Performance is a feature!",
+      "date": "2026-06-07T21:19:19.744Z"
+    },
+    {
+      "id": 1780867302585,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-07T21:21:42.585Z"
+    },
+    {
+      "id": 1780867326389,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-07T21:22:06.389Z"
     }
   ]
 }
