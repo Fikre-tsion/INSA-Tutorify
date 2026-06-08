@@ -42,7 +42,6 @@
     }
 
     .course:hover {
-    size: 30px;
       transform: translateY(-10px);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
@@ -94,12 +93,13 @@
       <a href="index.html"><h4>Tutorify</h4></a>
       <ul class="nav__menu">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="courses.html">Courses</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html" class="active">Courses</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
-      <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-      <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+      <button id="open-menu-btn" aria-label="Open menu"><i class="uil uil-bars"></i></button>
+      <button id="close-menu-btn" aria-label="Close menu"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
 
@@ -107,269 +107,9 @@
      <section class="courses">
   <h2>Our Courses</h2>
   <div class="container courses__container">
-
-    <!-- Course 1 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Social Media Website UI Design</h4>
-        <p>
-          Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 2 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
-      </div>
-      <div class="course__info">
-        <h4>Responsive SmartHome Website Design</h4>
-        <p>
-          Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 3 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course4.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Be focused and productive</h4>
-        <p>
-            Learn the fundamentals of productivity and focus, including time management, goal setting, and effective work habits. This course is designed for beginners looking to enhance their productivity skills.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course5.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>How to use every opportunity to be successful</h4>
-        <p>
-            Learn the fundamentals of success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course6.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive social Media UI design </h4>
-        <p>
-            Learn how to create a responsive social Media UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/digitalmarketing.png" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4> Fundamentals of Digital Marketing</h4>
-        <p>
-            Learn the fundamentals of Digital Marketing, including SEO, social media marketing, email marketing, and content marketing. This course is designed for beginners looking to enhance their marketing skills.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/self.png" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>How to be a confident and successful person</h4>
-        <p>
-            Learn the fundamentals os self-confidence and success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course9.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Cloning Netflix Website </h4>
-        <p>
-            Learn how to create a responsive Netflix website clone using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course10.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Digital Newspaper Website Design</h4>
-        <p>
-            Learn how to create a responsive Digital Newspaper website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course12.jpg"    alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course11.jpg"    alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Logo and Graphic Designing</h4>
-        <p>
-            Learn the fundamentals of Logo and Graphic Designing, including design principles, color theory, and typography. This course is designed for beginners looking to enhance their design skills.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/blockchain.png" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Introduction to Blockchain Technology</h4>
-        <p>
-            Learn the fundamentals of Blockchain Technology, including its architecture, consensus mechanisms, and real-world applications. This course is designed for beginners looking to understand the basics of blockchain.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course14.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Fully functioning Cintact Form Design</h4>
-        <p>
-            Learn how to create a responsive Contact Form design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course15.jpg"    alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4> Landing Page Design</h4>
-        <p>
-            Learn how to create a responsive Landing Page design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course16.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>world Class Portfolio Website development</h4>
-        <p>
-            Learn how to create a world Class Portfolio Website using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course17.jpg"    alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Business manager dashbard UI Design</h4>
-        <p>
-            Learn how to create a responsive Business manager dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course18.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Smart home Application UI Design</h4>
-        <p>
-            Learn how to create a responsive Smart home Application UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-
+    <p>Loading all courses...</p>
   </div>
 </section>
-
-
-
-
-
-
 
 
 <!-- ==================== FOOTER ==================== -->
@@ -407,10 +147,10 @@
           <p>tutorifytutoring@gmail.com</p>
         </div>
         <div class="footer__socials">
-          <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-          <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-          <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-          <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+          <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+          <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+          <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+          <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -420,5 +160,6 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
 </body>
 </html>
