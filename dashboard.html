@@ -53,7 +53,7 @@
           </a>
         </li>
         <li>
-          <a href="#" onclick="logout()">
+          <a href="#" id="dashboard-logout">
             <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
             <span class="title">Logout</span>
           </a>
@@ -63,7 +63,7 @@
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
+        <div class="toggle" aria-label="Toggle navigation">
           <ion-icon name="menu-outline"></ion-icon>
         </div>
         <div class="search">
@@ -81,17 +81,17 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
+            <div class="numbers" id="stat-users">...</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">...</div>
+            <div class="cardName">Total Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-contacts">...</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers">ETB 7,842</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -117,7 +117,7 @@
         </div>
       </div>
 
-      <!-- datails lists -->
+      <!-- details lists -->
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
@@ -190,7 +190,7 @@
             <table>
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer Profile" loading="lazy"></div>
                 </td>
                 <td>
                   <h4>Gebre<br><span>Grade 12</span></h4>
@@ -199,38 +199,38 @@
 
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer Profile" loading="lazy"></div>
                 </td>
                 <td>
                   <h4>Selam<br><span>Grade 11</span></h4>
                 </td>
+              </tr>
 
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
+              <tr>
+                <td width="60px">
+                  <div class="imgBx"><img src="./images2/4.jpg" alt="Customer Profile" loading="lazy"></div>
+                </td>
+                <td>
+                  <h4>Yonas<br><span>Grade 10</span></h4>
+                </td>
+              </tr>
 
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
+              <tr>
+                <td width="60px">
+                  <div class="imgBx"><img src="./images2/student.png" alt="Customer Profile" loading="lazy"></div>
+                </td>
+                <td>
+                  <h4>Meron<br><span>Grade 9</span></h4>
+                </td>
+              </tr>
 
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
+              <tr>
+                <td width="60px">
+                  <div class="imgBx"><img src="./images2/5.jpg" alt="Customer Profile" loading="lazy"></div>
+                </td>
+                <td>
+                  <h4>Daniel<br><span>Grade 12</span></h4>
+                </td>
               </tr>
             </table>
            </div>
@@ -252,7 +252,8 @@
       window.location.href = 'login.html';
     }
 
-    function logout() {
+    document.getElementById('dashboard-logout').onclick = function(e) {
+      e.preventDefault();
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       window.location.href = 'login.html';
@@ -266,8 +267,21 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
-  </script>
-  <script>
+
+    // Dynamic stats update
+    async function updateStats() {
+        try {
+            const response = await fetch('/api/stats');
+            const stats = await response.json();
+            document.getElementById('stat-users').textContent = stats.users.toLocaleString();
+            document.getElementById('stat-courses').textContent = stats.courses.toLocaleString();
+            document.getElementById('stat-contacts').textContent = stats.contacts.toLocaleString();
+        } catch (error) {
+            console.error('Error updating stats:', error);
+        }
+    }
+    updateStats();
+
     document.querySelectorAll('.navigation ul li').forEach(li => {
       li.addEventListener('click', () => {
         document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
