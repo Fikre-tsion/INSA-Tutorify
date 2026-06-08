@@ -2,10 +2,50 @@
   "users": [
     {
       "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$5ImjYd/Wk8CQPmAG21LEN.bs0N0V1yxODa4KBPjsgVtMCpAaO429K",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "$2a$10$5ImjYd/Wk8CQPmAG21LEN.bs0N0V1yxODa4KBPjsgVtMCpAaO429K",
       "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media UI",
+      "description": "Learn to build modern social media interfaces using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "SmartHome Website Design",
+      "description": "Master the art of designing intuitive smart home control panels.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Admin Dashboard Mastery",
+      "description": "Create professional admin dashboards with complex layouts and charts.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Digital Marketing Fundamentals",
+      "description": "Understand SEO, social media, and content marketing strategies.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "Blockchain Technology 101",
+      "description": "Introduction to decentralized ledgers and smart contracts.",
+      "image": "./images/blockchain.png"
+    }
+  ],
+  "contacts": []
 }
