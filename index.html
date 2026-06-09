@@ -29,8 +29,8 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li id="auth-link"><a href="login.html">Login</a></li>
             </ul>
-            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+            <button id="open-menu-btn" aria-label="Open navigation menu"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn" aria-label="Close navigation menu"><i class="uil uil-multiply"></i></button>
             
         </div>
     </nav>
@@ -57,7 +57,7 @@
             </div>
             <div class="header__right">
                 <div class="header__right-image"></div>
-                    <img src="./images/header.svg" alt="Kids Learning and having fun with their friends">
+                    <img src="./images/header.png" alt="Kids Learning and having fun with their friends">
                 </div>
             </div>
 
@@ -128,50 +128,7 @@
 <section class="courses">
   <h2>Our Popular Courses</h2>
   <div class="container courses__container">
-
-    <!-- Course 1 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Social Media Website UI Design</h4>
-        <p>
-          Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 2 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
-      </div>
-      <div class="course__info">
-        <h4>Responsive SmartHome Website Design</h4>
-        <p>
-          Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 3 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
+    <!-- Courses will be loaded dynamically via main.js -->
   </div>
 </section>
 <!-- ==================== END OF COURSES ==================== -->
@@ -180,7 +137,7 @@
 <section class="faqs">
   <h2>Frequently Asked Questions</h2>
   <div class="container faqs__container">
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>How do I choose the right course for me?</h4>
@@ -190,7 +147,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Are the courses suitable for beginners?</h4>
@@ -200,7 +157,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Will I receive a certificate after completing a course?</h4>
@@ -210,7 +167,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Can I access the courses anytime?</h4>
@@ -220,7 +177,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Do I need any special software or tools?</h4>
@@ -230,7 +187,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>How do I contact instructors if I have questions?</h4>
@@ -240,7 +197,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Can I get a refund if I’m not satisfied?</h4>
@@ -250,7 +207,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Are there any discounts or bundles available?</h4>
@@ -432,21 +389,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
-  // Auth display logic
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const authLink = document.getElementById('auth-link');
-
-  if (token && user) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
-  }
-
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
-
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
