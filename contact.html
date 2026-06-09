@@ -58,14 +58,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contact-form" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" name="firstName" placeholder="First Name" required aria-label="First Name">
+                  <input type="text" name="lastName"  placeholder="Last Name" required aria-label="Last Name">
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" name="email" placeholder="Your Email Address" required aria-label="Email Address">
+              <textarea name="message" rows="7" placeholder="Message" required aria-label="Message"></textarea>
+              <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+              <div id="form-status" style="margin-top: 1rem; font-weight: 500;"></div>
           </form>
       </div>
   </section>
@@ -123,5 +124,46 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        formStatus.textContent = '';
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                formStatus.style.color = '#4ade80';
+                formStatus.textContent = 'Message sent successfully!';
+                contactForm.reset();
+            } else {
+                formStatus.style.color = '#f87171';
+                formStatus.textContent = 'Failed to send message. Please try again.';
+            }
+        } catch (error) {
+            console.error('Error sending message:', error);
+            formStatus.style.color = '#f87171';
+            formStatus.textContent = 'An error occurred. Please try again.';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        }
+    });
+  </script>
 </body>
 </html>
