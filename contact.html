@@ -11,9 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   
-  <link rel="stylesheet" href="./CSS/style.css">
-  <link rel="stylesheet" href="./CSS/about.css">
- <link rel="stylesheet" href="./CSS/contact.css">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/about.css">
+  <link rel="stylesheet" href="CSS/contact.css">
 
 
 
@@ -30,11 +30,14 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
+
+  <script src="./main.js"></script>
     <!-- ==================== END OF NAVBAR ==================== -->
 
     <section class="contact">
@@ -58,15 +61,63 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form class="contact__form" id="contact-form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" name="firstName" id="firstName" placeholder="First Name" required>
+                  <input type="text" name="lastName" id="lastName" placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" name="email" id="email" placeholder="Your Email Address" required>
+              <textarea name="message" id="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+              <div id="form-status" style="margin-top: 1rem; font-weight: 500;"></div>
           </form>
+
+          <script>
+            const contactForm = document.getElementById('contact-form');
+            const formStatus = document.getElementById('form-status');
+            const submitBtn = document.getElementById('submit-btn');
+
+            contactForm.addEventListener('submit', async (e) => {
+              e.preventDefault();
+
+              const formData = {
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                message: document.getElementById('message').value.trim()
+              };
+
+              submitBtn.disabled = true;
+              submitBtn.textContent = 'Sending...';
+              formStatus.textContent = '';
+
+              try {
+                const response = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                  formStatus.style.color = '#00ff00';
+                  formStatus.textContent = 'Message sent successfully!';
+                  contactForm.reset();
+                } else {
+                  formStatus.style.color = '#ff0000';
+                  formStatus.textContent = data.message || 'Failed to send message.';
+                }
+              } catch (error) {
+                console.error('Error submitting form:', error);
+                formStatus.style.color = '#ff0000';
+                formStatus.textContent = 'An error occurred. Please try again later.';
+              } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+              }
+            });
+          </script>
       </div>
   </section>
 
