@@ -126,11 +126,15 @@
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
+      const btn = document.querySelector('#registerForm button');
 
       if (!name || !email || !password) {
         alert('Please fill in all fields.');
         return;
       }
+
+      btn.textContent = 'Registering...';
+      btn.disabled = true;
 
       try {
         const response = await fetch('/api/register', {
@@ -148,6 +152,9 @@
       } catch (error) {
         console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        btn.textContent = 'Register';
+        btn.disabled = false;
       }
     }
 
@@ -155,6 +162,10 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const btn = document.querySelector('#loginForm button');
+
+      btn.textContent = 'Logging in...';
+      btn.disabled = true;
 
       try {
         const response = await fetch('/api/login', {
@@ -166,8 +177,7 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
+          if (data.user.role === 'admin') {
             window.location.href = 'dashboard.html';
           } else {
             window.location.href = 'index.html';
@@ -178,6 +188,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        btn.textContent = 'Login';
+        btn.disabled = false;
       }
     }
   </script>
