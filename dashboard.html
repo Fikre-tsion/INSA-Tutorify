@@ -81,17 +81,17 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
+            <div class="numbers" id="stat-users">0</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
           </div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">0</div>
+            <div class="cardName">Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-contacts">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -266,6 +266,19 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
+
+    async function updateStats() {
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+        document.getElementById('stat-users').textContent = stats.users;
+        document.getElementById('stat-courses').textContent = stats.courses;
+        document.getElementById('stat-contacts').textContent = stats.contacts;
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    }
+    updateStats();
   </script>
   <script>
     document.querySelectorAll('.navigation ul li').forEach(li => {
