@@ -6,6 +6,57 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$CE0D4OzQKBkdSEPNiw7lPOKJLdivRu2FZRsj.JHjUe8UKC8i.7XsO",
+      "role": "admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media UI",
+      "image": "./images/course1.jpg",
+      "description": "Learn layout techniques and best practices."
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Design",
+      "image": "./images/course2.jpg",
+      "description": "Build user-friendly interfaces with HTML/CSS."
+    },
+    {
+      "id": 3,
+      "title": "Admin Dashboard UI Design",
+      "image": "./images/course3.jpg",
+      "description": "Master dashboard layouts and styling."
+    },
+    {
+      "id": 4,
+      "title": "Digital Marketing Basics",
+      "image": "./images/digitalmarketing.png",
+      "description": "Master the fundamentals of SEO and Social Media."
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1,
+      "firstName": "Bolt",
+      "lastName": "Lightning",
+      "email": "bolt@example.com",
+      "message": "Hello from Bolt!",
+      "date": "2026-06-12T21:24:25.443Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Bolt",
+      "lastName": "Lightning",
+      "email": "bolt@example.com",
+      "message": "Hello from Bolt!",
+      "date": "2026-06-12T21:28:11.100Z"
     }
   ]
 }
