@@ -58,14 +58,19 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <label for="firstName" class="sr-only">First Name</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <label for="lastName" class="sr-only">Last Name</label>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <label for="email" class="sr-only">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <label for="message" class="sr-only">Message</label>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+              <div id="formStatus" class="form__status"></div>
           </form>
       </div>
   </section>
@@ -122,6 +127,57 @@
       <small>&copy; 2025 <span>Tutorify Tutoring</span>. All Rights Reserved.</small>
     </div>
   </footer>
+
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          message: document.getElementById('message').value
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        formStatus.textContent = '';
+        formStatus.className = 'form__status';
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            formStatus.textContent = data.message || 'Success!';
+            formStatus.classList.add('status-success');
+            contactForm.reset();
+          } else {
+            formStatus.textContent = data.message || 'Failed to send message.';
+            formStatus.classList.add('status-error');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          formStatus.textContent = 'An error occurred. Please try again.';
+          formStatus.classList.add('status-error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="CSS/dashboard.css">
 </head>
 <body>
   <div class="container">
@@ -63,7 +63,7 @@
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
+        <div class="toggle" aria-label="Toggle Navigation">
           <ion-icon name="menu-outline"></ion-icon>
         </div>
         <div class="search">
@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-profileViews">1,504</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div class="numbers" id="stat-tutorials">80</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,7 +99,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
+            <div class="numbers" id="stat-comments">284</div>
             <div class="cardName">Comments</div>
           </div>
           <div class="iconBx">
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers" id="stat-earnings">7,842</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -266,6 +266,21 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
+
+    // Update statistics
+    const updateStats = async () => {
+      try {
+        const response = await fetch('/api/stats');
+        const stats = await response.json();
+        if (stats.profileViews) document.getElementById('stat-profileViews').textContent = stats.profileViews;
+        if (stats.tutorials) document.getElementById('stat-tutorials').textContent = stats.tutorials;
+        if (stats.comments) document.getElementById('stat-comments').textContent = stats.comments;
+        if (stats.earnings) document.getElementById('stat-earnings').textContent = stats.earnings;
+      } catch (error) {
+        console.error('Error updating stats:', error);
+      }
+    };
+    updateStats();
   </script>
   <script>
     document.querySelectorAll('.navigation ul li').forEach(li => {
