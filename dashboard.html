@@ -11,7 +11,7 @@
     <div class="navigation">
       <ul>
         <li>
-          <a href="#">
+          <a href="index.html">
             <span class="icon"><ion-icon name="bulb-outline"></ion-icon></span>
             <span class="title">Tutorify</span>
           </a>
@@ -73,7 +73,7 @@
           </label>
         </div>
         <div class="user">
-          <img src="./images2/image.png" alt="User Profile" width="120" height="120">
+          <img src="./digitalmarketing.png" alt="User Profile" width="120" height="120">
         </div>
       </div>
 
@@ -81,17 +81,17 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
-            <div class="cardName">Profile Views</div>
+            <div class="numbers" id="stat-users">0</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="eye-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
           </div>
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">0</div>
+            <div class="cardName">Total Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-messages">0</div>
+            <div class="cardName">Contact Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div class="numbers">ETB 0</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -165,19 +165,6 @@
                   <td>ETB 300/hr</td>
                   <td><span class="status delivered">Delivered</span></td>
                 </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
@@ -190,47 +177,19 @@
             <table>
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img src="./digitalmarketing.png" alt="Customer"></div>
                 </td>
                 <td>
                   <h4>Gebre<br><span>Grade 12</span></h4>
                 </td>
               </tr>
-
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img src="./digitalmarketing.png" alt="Customer"></div>
                 </td>
                 <td>
                   <h4>Selam<br><span>Grade 11</span></h4>
                 </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
               </tr>
             </table>
            </div>
@@ -242,6 +201,7 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+  <script src="dashboard.js"></script>
   <script>
     // Check authentication
     const token = localStorage.getItem('token');
@@ -266,14 +226,6 @@
       navigation.classList.toggle('active');
       main.classList.toggle('active');
     }
-  </script>
-  <script>
-    document.querySelectorAll('.navigation ul li').forEach(li => {
-      li.addEventListener('click', () => {
-        document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
-        li.classList.add('hovered');
-      });
-    });
   </script>
 </body>
 </html>
