@@ -15,8 +15,25 @@
   <link rel="stylesheet" href="./CSS/about.css">
  <link rel="stylesheet" href="./CSS/contact.css">
 
-
-
+ <style>
+    .status-msg {
+        display: none;
+        padding: 1rem;
+        margin-top: 1rem;
+        border-radius: 4px;
+        text-align: center;
+    }
+    .status-success {
+        background: #d4edda;
+        color: #155724;
+        display: block !important;
+    }
+    .status-error {
+        background: #f8d7da;
+        color: #721c24;
+        display: block !important;
+    }
+ </style>
 </head>
 
 <body>
@@ -30,6 +47,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -41,7 +59,7 @@
       <div class="container contact__container">
           <aside class="contact__aside">  
               <div class="aside__image">
-                  <img src="./images/contact.svg" alt="Contact Image">
+                  <img src="./images/contact.svg" alt="Contact Image" onerror="this.src='./digitalmarketing.png'">
               </div>
               <h2>Contact Us</h2>
               <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
@@ -58,22 +76,18 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contact-form" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+              <div id="status-msg" class="status-msg"></div>
           </form>
       </div>
   </section>
-
-
-
-
-
 
       <!-- ==================== FOOTER ==================== -->
   <footer>
@@ -123,5 +137,47 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('submit-btn');
+        const statusMsg = document.getElementById('status-msg');
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        statusMsg.className = 'status-msg';
+        statusMsg.textContent = '';
+
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            if (response.ok) {
+                statusMsg.textContent = 'Message sent successfully!';
+                statusMsg.classList.add('status-success');
+                document.getElementById('contact-form').reset();
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            statusMsg.textContent = 'Error: ' + error.message;
+            statusMsg.classList.add('status-error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
+        }
+    });
+  </script>
 </body>
 </html>
