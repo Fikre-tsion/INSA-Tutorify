@@ -29,14 +29,11 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li id="auth-link"><a href="login.html">Login</a></li>
             </ul>
-            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+            <button id="open-menu-btn" aria-label="Open menu"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn" aria-label="Close menu"><i class="uil uil-multiply"></i></button>
             
         </div>
     </nav>
-
-
-    /*==================== END OF NAV ====================*/
 
 
     <header>
@@ -56,10 +53,11 @@
                 <a href="courses.html" class="btn btn-primary">Get Started</a>
             </div>
             <div class="header__right">
-                <div class="header__right-image"></div>
+                <div class="header__right-image">
                     <img src="./images/header.svg" alt="Kids Learning and having fun with their friends">
                 </div>
             </div>
+        </div>
 
     </header>
 
@@ -122,56 +120,14 @@
   </div>
 </section>
 
-<!-- ==================== END OF CATEGORY ==================== -->>
+<!-- ==================== END OF CATEGORY ==================== -->
 
 
 <section class="courses">
   <h2>Our Popular Courses</h2>
-  <div class="container courses__container">
-
-    <!-- Course 1 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Social Media Website UI Design</h4>
-        <p>
-          Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 2 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
-      </div>
-      <div class="course__info">
-        <h4>Responsive SmartHome Website Design</h4>
-        <p>
-          Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 3 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
+  <div class="container courses__container" id="popular-courses-container">
+    <!-- Courses will be loaded dynamically -->
+    <div class="loading">Loading courses...</div>
   </div>
 </section>
 <!-- ==================== END OF COURSES ==================== -->
@@ -180,7 +136,7 @@
 <section class="faqs">
   <h2>Frequently Asked Questions</h2>
   <div class="container faqs__container">
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>How do I choose the right course for me?</h4>
@@ -190,7 +146,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Are the courses suitable for beginners?</h4>
@@ -200,7 +156,7 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Will I receive a certificate after completing a course?</h4>
@@ -210,52 +166,12 @@
           </div>
         </article>
 
-        <article class="faq">
+        <article class="faq" tabindex="0">
           <div class="faq_icon"><i class="uil uil-plus"></i></div>
           <div class="question_answer">
             <h4>Can I access the courses anytime?</h4>
             <p>
               Definitely! Our platform is available 24/7. Once enrolled, you can learn at any time that suits you — whether it’s early morning or late at night — from any device with an internet connection.
-            </p>
-          </div>
-        </article>
-
-        <article class="faq">
-          <div class="faq_icon"><i class="uil uil-plus"></i></div>
-          <div class="question_answer">
-            <h4>Do I need any special software or tools?</h4>
-            <p>
-              Most courses only require a web browser and internet access. If a specific course needs extra tools (like VS Code for web development), clear setup instructions will be provided in the first lesson.
-            </p>
-          </div>
-        </article>
-
-        <article class="faq">
-          <div class="faq_icon"><i class="uil uil-plus"></i></div>
-          <div class="question_answer">
-            <h4>How do I contact instructors if I have questions?</h4>
-            <p>
-              Each course includes a dedicated Q&A or discussion section where you can post questions. Our instructors and community members are active and happy to help you quickly.
-            </p>
-          </div>
-        </article>
-
-        <article class="faq">
-          <div class="faq_icon"><i class="uil uil-plus"></i></div>
-          <div class="question_answer">
-            <h4>Can I get a refund if I’m not satisfied?</h4>
-            <p>
-              Yes, we offer a 100% satisfaction guarantee. If a course doesn’t meet your expectations, you can request a refund within the trial period — no questions asked.
-            </p>
-          </div>
-        </article>
-
-        <article class="faq">
-          <div class="faq_icon"><i class="uil uil-plus"></i></div>
-          <div class="question_answer">
-            <h4>Are there any discounts or bundles available?</h4>
-            <p>
-              Definitely! We regularly offer bundle deals and seasonal discounts. Join our mailing list or follow us on social media to be the first to know about new offers and exclusive learning packages.
             </p>
           </div>
         </article>
@@ -274,7 +190,7 @@
   <div class="swiper-wrapper">
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar1.jpg" alt="Avatar 1">
+        <img src="./images/avatar1.jpg" alt="Avatar 1" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Wudasie Dawit</h5>
@@ -289,7 +205,7 @@
 
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar2.jpg" alt="Avatar 2">
+        <img src="./images/avatar2.jpg" alt="Avatar 2" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Leul Shewa</h5>
@@ -304,7 +220,7 @@
 
     <article class="testimonial swiper-slide">
       <div class="avatar">
-        <img src="./images/avatar3.jpg" alt="Avatar 3">
+        <img src="./images/avatar3.jpg" alt="Avatar 3" loading="lazy">
       </div>
       <div class="testimonial__info">
         <h5>Zeamanuel Jembere</h5>
@@ -317,35 +233,6 @@
       </div>
     </article>
 
-    <article class="testimonial swiper-slide">
-      <div class="avatar">
-        <img src="./images/avatar4.jpg" alt="Avatar 4">
-      </div>
-      <div class="testimonial__info">
-        <h5>Yeshi Fikre</h5>
-        <small>Designer</small>
-        <div class="testimonial__body">
-          <p>
-            "Arodion's graphic design courses helped me unleash my creativity!"
-          </p>
-        </div>
-      </div>
-    </article>
-
-    <article class="testimonial swiper-slide">
-      <div class="avatar">
-        <img src="./images/avatar5.jpg" alt="Avatar 5">
-      </div>
-      <div class="testimonial__info">
-        <h5>Atsede Teferi</h5>
-        <small>Entrepreneur</small>
-        <div class="testimonial__body">
-          <p>
-            "The business courses provided me with the knowledge and skills to start my own venture confidently."
-          </p>
-        </div>
-      </div>
-    </article>
   </div>
 
   
@@ -355,33 +242,10 @@
 <!-- ==================== END OF TESTIMONIALS ==================== -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <footer>
   <div class="container footer__container">
     <div class="footer__1">
-      <a href="index.html" class="footer__logo"><h4></h4>Tutorify</a>
+      <a href="index.html" class="footer__logo"><h4>Tutorify</h4></a>
       <p>
         Our mission is to empower individuals with the knowledge and skills.
       </p>
@@ -414,10 +278,10 @@
 
 
     <div class="footer__socials">
-      <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-      <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-      <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-      <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+      <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+      <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+      <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+      <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
     </div>
   </div>
 
@@ -432,33 +296,34 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
-  // Auth display logic
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const authLink = document.getElementById('auth-link');
-
-  if (token && user) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
-  }
-
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
-
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      0: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.renderCourses) {
+        window.renderCourses('#popular-courses-container', 3);
     }
+
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        },
+        breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+        }
+    });
+
+    // Keyboard support for FAQs
+    document.querySelectorAll('.faq').forEach(faq => {
+        faq.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                faq.click();
+            }
+        });
+    });
   });
 </script>
 
