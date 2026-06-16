@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Login & Register | Tutorify</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
     * {
@@ -17,17 +17,18 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
     .container {
       background: #1c2541;
       padding: 2rem;
       border-radius: 15px;
       width: 350px;
-      box-shadow: 0 0 10px #3a506b;
+      box-shadow: 0 0 20px rgba(91, 192, 190, 0.2);
     }
     h2 {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       color: #5bc0be;
     }
     .input-box {
@@ -35,7 +36,7 @@
     }
     .input-box input, .input-box select {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border: none;
       border-radius: 8px;
       outline: none;
@@ -44,7 +45,7 @@
     }
     button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background: #5bc0be;
       border: none;
       border-radius: 8px;
@@ -52,18 +53,38 @@
       font-weight: bold;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 0.5rem;
     }
     button:hover {
       background: #6fffe9;
+      transform: translateY(-2px);
+    }
+    button:disabled {
+        background: #2a405b;
+        cursor: not-allowed;
+        transform: none;
     }
     .toggle {
       text-align: center;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       color: #aaa;
       cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .toggle:hover {
+        color: #5bc0be;
+        text-decoration: underline;
     }
     .hidden {
       display: none;
+    }
+    .back-home {
+        display: block;
+        text-align: center;
+        margin-top: 1rem;
+        color: #5bc0be;
+        text-decoration: none;
+        font-size: 0.8rem;
     }
   </style>
 </head>
@@ -73,41 +94,41 @@
     <h2 id="formTitle">Login</h2>
 
     <div id="loginForm">
-      <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
-      </div>
-      <div class="input-box">
-        <select id="loginRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button onclick="login()">Login</button>
+      <form onsubmit="handleLogin(event)">
+          <div class="input-box">
+            <input type="email" id="loginEmail" placeholder="Email" required>
+          </div>
+          <div class="input-box">
+            <input type="password" id="loginPassword" placeholder="Password" required>
+          </div>
+          <div class="input-box">
+            <select id="loginRole">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button type="submit" id="loginBtn">Login</button>
+      </form>
       <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
-      <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
-      </div>
-      <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
-      </div>
-      <div class="input-box">
-        <select id="regRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button onclick="register()">Register</button>
+      <form onsubmit="handleRegister(event)">
+          <div class="input-box">
+            <input type="text" id="regName" placeholder="Full Name" required>
+          </div>
+          <div class="input-box">
+            <input type="email" id="regEmail" placeholder="Email" required>
+          </div>
+          <div class="input-box">
+            <input type="password" id="regPassword" placeholder="Password" required>
+          </div>
+          <!-- Security: Removed role selection from registration -->
+          <button type="submit" id="regBtn">Register</button>
+      </form>
       <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
     </div>
+    <a href="index.html" class="back-home">← Back to Home</a>
   </div>
 
   <script>
@@ -121,22 +142,21 @@
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
-    async function register() {
+    async function handleRegister(event) {
+      event.preventDefault();
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
-      const role = document.getElementById('regRole').value;
+      const regBtn = document.getElementById('regBtn');
 
-      if (!name || !email || !password) {
-        alert('Please fill in all fields.');
-        return;
-      }
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
 
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, role })
+          body: JSON.stringify({ name, email, password })
         });
         const data = await response.json();
         if (response.ok) {
@@ -148,13 +168,21 @@
       } catch (error) {
         console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
-    async function login() {
+    async function handleLogin(event) {
+      event.preventDefault();
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const loginBtn = document.getElementById('loginBtn');
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -166,8 +194,7 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
+          if (data.user.role === 'admin') {
             window.location.href = 'dashboard.html';
           } else {
             window.location.href = 'index.html';
@@ -178,6 +205,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>

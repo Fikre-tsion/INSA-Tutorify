@@ -6,6 +6,81 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$I/G8WI2bWJb2b0CbalgdiOZyX5lM6Q4JyMgLURVPUlwHjTOXxzQ1q",
+      "role": "admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "How to be more productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management, goal setting, and effective work habits. This course is designed for beginners looking to enhance their productivity skills.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and effective communication. This course is designed for beginners looking to enhance their personal and professional lives.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.",
+      "image": "./images/course6.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "name": "Test User",
+      "email": "test@example.com",
+      "message": "Hello from Playwright!",
+      "date": "2026-06-16T21:33:47.722Z"
+    },
+    {
+      "id": 2,
+      "name": "Bolt Optimization",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-06-16T21:34:36.287Z"
+    },
+    {
+      "id": 3,
+      "name": "Bolt Optimization",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-06-16T21:39:11.193Z"
+    },
+    {
+      "id": 4,
+      "name": "Bolt Optimization",
+      "email": "bolt@example.com",
+      "message": "Performance is key!",
+      "date": "2026-06-16T21:44:01.250Z"
     }
   ]
 }
