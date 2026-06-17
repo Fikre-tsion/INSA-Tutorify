@@ -2,10 +2,63 @@
   "users": [
     {
       "id": 1,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$I/G8WI2bWJb2b0CbalgdiOZyX5lM6Q4JyMgLURVPUlwHjTOXxzQ1q",
+      "role": "admin"
+    },
+    {
+      "id": 2,
       "name": "Playwright User",
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "images/digitalmarketing.png"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "images/digitalmarketing.png"
+    },
+    {
+      "id": 3,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media marketing, and more.",
+      "image": "images/digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1781732552599,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-17T21:42:32.599Z"
+    },
+    {
+      "id": 1781732719429,
+      "firstName": "Palette",
+      "lastName": "Agent",
+      "email": "palette@example.com",
+      "message": "I am painting a better UX!",
+      "date": "2026-06-17T21:45:19.429Z"
+    },
+    {
+      "id": 1781733119476,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-17T21:51:59.476Z"
     }
   ]
 }
