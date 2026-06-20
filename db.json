@@ -2,10 +2,66 @@
   "users": [
     {
       "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
-      "role": "user"
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$pFvT30vVR/NQc/ikpN.y.eN2elviXcjIkW34AdQavsOC6hK6Hr47a",
+      "role": "admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media marketing, and content marketing.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology, including its architecture and consensus mechanisms.",
+      "image": "./images/blockchain.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1781991711007,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello",
+      "date": "2026-06-20T21:41:51.007Z"
+    },
+    {
+      "id": 1781992999251,
+      "firstName": "Jules",
+      "lastName": "Agent",
+      "email": "jules@example.com",
+      "message": "Automated verification message.",
+      "date": "2026-06-20T22:03:19.251Z"
     }
   ]
 }
