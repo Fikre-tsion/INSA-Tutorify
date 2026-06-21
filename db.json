@@ -4,8 +4,61 @@
       "id": 1,
       "name": "Playwright User",
       "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
+      "password": "$2a$10$pFvT30vVR/NQc/ikpN.y.eN2elviXcjIkW34AdQavsOC6hK6Hr47a",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$pFvT30vVR/NQc/ikpN.y.eN2elviXcjIkW34AdQavsOC6hK6Hr47a",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test@test.com",
+      "password": "$2a$10$XIlNm/eKMNeezzPX2NjW6.SquSHMeUxdXKlqlj.o/CblKKFpUBfNy",
       "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "category": "Design",
+      "image": "./images/course1.jpg",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS."
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "category": "Design",
+      "image": "./images/course2.jpg",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS."
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "category": "Programming",
+      "image": "./images/course3.jpg",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS."
+    }
+  ],
+  "messages": [
+    {
+      "id": 1782078170858,
+      "firstName": "Jules",
+      "lastName": "Agent",
+      "email": "jules@example.com",
+      "message": "Hello from Playwright verification!",
+      "date": "2026-06-21T21:42:50.858Z"
+    }
+  ],
+  "stats": {
+    "views": 1504,
+    "tutorials": 80,
+    "comments": 284,
+    "earnings": 7842
+  }
 }
