@@ -17,7 +17,7 @@
 </head>
 
 <body>
-
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <nav>
         <div class="container nav__container">
@@ -29,17 +29,14 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li id="auth-link"><a href="login.html">Login</a></li>
             </ul>
-            <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-            <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
-            
+            <button id="open-menu-btn" aria-label="Open menu"><i class="uil uil-bars"></i></button>
+            <button id="close-menu-btn" aria-label="Close menu"><i class="uil uil-multiply"></i></button>
         </div>
     </nav>
 
+    <!-- ==================== END OF NAV ==================== -->
 
-    /*==================== END OF NAV ====================*/
-
-
-    <header>
+    <header id="main-content">
 
         <div class="container header__container">
             <div class="header__left">
@@ -56,8 +53,8 @@
                 <a href="courses.html" class="btn btn-primary">Get Started</a>
             </div>
             <div class="header__right">
-                <div class="header__right-image"></div>
-                    <img src="./images/header.svg" alt="Kids Learning and having fun with their friends">
+                <div class="header__right-image">
+                    <img src="./digitalmarketing.png" alt="Kids Learning and having fun with their friends">
                 </div>
             </div>
 
@@ -128,50 +125,8 @@
 <section class="courses">
   <h2>Our Popular Courses</h2>
   <div class="container courses__container">
-
-    <!-- Course 1 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course1.jpg" alt="Course 1">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Social Media Website UI Design</h4>
-        <p>
-          Learn how to create a responsive social media website UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 2 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course2.jpg" alt="Course 2">
-      </div>
-      <div class="course__info">
-        <h4>Responsive SmartHome Website Design</h4>
-        <p>
-          Learn how to create a responsive SmartHome website design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
-    <!-- Course 3 -->
-    <article class="course">
-      <div class="course__image">
-        <img src="./images/course3.jpg" alt="Course 3">
-      </div>
-      <div class="course__info">
-        <h4>Responsive Admin Dashboard UI Design</h4>
-        <p>
-          Learn how to create a responsive Admin Dashboard UI design using HTML and CSS. This course covers layout techniques, styling, and best practices for building user-friendly interfaces.
-        </p>
-        
-        <a href="course.html" class="btn btn-primary">Learn More</a>
-      </div>
-    </article>
-
+    <!-- Courses will be dynamically injected here -->
+    <p style="text-align: center; width: 100%;">Loading courses...</p>
   </div>
 </section>
 <!-- ==================== END OF COURSES ==================== -->
@@ -414,10 +369,10 @@
 
 
     <div class="footer__socials">
-      <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-      <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-      <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-      <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+      <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="Tutorify on LinkedIn"><i class="uil uil-linkedin"></i></a>
+      <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Tutorify on Facebook"><i class="uil uil-facebook-f"></i></a>
+      <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Tutorify on Twitter"><i class="uil uil-twitter"></i></a>
+      <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Tutorify on Instagram"><i class="uil uil-instagram"></i></a>
     </div>
   </div>
 
@@ -432,21 +387,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
-  // Auth display logic
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const authLink = document.getElementById('auth-link');
-
-  if (token && user) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
-  }
-
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
-
   var swiper = new Swiper(".mySwiper", {
     slidesPerView: 3,
     spaceBetween: 30,
