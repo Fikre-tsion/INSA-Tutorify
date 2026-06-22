@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-views">0</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,8 +90,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">0</div>
+            <div class="cardName">Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-messages">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,11 +108,11 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
+            <div class="numbers" id="stat-users">0</div>
+            <div class="cardName">Total Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </div>
         </div>
       </div>
@@ -121,73 +121,30 @@
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
-              <h2>Recent Tutors</h2>
+              <h2>Recent Messages</h2>
               <a href="#" class="btn">View All</a>
             </div>
-            <table>
+            <table id="recent-messages-table">
               <thead>
                 <tr>
-                  <td>Tutor</td>
-                  <td>Course</td>
-                  <td>Payment</td>
-                  <td>Status</td>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Message</td>
+                  <td>Date</td>
                 </tr>
               </thead>
-
               <tbody>
-                <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
+                <!-- Dynamic data -->
               </tbody>
             </table>
           </div>
 
-          <!-- New Customers -->
+          <!-- Recent Users -->
            <div class="recentCustomers">
             <div class="cardHeader">
-              <h2>Recent Customers</h2>
+              <h2>Recent Users</h2>
             </div>
-            <table>
+            <table id="recent-users-table">
               <tr>
                 <td width="60px">
                   <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
@@ -241,6 +198,7 @@
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="dashboard.js"></script>
 
   <script>
     // Check authentication

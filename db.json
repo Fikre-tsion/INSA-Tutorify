@@ -6,6 +6,62 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$pFvT30vVR/NQc/ikpN.y.eN2elviXcjIkW34AdQavsOC6hK6Hr47a",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2a$10$yN4doR.SiY7/IDSE6cDlKe7mTfJxTtuLf.Wi.Mi2.QYu8iOJqed.K",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Jules",
+      "lastName": "Agent",
+      "email": "jules@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-06-22T21:57:40.822Z"
+    }
+  ],
+  "stats": {
+    "views": 1504,
+    "tutorials": 80,
+    "comments": 284,
+    "earnings": 7842
+  }
 }

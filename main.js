@@ -1,7 +1,35 @@
+// main.js
+
+// Auth UI logic
+const updateAuthUI = () => {
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const authLink = document.getElementById('auth-link');
+
+    if (authLink) {
+        if (token && user) {
+            authLink.innerHTML = `<a href="#" id="logout-btn">${user.name} (Logout)</a>`;
+            document.getElementById('logout-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                window.location.reload();
+            });
+        } else {
+            authLink.innerHTML = `<a href="login.html">Login</a>`;
+        }
+    }
+};
+
+// Execute on load
+document.addEventListener('DOMContentLoaded', () => {
+    updateAuthUI();
+});
+
 //changing navbar style when scrolling
 window.addEventListener('scroll',()=>{
     document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+}, { passive: true });
 
 
 
@@ -29,11 +57,13 @@ const menu = document.querySelector(".nav__menu");
 const menuBtn = document.querySelector("#open-menu-btn");
 const closeBtn = document.querySelector("#close-menu-btn");
 
-menuBtn.addEventListener('click', ()=>{
-    menu.style.display = "flex";
-    closeBtn.style.display = "inline-block";
-    menuBtn.style.display = "none";
-})
+if (menuBtn) {
+    menuBtn.addEventListener('click', ()=>{
+        menu.style.display = "flex";
+        closeBtn.style.display = "inline-block";
+        menuBtn.style.display = "none";
+    })
+}
 
 //close nav menu
 const closeNav = () => {
@@ -42,4 +72,6 @@ const closeNav = () => {
     menuBtn.style.display ="inline-block";
 }
 
-closeBtn.addEventListener('click',closeNav)
+if (closeBtn) {
+    closeBtn.addEventListener('click',closeNav)
+}
