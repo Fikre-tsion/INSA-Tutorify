@@ -13,10 +13,27 @@
   
   <link rel="stylesheet" href="./CSS/style.css">
   <link rel="stylesheet" href="./CSS/about.css">
- <link rel="stylesheet" href="./CSS/contact.css">
-
-
-
+  <link rel="stylesheet" href="./CSS/contact.css">
+  <style>
+    .status-msg {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 5px;
+      display: none;
+    }
+    .status-success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      display: block !important;
+    }
+    .status-error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+      display: block !important;
+    }
+  </style>
 </head>
 
 <body>
@@ -31,8 +48,8 @@
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
       </ul>
-      <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-      <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+      <button id="open-menu-btn" aria-label="Open menu"><i class="uil uil-bars"></i></button>
+      <button id="close-menu-btn" aria-label="Close menu"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
     <!-- ==================== END OF NAVBAR ==================== -->
@@ -58,14 +75,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+              <div id="statusMsg" class="status-msg"></div>
           </form>
       </div>
   </section>
@@ -123,5 +141,52 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const statusMsg = document.getElementById('statusMsg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        statusMsg.style.display = 'none';
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                statusMsg.textContent = 'Message sent successfully! We will get back to you soon.';
+                statusMsg.className = 'status-msg status-success';
+                contactForm.reset();
+            } else {
+                statusMsg.textContent = data.message || 'Failed to send message. Please try again.';
+                statusMsg.className = 'status-msg status-error';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            statusMsg.textContent = 'An error occurred. Please try again later.';
+            statusMsg.className = 'status-msg status-error';
+        } finally {
+            submitBtn.textContent = 'Send Message';
+            submitBtn.disabled = false;
+        }
+    });
+  </script>
 </body>
 </html>
