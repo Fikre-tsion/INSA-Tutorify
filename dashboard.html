@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div id="stat-views" class="numbers">0</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div id="stat-courses" class="numbers">0</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div id="stat-messages" class="numbers">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,11 +108,11 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
+            <div id="stat-users" class="numbers">0</div>
+            <div class="cardName">Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </div>
         </div>
       </div>
@@ -121,15 +121,15 @@
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
-              <h2>Recent Tutors</h2>
+              <h2>Recent Messages</h2>
               <a href="#" class="btn">View All</a>
             </div>
             <table>
               <thead>
                 <tr>
-                  <td>Tutor</td>
-                  <td>Course</td>
-                  <td>Payment</td>
+                  <td>Sender</td>
+                  <td>Message</td>
+                  <td>Email</td>
                   <td>Status</td>
                 </tr>
               </thead>
@@ -185,53 +185,10 @@
           <!-- New Customers -->
            <div class="recentCustomers">
             <div class="cardHeader">
-              <h2>Recent Customers</h2>
+              <h2>Recent Users</h2>
             </div>
-            <table>
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Gebre<br><span>Grade 12</span></h4>
-                </td>
-              </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
+            <table id="users-list">
+              <!-- Users will be loaded here -->
             </table>
            </div>
 
@@ -275,5 +232,6 @@
       });
     });
   </script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
