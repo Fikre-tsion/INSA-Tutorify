@@ -126,11 +126,15 @@
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
+      const regBtn = document.querySelector('#registerForm button');
 
       if (!name || !email || !password) {
         alert('Please fill in all fields.');
         return;
       }
+
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
 
       try {
         const response = await fetch('/api/register', {
@@ -148,6 +152,9 @@
       } catch (error) {
         console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
@@ -155,6 +162,10 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const loginBtn = document.querySelector('#loginForm button');
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -178,6 +189,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>
