@@ -41,7 +41,7 @@
       <div class="container contact__container">
           <aside class="contact__aside">  
               <div class="aside__image">
-                  <img src="./images/contact.svg" alt="Contact Image">
+                  <img src="./images/contact.svg" alt="Contact Image" loading="lazy">
               </div>
               <h2>Contact Us</h2>
               <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
@@ -58,14 +58,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contact-form" class="contact__form">
               <div class="form__name">
                   <input type="text" name="firstName" placeholder="First Name" required>
                   <input type="text" name="lastName"  placeholder="Last Name" required>
               </div>
               <input type="email" name="email" placeholder="Your Email Address" required>
               <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button type="submit" id="submit-btn" class="btn btn-primary">Send Message</button>
+              <p id="form-status" style="margin-top: 1rem; display: none;"></p>
           </form>
       </div>
   </section>
@@ -123,5 +124,51 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        formStatus.style.display = 'none';
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+
+          formStatus.style.display = 'block';
+          if (response.ok) {
+            formStatus.textContent = 'Thank you! Your message has been sent.';
+            formStatus.style.color = '#4caf50';
+            contactForm.reset();
+          } else {
+            formStatus.textContent = result.message || 'Something went wrong. Please try again.';
+            formStatus.style.color = '#f44336';
+          }
+        } catch (error) {
+          formStatus.style.display = 'block';
+          formStatus.textContent = 'Error: Could not connect to the server.';
+          formStatus.style.color = '#f44336';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
