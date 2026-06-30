@@ -2,10 +2,52 @@
   "users": [
     {
       "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
-      "role": "user"
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$pFvT30vVR/NQc/ikpN.y.eN2elviXcjIkW34AdQavsOC6hK6Hr47a",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png",
+      "link": "course.html"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png",
+      "link": "course.html"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png",
+      "link": "course.html"
+    },
+    {
+      "id": 4,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO and social media marketing.",
+      "image": "./images/digitalmarketing.png",
+      "link": "course.html"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1782855335767,
+      "name": "Test User",
+      "email": "test@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-06-30T21:35:35.767Z"
+    }
+  ],
+  "stats": {
+    "views": 1507
+  }
 }

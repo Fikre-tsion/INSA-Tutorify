@@ -30,6 +30,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -58,7 +59,7 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form class="contact__form" id="contact-form">
               <div class="form__name">
                   <input type="text" name="firstName" placeholder="First Name" required>
                   <input type="text" name="lastName"  placeholder="Last Name" required>
@@ -66,6 +67,7 @@
               <input type="email" name="email" placeholder="Your Email Address" required>
               <textarea name="message" rows="7" placeholder="Message" required></textarea>
               <button type="submit" class="btn btn-primary">Send Message</button>
+              <div id="form-status" style="margin-top: 1rem; font-weight: 500;"></div>
           </form>
       </div>
   </section>
@@ -123,5 +125,38 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+        const status = document.getElementById('form-status');
+
+        status.textContent = 'Sending...';
+        status.style.color = '#fff';
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                status.textContent = 'Message sent successfully!';
+                status.style.color = '#00ff00';
+                e.target.reset();
+            } else {
+                status.textContent = 'Failed to send message. Please try again.';
+                status.style.color = '#ff0000';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            status.textContent = 'An error occurred. Please try again later.';
+            status.style.color = '#ff0000';
+        }
+    });
+  </script>
 </body>
 </html>
