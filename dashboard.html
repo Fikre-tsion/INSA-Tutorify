@@ -11,49 +11,49 @@
     <div class="navigation">
       <ul>
         <li>
-          <a href="#">
+          <a href="#" aria-label="Tutorify Home">
             <span class="icon"><ion-icon name="bulb-outline"></ion-icon></span>
             <span class="title">Tutorify</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" aria-label="Go to Dashboard">
             <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
             <span class="title">Dashboard</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" aria-label="View Users">
             <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
             <span class="title">Users</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" aria-label="View Messages">
             <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
             <span class="title">Message</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" aria-label="Help">
             <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
             <span class="title">Help</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" aria-label="Settings">
             <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
             <span class="title">Settings</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="#" aria-label="Change Password">
             <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
             <span class="title">Password</span>
           </a>
         </li>
         <li>
-          <a href="#" onclick="logout()">
+          <a href="#" onclick="logout()" aria-label="Logout">
             <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
             <span class="title">Logout</span>
           </a>
@@ -63,12 +63,13 @@
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
+        <div class="toggle" aria-label="Toggle Navigation">
           <ion-icon name="menu-outline"></ion-icon>
         </div>
         <div class="search">
           <label>
-            <input type="text" placeholder="Search here">
+            <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Search</span>
+            <input type="text" placeholder="Search here" aria-label="Search">
             <ion-icon name="search-outline"></ion-icon>
           </label>
         </div>
