@@ -6,6 +6,87 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$hp8WdfCFGnpDv34fFj9rIuJOZYw5Kouvcp/zcGHkVzm4tjKyvVAEW",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset and goal setting.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS.",
+      "image": "./images/course6.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1783287463236,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "message": "Hello",
+      "date": "2026-07-05T21:37:43.236Z"
+    },
+    {
+      "id": 1783287757456,
+      "name": "Palette Tester",
+      "email": "palette@example.com",
+      "message": "This is a micro-UX test message.",
+      "date": "2026-07-05T21:42:37.456Z"
+    },
+    {
+      "id": 1783287876884,
+      "name": "Palette Tester",
+      "email": "palette@example.com",
+      "message": "This is a micro-UX test message.",
+      "date": "2026-07-05T21:44:36.884Z"
+    },
+    {
+      "id": 1783288036510,
+      "name": "Palette Tester",
+      "email": "palette@example.com",
+      "message": "This is a micro-UX test message.",
+      "date": "2026-07-05T21:47:16.510Z"
+    }
+  ],
+  "stats": {
+    "views": 1508,
+    "courseCount": 18,
+    "messageCount": 4,
+    "userCount": 2
+  }
 }
