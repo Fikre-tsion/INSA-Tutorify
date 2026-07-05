@@ -2,10 +2,74 @@
   "users": [
     {
       "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
-      "role": "user"
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$tZv1yU1k3Fqh6yByB10xUusaprAhVEPyl.2p3jXO5yr/sdsSfhjzu",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO and social media marketing.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology and real-world applications.",
+      "image": "./images/blockchain.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "name": "Bolt Test",
+      "email": "bolt@example.com",
+      "message": "Hello, this is a performance test message!",
+      "date": "2026-07-05T21:28:55.189Z"
+    },
+    {
+      "id": 2,
+      "name": "Bolt Test",
+      "email": "bolt@example.com",
+      "message": "Hello, this is a performance test message!",
+      "date": "2026-07-05T21:29:47.807Z"
+    },
+    {
+      "id": 3,
+      "name": "Bolt Test",
+      "email": "bolt@example.com",
+      "message": "Hello, this is a performance test message!",
+      "date": "2026-07-05T21:32:43.519Z"
+    }
+  ],
+  "stats": {
+    "views": 9
+  }
 }
