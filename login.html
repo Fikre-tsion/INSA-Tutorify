@@ -3,68 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Login & Register | Tutorify</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-    body {
-      background: #0b132b;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .container {
-      background: #1c2541;
-      padding: 2rem;
-      border-radius: 15px;
-      width: 350px;
-      box-shadow: 0 0 10px #3a506b;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #5bc0be;
-    }
-    .input-box {
-      margin-bottom: 1rem;
-    }
-    .input-box input, .input-box select {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      outline: none;
-      background: #3a506b;
-      color: #fff;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background: #5bc0be;
-      border: none;
-      border-radius: 8px;
-      color: #0b132b;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #6fffe9;
-    }
-    .toggle {
-      text-align: center;
-      margin-top: 1rem;
-      color: #aaa;
-      cursor: pointer;
-    }
-    .hidden {
-      display: none;
-    }
+    * { box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body { background: #0b132b; color: #fff; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+    .container { background: #1c2541; padding: 2rem; border-radius: 15px; width: 100%; max-width: 400px; box-shadow: 0 0 10px #3a506b; }
+    h2 { text-align: center; margin-bottom: 1.5rem; color: #5bc0be; }
+    .input-box { margin-bottom: 1.2rem; position: relative; }
+    .input-box label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #aaa; }
+    .input-box input, .input-box select { width: 100%; padding: 12px; border: 2px solid transparent; border-radius: 8px; outline: none; background: #3a506b; color: #fff; transition: 0.3s; }
+    .input-box input:focus { border-color: #5bc0be; }
+    .input-box i { position: absolute; right: 15px; top: 42px; cursor: pointer; color: #aaa; }
+    button { width: 100%; padding: 12px; background: #5bc0be; border: none; border-radius: 8px; color: #0b132b; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    button:hover { background: #6fffe9; }
+    button:disabled { background: #3a506b; color: #888; cursor: not-allowed; }
+    .toggle { text-align: center; margin-top: 1.5rem; color: #aaa; cursor: pointer; font-size: 0.9rem; }
+    .toggle:hover { color: #5bc0be; text-decoration: underline; }
+    .hidden { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
   </style>
 </head>
 <body>
@@ -72,41 +29,45 @@
   <div class="container">
     <h2 id="formTitle">Login</h2>
 
+    <!-- Login Form -->
     <div id="loginForm">
       <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
+        <label for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="e.g. admin@tutorify.com" required>
       </div>
       <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        <i class='bx bx-hide' id="toggleLoginPass" aria-label="Toggle password visibility"></i>
       </div>
       <div class="input-box">
+        <label for="loginRole">Account Type</label>
         <select id="loginRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
+          <option value="user">Student</option>
+          <option value="admin">Administrator</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <button id="loginBtn" onclick="login()">Login</button>
+      <div class="toggle" onclick="toggleForm()" aria-role="button">Don't have an account? Register</div>
     </div>
 
+    <!-- Register Form -->
     <div id="registerForm" class="hidden">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <label for="regName">Full Name</label>
+        <input type="text" id="regName" placeholder="Enter your full name" required>
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <label for="regEmail">Email Address</label>
+        <input type="email" id="regEmail" placeholder="e.g. name@example.com" required>
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
+        <label for="regPassword">Create Password</label>
+        <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
+        <i class='bx bx-hide' id="toggleRegPass" aria-label="Toggle password visibility"></i>
       </div>
-      <div class="input-box">
-        <select id="regRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <button id="regBtn" onclick="register()">Register</button>
+      <div class="toggle" onclick="toggleForm()" aria-role="button">Already have an account? Login</div>
     </div>
   </div>
 
@@ -121,22 +82,39 @@
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
+    // Password visibility toggle
+    const setupPassToggle = (toggleId, inputId) => {
+      const toggle = document.getElementById(toggleId);
+      const input = document.getElementById(inputId);
+      toggle.addEventListener('click', () => {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        toggle.classList.toggle('bx-show');
+        toggle.classList.toggle('bx-hide');
+      });
+    };
+    setupPassToggle('toggleLoginPass', 'loginPassword');
+    setupPassToggle('toggleRegPass', 'regPassword');
+
     async function register() {
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
-      const role = document.getElementById('regRole').value;
+      const regBtn = document.getElementById('regBtn');
 
       if (!name || !email || !password) {
         alert('Please fill in all fields.');
         return;
       }
 
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
+
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, role })
+          body: JSON.stringify({ name, email, password })
         });
         const data = await response.json();
         if (response.ok) {
@@ -146,8 +124,10 @@
           alert(data.message || 'Registration failed');
         }
       } catch (error) {
-        console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
@@ -155,6 +135,15 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const loginBtn = document.getElementById('loginBtn');
+
+      if (!email || !password) {
+        alert('Please enter email and password.');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -166,7 +155,6 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
           if (role === 'admin') {
             window.location.href = 'dashboard.html';
           } else {
@@ -176,11 +164,12 @@
           alert(data.message || 'Login failed');
         }
       } catch (error) {
-        console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>
-
 </body>
 </html>
