@@ -6,6 +6,145 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 1783373386581,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$ss4KSSknugmXN9RpcxhphOsdO9ypWzcV9HZ0FEAa.ZIpCkonsKCIu",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Comprehensive course on responsive social media website ui design. Master the skills needed to excel in this field.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Comprehensive course on responsive smarthome website design. Master the skills needed to excel in this field.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Comprehensive course on responsive admin dashboard ui design. Master the skills needed to excel in this field.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Comprehensive course on be focused and productive. Master the skills needed to excel in this field.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Comprehensive course on how to use every opportunity to be successful. Master the skills needed to excel in this field.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Comprehensive course on responsive social media ui design. Master the skills needed to excel in this field.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Comprehensive course on fundamentals of digital marketing. Master the skills needed to excel in this field.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Comprehensive course on how to be a confident and successful person. Master the skills needed to excel in this field.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Comprehensive course on cloning netflix website. Master the skills needed to excel in this field.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Comprehensive course on digital newspaper website design. Master the skills needed to excel in this field.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Advanced Admin Dashboard UI",
+      "description": "Comprehensive course on advanced admin dashboard ui. Master the skills needed to excel in this field.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Logo and Graphic Designing",
+      "description": "Comprehensive course on logo and graphic designing. Master the skills needed to excel in this field.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Comprehensive course on introduction to blockchain technology. Master the skills needed to excel in this field.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Comprehensive course on fully functioning contact form design. Master the skills needed to excel in this field.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Comprehensive course on landing page design. Master the skills needed to excel in this field.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Comprehensive course on world class portfolio website development. Master the skills needed to excel in this field.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashboard UI Design",
+      "description": "Comprehensive course on responsive business manager dashboard ui design. Master the skills needed to excel in this field.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "description": "Comprehensive course on responsive smart home application ui design. Master the skills needed to excel in this field.",
+      "image": "./images/course6.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1783373853706,
+      "name": "Test User",
+      "email": "test@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-07-06T21:37:33.706Z"
+    },
+    {
+      "id": 1783374023533,
+      "name": "Test User",
+      "email": "test@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-07-06T21:40:23.533Z"
+    }
+  ],
+  "stats": {
+    "views": 5,
+    "courseCount": 18,
+    "messageCount": 2,
+    "userCount": 2
+  }
 }
