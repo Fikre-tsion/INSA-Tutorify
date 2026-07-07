@@ -155,6 +155,10 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const btn = document.querySelector('#loginForm button');
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -178,6 +182,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
       }
     }
   </script>
