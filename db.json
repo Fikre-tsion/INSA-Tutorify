@@ -6,6 +6,160 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 1,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$kNbVMK5.dezEP1YKu/fMAeApF2jYphd63ktHs5/H2weZ5KSLuQ7vS",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Master Blockchain Fundamentals",
+      "description": "Learn blockchain fundamentals, smart contracts, and decentralized apps.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "Data Science with Python",
+      "description": "Master data analysis, visualization, and machine learning with Python.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Full Stack Web Development",
+      "description": "Build complete web applications from front to back.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 7,
+      "title": "Graphic Design Masterclass",
+      "description": "Discover typography, color theory, and visual communication.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "Cybersecurity Essentials",
+      "description": "Understand ethical hacking and network security.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 9,
+      "title": "Digital Marketing Strategy",
+      "description": "Learn the latest strategies for online marketing success.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 10,
+      "title": "Java Programming for Beginners",
+      "description": "Master the fundamentals of Java programming.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 11,
+      "title": "Investing and Finance 101",
+      "description": "Learn the basics of investing and personal finance.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 12,
+      "title": "Ethical Hacking Course",
+      "description": "Learn how to protect systems from cyber attacks.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 13,
+      "title": "Business Management Fundamentals",
+      "description": "Learn the core principles of business management.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 14,
+      "title": "Mobile App Development with Flutter",
+      "description": "Build cross-platform mobile apps with Flutter.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 15,
+      "title": "UI/UX Design Principles",
+      "description": "Learn the principles of great user interface and experience design.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 16,
+      "title": "Advanced Machine Learning",
+      "description": "Deep dive into advanced ML algorithms and techniques.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 17,
+      "title": "Cloud Computing with AWS",
+      "description": "Master cloud infrastructure with Amazon Web Services.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 18,
+      "title": "Game Development with Unity",
+      "description": "Build 2D and 3D games with the Unity engine.",
+      "image": "./digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1783459592370,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "This is a test message from Bolt.",
+      "date": "2026-07-07T21:26:32.370Z"
+    },
+    {
+      "id": 1783459638670,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "This is a test message from Bolt.",
+      "date": "2026-07-07T21:27:18.670Z"
+    },
+    {
+      "id": 1783459708446,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "This is a test message from Bolt.",
+      "date": "2026-07-07T21:28:28.446Z"
+    },
+    {
+      "id": 1783460097416,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "This is a test message from Bolt.",
+      "date": "2026-07-07T21:34:57.416Z"
+    }
+  ],
+  "stats": {
+    "views": 11
+  }
 }
