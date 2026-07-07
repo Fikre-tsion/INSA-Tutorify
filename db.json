@@ -6,6 +6,135 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 1783459904023,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$f4s9uzOYCQboTVhsAnFu0urvzUKoeCaYxKAOWbsMOSXFbdDvOsQJW",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset and effective communication.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO and social media marketing.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Learn the fundamentals of self-confidence and success.",
+      "image": "./images/self.png"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Learn how to create a responsive Netflix website clone using HTML and CSS.",
+      "image": "./images/course9.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Learn how to create a responsive Digital Newspaper website design.",
+      "image": "./images/course10.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Learn the fundamentals of Logo and Graphic Designing.",
+      "image": "./images/course11.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Responsive Admin Dashboard UI Design V2",
+      "description": "Advanced responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course12.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology and real-world applications.",
+      "image": "./images/blockchain.png"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Learn how to create a responsive and functional Contact Form design.",
+      "image": "./images/course14.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Learn how to create a responsive Landing Page design using HTML and CSS.",
+      "image": "./images/course15.jpg"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Learn how to create a world class Portfolio Website using HTML and CSS.",
+      "image": "./images/course16.jpg"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashboard UI Design",
+      "description": "Learn how to create a responsive Business manager dashboard UI design.",
+      "image": "./images/course17.jpg"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "description": "Learn how to create a responsive Smart home Application UI design.",
+      "image": "./images/course18.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1783460820702,
+      "name": "Test User",
+      "email": "test@example.com",
+      "message": "Hello, this is a test message.",
+      "date": "2026-07-07T21:47:00.702Z"
+    }
+  ],
+  "stats": {
+    "views": 2
+  }
 }
