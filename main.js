@@ -1,7 +1,8 @@
-//changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+// Performance optimization: Registered scroll event listener as passive (`{ passive: true }`)
+// so the browser does not block smooth main thread scrolling waiting for listener execution.
+window.addEventListener('scroll', () => {
+    document.querySelector('nav').classList.toggle('window-scroll', window.scrollY > 0);
+}, { passive: true });
 
 
 
