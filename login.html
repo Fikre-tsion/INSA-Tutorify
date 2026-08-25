@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Login & Register - Tutorify</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
     * {
@@ -17,6 +17,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
     .container {
       background: #1c2541;
@@ -33,6 +34,12 @@
     .input-box {
       margin-bottom: 1rem;
     }
+    .input-box label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.85rem;
+      color: #5bc0be;
+    }
     .input-box input, .input-box select {
       width: 100%;
       padding: 10px;
@@ -41,6 +48,9 @@
       outline: none;
       background: #3a506b;
       color: #fff;
+    }
+    .input-box input:focus-visible, .input-box select:focus-visible, button:focus-visible {
+      outline: 2px solid #6fffe9;
     }
     button {
       width: 100%;
@@ -53,8 +63,12 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    button:hover {
+    button:hover:not(:disabled) {
       background: #6fffe9;
+    }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
     .toggle {
       text-align: center;
@@ -62,8 +76,21 @@
       color: #aaa;
       cursor: pointer;
     }
+    .toggle:hover {
+      color: #fff;
+    }
     .hidden {
       display: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
   </style>
 </head>
@@ -74,39 +101,46 @@
 
     <div id="loginForm">
       <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
+        <label for="loginEmail" class="sr-only">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Email" required aria-label="Email Address">
       </div>
       <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
+        <label for="loginPassword" class="sr-only">Password</label>
+        <input type="password" id="loginPassword" placeholder="Password" required aria-label="Password">
       </div>
       <div class="input-box">
-        <select id="loginRole">
+        <label for="loginRole">Account Role</label>
+        <select id="loginRole" aria-label="Account Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <button id="loginBtn" onclick="login()">Login</button>
+      <div class="toggle" tabindex="0" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleForm()">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <label for="regName" class="sr-only">Full Name</label>
+        <input type="text" id="regName" placeholder="Full Name" required aria-label="Full Name">
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <label for="regEmail" class="sr-only">Email Address</label>
+        <input type="email" id="regEmail" placeholder="Email" required aria-label="Email Address">
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
+        <label for="regPassword" class="sr-only">Password</label>
+        <input type="password" id="regPassword" placeholder="Password" required aria-label="Password">
       </div>
       <div class="input-box">
-        <select id="regRole">
+        <label for="regRole">Account Role</label>
+        <select id="regRole" aria-label="Account Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <button id="regBtn" onclick="register()">Register</button>
+      <div class="toggle" tabindex="0" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleForm()">Already have an account? Login</div>
     </div>
   </div>
 
@@ -125,18 +159,21 @@
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
-      const role = document.getElementById('regRole').value;
+      const regBtn = document.getElementById('regBtn');
 
       if (!name || !email || !password) {
         alert('Please fill in all fields.');
         return;
       }
 
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
+
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, role })
+          body: JSON.stringify({ name, email, password })
         });
         const data = await response.json();
         if (response.ok) {
@@ -148,6 +185,9 @@
       } catch (error) {
         console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
@@ -155,6 +195,15 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+      const loginBtn = document.getElementById('loginBtn');
+
+      if (!email || !password) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -178,6 +227,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>
