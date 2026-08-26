@@ -43,3 +43,41 @@ const closeNav = () => {
 }
 
 closeBtn.addEventListener('click',closeNav)
+
+// Handle Contact Form Submission
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const statusEl = document.getElementById('contact-status');
+        statusEl.textContent = 'Sending message...';
+        statusEl.style.color = '#fff';
+
+        const formData = {
+            firstName: contactForm.firstName.value,
+            lastName: contactForm.lastName.value,
+            email: contactForm.email.value,
+            message: contactForm.message.value
+        };
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            const data = await res.json();
+            if (res.ok) {
+                statusEl.textContent = 'Thank you! Your message has been sent successfully.';
+                statusEl.style.color = '#00f7ff';
+                contactForm.reset();
+            } else {
+                statusEl.textContent = data.message || 'Failed to send message. Please try again.';
+                statusEl.style.color = '#ff4d4d';
+            }
+        } catch (err) {
+            statusEl.textContent = 'Network error. Please try again later.';
+            statusEl.style.color = '#ff4d4d';
+        }
+    });
+}

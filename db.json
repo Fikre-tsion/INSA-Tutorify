@@ -6,6 +6,46 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$7yUEho4YjU600lTbIBUdFOscgiwDHJJIwowd/hLk14vwnhIICTBHC",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to build modern, responsive social media interfaces using HTML, CSS, and JavaScript.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Build responsive smart home web apps with interactive UI components.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Design and code data-dense, fully responsive admin analytics dashboards.",
+      "image": "./images/course3.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Test",
+      "lastName": "User",
+      "email": "test@example.com",
+      "message": "Hello Tutorify",
+      "date": "2026-08-26T21:14:03.148Z"
+    }
+  ],
+  "stats": {
+    "views": 1504
+  }
 }

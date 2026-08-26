@@ -8,31 +8,92 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = 'your_secret_key';
+const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
 const DB_FILE = path.join(__dirname, 'db.json');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-// Helper function to read database
-const readDB = () => {
-    if (!fs.existsSync(DB_FILE)) {
-        return { users: [] };
+// Performance Optimization (Bolt ⚡): In-memory DB cache to eliminate blocking synchronous disk I/O on every request
+let dbCache = null;
+
+// Helper function to read database asynchronously into memory cache
+const readDB = async () => {
+    if (dbCache) return dbCache;
+
+    try {
+        if (!fs.existsSync(DB_FILE)) {
+            dbCache = { users: [], courses: [], messages: [], stats: { views: 1504 } };
+            await writeDB(dbCache);
+            return dbCache;
+        }
+        const data = await fs.promises.readFile(DB_FILE, 'utf8');
+        dbCache = JSON.parse(data);
+        if (!dbCache.courses) dbCache.courses = [];
+        if (!dbCache.messages) dbCache.messages = [];
+        if (!dbCache.stats) dbCache.stats = { views: 1504 };
+        return dbCache;
+    } catch (err) {
+        console.error('Error reading DB:', err);
+        return { users: [], courses: [], messages: [], stats: { views: 1504 } };
     }
-    const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data);
 };
 
-// Helper function to write to database
-const writeDB = (data) => {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+// Helper function to write to database asynchronously without blocking request thread
+const writeDB = async (data) => {
+    dbCache = data;
+    try {
+        await fs.promises.writeFile(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+    } catch (err) {
+        console.error('Error writing DB:', err);
+    }
+};
+
+// Seed default admin user and sample courses if not present
+const seedInitialData = async () => {
+    const db = await readDB();
+    if (!db.users.find(u => u.email === 'admin@tutorify.com')) {
+        const hashedPassword = await bcrypt.hash('password123', 10);
+        db.users.push({
+            id: db.users.length + 1,
+            name: 'Admin User',
+            email: 'admin@tutorify.com',
+            password: hashedPassword,
+            role: 'admin'
+        });
+    }
+
+    if (!db.courses || db.courses.length === 0) {
+        db.courses = [
+            {
+                id: 1,
+                title: 'Responsive Social Media Website UI Design',
+                description: 'Learn how to build modern, responsive social media interfaces using HTML, CSS, and JavaScript.',
+                image: './images/course1.jpg'
+            },
+            {
+                id: 2,
+                title: 'Responsive SmartHome Website Design',
+                description: 'Build responsive smart home web apps with interactive UI components.',
+                image: './images/course2.jpg'
+            },
+            {
+                id: 3,
+                title: 'Responsive Admin Dashboard UI Design',
+                description: 'Design and code data-dense, fully responsive admin analytics dashboards.',
+                image: './images/course3.jpg'
+            }
+        ];
+    }
+
+    await writeDB(db);
 };
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
     const { name, email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     if (db.users.find(u => u.email === email)) {
         return res.status(400).json({ message: 'User already exists' });
@@ -44,11 +105,11 @@ app.post('/api/register', async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role
+        role: role || 'user'
     };
 
     db.users.push(newUser);
-    writeDB(db);
+    await writeDB(db);
 
     res.status(201).json({ message: 'User registered successfully' });
 });
@@ -56,7 +117,7 @@ app.post('/api/register', async (req, res) => {
 // Login endpoint
 app.post('/api/login', async (req, res) => {
     const { email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     const user = db.users.find(u => u.email === email && u.role === role);
     if (!user) {
@@ -65,7 +126,6 @@ app.post('/api/login', async (req, res) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-        // Fallback for initial placeholder users if needed, but we'll re-register them or just use hashed passwords
         return res.status(400).json({ message: 'Invalid email, password or role' });
     }
 
@@ -73,6 +133,51 @@ app.post('/api/login', async (req, res) => {
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
 });
 
-app.listen(PORT, () => {
+// GET /api/courses
+app.get('/api/courses', async (req, res) => {
+    const db = await readDB();
+    res.json(db.courses || []);
+});
+
+// POST /api/contact
+app.post('/api/contact', async (req, res) => {
+    const { firstName, lastName, email, message } = req.body;
+    if (!email || !message) {
+        return res.status(400).json({ message: 'Email and message are required' });
+    }
+
+    const db = await readDB();
+    const newMessage = {
+        id: (db.messages || []).length + 1,
+        firstName,
+        lastName,
+        email,
+        message,
+        date: new Date().toISOString()
+    };
+
+    if (!db.messages) db.messages = [];
+    db.messages.push(newMessage);
+    await writeDB(db);
+
+    res.status(201).json({ message: 'Message submitted successfully' });
+});
+
+// GET /api/stats (Admin Dashboard metrics)
+app.get('/api/stats', async (req, res) => {
+    const db = await readDB();
+    const stats = {
+        views: (db.stats && db.stats.views) || 1504,
+        coursesCount: (db.courses || []).length,
+        messagesCount: (db.messages || []).length,
+        usersCount: (db.users || []).length,
+        recentMessages: (db.messages || []).slice(-5).reverse(),
+        users: (db.users || []).map(u => ({ id: u.id, name: u.name, role: u.role }))
+    };
+    res.json(stats);
+});
+
+app.listen(PORT, async () => {
+    await seedInitialData();
     console.log(`Server is running on http://localhost:${PORT}`);
 });
