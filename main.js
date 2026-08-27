@@ -1,7 +1,8 @@
-//changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+// Performance optimization: Registered scroll listener with passive flag ({ passive: true })
+// to prevent thread blocking and ensure smooth 60fps scrolling without delay.
+window.addEventListener('scroll', () => {
+    document.querySelector('nav').classList.toggle('window-scroll', window.scrollY > 0);
+}, { passive: true });
 
 
 
