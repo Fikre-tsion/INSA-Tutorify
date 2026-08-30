@@ -3,20 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorify Tutorial Website</title>
+  <title>Tutorify - Contact Us</title>
 
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   
   <link rel="stylesheet" href="./CSS/style.css">
-  <link rel="stylesheet" href="./CSS/about.css">
- <link rel="stylesheet" href="./CSS/contact.css">
 
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
+    .contact__container {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 4rem;
+      background: var(--color-bg1);
+      padding: 4rem;
+      border-radius: 1rem;
+    }
 
+    .contact__aside {
+      background: var(--color-primary);
+      padding: 3rem;
+      border-radius: 1rem;
+    }
+
+    .contact__details li {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .contact__form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form__name {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .contact__form input, .contact__form textarea {
+      width: 100%;
+      padding: 1rem;
+      background: var(--color-bg2);
+      color: var(--color-white);
+      border-radius: 0.5rem;
+      resize: none;
+    }
+
+    #contactStatus {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      display: none;
+      font-weight: 600;
+    }
+
+    #contactStatus.success {
+      display: block;
+      background: rgba(0, 191, 142, 0.2);
+      color: #00bf8e;
+      border: 1px solid #00bf8e;
+    }
+
+    #contactStatus.error {
+      display: block;
+      background: rgba(247, 88, 66, 0.2);
+      color: #f75842;
+      border: 1px solid #f75842;
+    }
+  </style>
 </head>
 
 <body>
@@ -30,52 +102,55 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
-    <!-- ==================== END OF NAVBAR ==================== -->
 
-    <section class="contact">
-      <div class="container contact__container">
-          <aside class="contact__aside">  
-              <div class="aside__image">
-                  <img src="./images/contact.svg" alt="Contact Image">
-              </div>
-              <h2>Contact Us</h2>
-              <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
-              <ul class="contact__details">
-                  <li><i class="uil uil-phone-times"></i><h5>+251966418467 / +251928505904</h5></li>
-                  <li><i class="uil uil-envelope"></i><h5>tutorifytutoring@gmail.com</h5></li>
-                  <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
-              </ul>
-              <ul class="contact__socials">  
-                  <li><a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a></li>
-                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a></li>
-                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a></li>
-                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a></li>
-              </ul>
-          </aside>
-  
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
-              <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
-              </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
-      </div>
+  <!-- ==================== CONTACT ==================== -->
+  <section class="contact">
+    <div class="container contact__container">
+      <aside class="contact__aside">
+        <h2>Contact Us</h2>
+        <p style="margin: 1rem 0 2rem;">We are here to assist you. Please reach out to us with any questions or inquiries you may have.</p>
+        <ul class="contact__details">
+          <li><i class="uil uil-phone-times"></i><h5>+251966418467 / +251928505904</h5></li>
+          <li><i class="uil uil-envelope"></i><h5>tutorifytutoring@gmail.com</h5></li>
+          <li><i class="uil uil-location-point"></i><h5>Addis Ababa, Ethiopia</h5></li>
+        </ul>
+      </aside>
+
+      <form id="contactForm" class="contact__form">
+        <div class="form__name">
+          <div style="flex: 1;">
+            <label for="firstName" class="sr-only">First Name</label>
+            <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+          </div>
+          <div style="flex: 1;">
+            <label for="lastName" class="sr-only">Last Name</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Last Name">
+          </div>
+        </div>
+
+        <div>
+          <label for="email" class="sr-only">Your Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+        </div>
+
+        <div>
+          <label for="message" class="sr-only">Message</label>
+          <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn btn-primary">Send Message</button>
+        <div id="contactStatus" aria-live="polite"></div>
+      </form>
+    </div>
   </section>
 
-
-
-
-
-
-      <!-- ==================== FOOTER ==================== -->
+  <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="container footer__container">
 
@@ -123,5 +198,56 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const contactStatus = document.getElementById('contactStatus');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        contactStatus.className = '';
+        contactStatus.textContent = '';
+
+        const formData = new FormData(contactForm);
+        const data = {
+          firstName: formData.get('firstName'),
+          lastName: formData.get('lastName'),
+          email: formData.get('email'),
+          message: formData.get('message')
+        };
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            contactStatus.className = 'success';
+            contactStatus.textContent = result.message || 'Message sent successfully!';
+            contactForm.reset();
+          } else {
+            contactStatus.className = 'error';
+            contactStatus.textContent = result.message || 'Failed to send message.';
+          }
+        } catch (error) {
+          console.error('Error submitting contact form:', error);
+          contactStatus.className = 'error';
+          contactStatus.textContent = 'An error occurred. Please try again.';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      });
+    }
+  </script>
 </body>
 </html>

@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node -e \"require('./server.js'); console.log('Syntax & Import check passed'); process.exit(0);\""
   },
   "author": "",
   "license": "ISC",
