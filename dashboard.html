@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Tutorify - Admin Dashboard</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -31,29 +31,11 @@
         <li>
           <a href="#">
             <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-            <span class="title">Message</span>
+            <span class="title">Messages</span>
           </a>
         </li>
         <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="help-outline"></ion-icon></span>
-            <span class="title">Help</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-            <span class="title">Settings</span>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-            <span class="title">Password</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" onclick="logout()">
+          <a href="#" onclick="logout(); return false;">
             <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
             <span class="title">Logout</span>
           </a>
@@ -63,7 +45,7 @@
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
+        <div class="toggle" aria-label="Toggle navigation menu">
           <ion-icon name="menu-outline"></ion-icon>
         </div>
         <div class="search">
@@ -73,7 +55,7 @@
           </label>
         </div>
         <div class="user">
-          <img src="./images2/image.png" alt="User Profile" width="120" height="120">
+          <img src="./digitalmarketing.png" alt="User Profile" width="120" height="120" onerror="this.onerror=null;this.src='./digitalmarketing.png';">
         </div>
       </div>
 
@@ -81,7 +63,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-views">0</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,8 +72,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">0</div>
+            <div class="cardName">Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +81,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-messages">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,134 +90,62 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
+            <div class="numbers" id="stat-users">0</div>
+            <div class="cardName">Registered Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
           </div>
         </div>
       </div>
 
-      <!-- datails lists -->
-        <div class="details">
-          <div class="recentOrders">
-            <div class="cardHeader">
-              <h2>Recent Tutors</h2>
-              <a href="#" class="btn">View All</a>
-            </div>
-            <table>
+      <!-- details lists -->
+      <div class="details">
+        <div class="recentOrders">
+          <div class="cardHeader">
+            <h2>Recent Messages</h2>
+          </div>
+          <div class="table-responsive">
+            <table id="messagesTable">
               <thead>
                 <tr>
-                  <td>Tutor</td>
-                  <td>Course</td>
-                  <td>Payment</td>
+                  <td>Sender</td>
+                  <td>Message</td>
+                  <td>Date</td>
                   <td>Status</td>
                 </tr>
               </thead>
-
               <tbody>
                 <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
+                  <td colspan="4">Loading messages...</td>
                 </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
-
-          <!-- New Customers -->
-           <div class="recentCustomers">
-            <div class="cardHeader">
-              <h2>Recent Customers</h2>
-            </div>
-            <table>
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Gebre<br><span>Grade 12</span></h4>
-                </td>
-              </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
-              </tr>
-            </table>
-           </div>
-
         </div>
+
+        <!-- Registered Users -->
+        <div class="recentCustomers">
+          <div class="cardHeader">
+            <h2>Registered Users</h2>
+          </div>
+          <div class="table-responsive">
+            <table id="usersTable">
+              <thead>
+                <tr>
+                  <td>User</td>
+                  <td>Role</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="2">Loading users...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -243,11 +153,16 @@
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
   <script>
-    // Check authentication
+    // Authentication guard with null checks
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
+    const userJson = localStorage.getItem('user');
+    let user = null;
 
-    if (!token || !user || user.role !== 'admin') {
+    if (userJson) {
+      try { user = JSON.parse(userJson); } catch(e){}
+    }
+
+    if (!token || !user || (user && user.role !== 'admin')) {
       alert('Access denied. Please login as admin.');
       window.location.href = 'login.html';
     }
@@ -257,23 +172,7 @@
       localStorage.removeItem('user');
       window.location.href = 'login.html';
     }
-
-    let toggle = document.querySelector('.toggle');
-    let navigation = document.querySelector('.navigation');
-    let main = document.querySelector('.main');
-
-    toggle.onclick = function() {
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
-    }
   </script>
-  <script>
-    document.querySelectorAll('.navigation ul li').forEach(li => {
-      li.addEventListener('click', () => {
-        document.querySelectorAll('.navigation ul li').forEach(x => x.classList.remove('hovered'));
-        li.classList.add('hovered');
-      });
-    });
-  </script>
+  <script src="dashboard.js"></script>
 </body>
 </html>

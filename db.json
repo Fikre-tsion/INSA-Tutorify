@@ -6,6 +6,151 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Administrator",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$sBB12wTDMV4tL.pOn.Kh9.hjloTkvCWCEQErStMBx8sL5pSUxR3Yu",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "testuser@example.com",
+      "password": "$2a$10$k.HMHWjdRoYeCyJsCMFPxuIGT6CFK4.L4xNKqzBnoBNBKHgzVncLO",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and effective communication.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media, and content marketing.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Learn the fundamentals of self-confidence and success, including mindset and goal setting.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Learn how to create a responsive Netflix website clone using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Learn how to create a responsive Digital Newspaper website design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Learn the fundamentals of Logo and Graphic Designing, including design principles and typography.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 12,
+      "title": "Responsive Admin Dashboard UI Design Pro",
+      "description": "Advanced techniques for building scalable admin dashboard interfaces.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology, architecture, and smart contracts.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Learn how to create interactive and accessible forms connected to backend APIs.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Learn how to create high-converting responsive landing page designs.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Learn how to create a world-class portfolio website using modern web technologies.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashboard UI Design",
+      "description": "Master layout and UI patterns for modern business management web apps.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "description": "Design modern IoT and smart home control interfaces.",
+      "image": "./images/digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "alice@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-08-30T21:20:43.907Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "Testing contact form fullstack flow.",
+      "date": "2026-08-30T21:23:35.975Z"
+    }
+  ],
+  "stats": {
+    "views": 1508
+  }
 }

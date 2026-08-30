@@ -1,0 +1,3 @@
+## 2026-06-03 - Non-blocking In-Memory Caching & Queued Async Writes for File-backed DBs
+**Learning:** Synchronous file operations (`readFileSync` / `writeFileSync`) in Express route handlers block the Node.js single-threaded event loop, leading to severe latency spikes under concurrent requests. Reading directly from disk on every GET request creates an I/O bottleneck.
+**Action:** Use an in-memory database cache (`dbCache`) initialized on startup to serve read operations in sub-millisecond time. Combine with asynchronous `fs.promises.writeFile` and a write queue to batch/serialize disk writes off the main execution thread.
