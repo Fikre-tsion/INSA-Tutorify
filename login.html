@@ -65,6 +65,21 @@
     .hidden {
       display: none;
     }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    input:focus-visible, select:focus-visible, button:focus-visible, .toggle:focus-visible {
+      outline: 2px solid #6fffe9;
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
@@ -74,39 +89,46 @@
 
     <div id="loginForm">
       <div class="input-box">
+        <label for="loginEmail" class="sr-only">Email</label>
         <input type="email" id="loginEmail" placeholder="Email" required>
       </div>
       <div class="input-box">
+        <label for="loginPassword" class="sr-only">Password</label>
         <input type="password" id="loginPassword" placeholder="Password" required>
       </div>
       <div class="input-box">
+        <label for="loginRole" class="sr-only">Role</label>
         <select id="loginRole">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <div class="toggle" tabindex="0" role="button" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleForm()">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="input-box">
+        <label for="regName" class="sr-only">Full Name</label>
         <input type="text" id="regName" placeholder="Full Name" required>
       </div>
       <div class="input-box">
+        <label for="regEmail" class="sr-only">Email</label>
         <input type="email" id="regEmail" placeholder="Email" required>
       </div>
       <div class="input-box">
+        <label for="regPassword" class="sr-only">Password</label>
         <input type="password" id="regPassword" placeholder="Password" required>
       </div>
       <div class="input-box">
+        <label for="regRole" class="sr-only">Role</label>
         <select id="regRole">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <div class="toggle" tabindex="0" role="button" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleForm()">Already have an account? Login</div>
     </div>
   </div>
 
