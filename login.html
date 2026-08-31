@@ -61,6 +61,12 @@
       margin-top: 1rem;
       color: #aaa;
       cursor: pointer;
+      border-radius: 4px;
+      padding: 4px;
+    }
+    .toggle:focus-visible {
+      outline: 2px solid #5bc0be;
+      outline-offset: 2px;
     }
     .hidden {
       display: none;
@@ -86,7 +92,7 @@
         </select>
       </div>
       <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <div class="toggle" tabindex="0" role="button" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleForm(); }">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
@@ -106,7 +112,7 @@
         </select>
       </div>
       <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <div class="toggle" tabindex="0" role="button" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ') { event.preventDefault(); toggleForm(); }">Already have an account? Login</div>
     </div>
   </div>
 
