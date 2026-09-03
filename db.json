@@ -6,6 +6,55 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "System Admin",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$xjwAUGW.smKS3CAL.hKHM.aS2XRrMRjBOADoqDiCRYnSWMsamWoqe",
+      "role": "admin"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn SEO, social media marketing, email marketing, and content marketing.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology, including architecture and consensus mechanisms.",
+      "image": "./images/digitalmarketing.png"
+    }
+  ],
+  "messages": [],
+  "stats": {
+    "views": 3
+  }
 }
