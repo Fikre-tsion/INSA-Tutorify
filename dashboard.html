@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Admin Dashboard - Tutorify</title>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
@@ -63,17 +63,17 @@
 
     <div class="main">
       <div class="topbar">
-        <div class="toggle">
+        <div class="toggle" tabindex="0" role="button" aria-label="Toggle navigation menu">
           <ion-icon name="menu-outline"></ion-icon>
         </div>
         <div class="search">
           <label>
-            <input type="text" placeholder="Search here">
+            <input type="text" placeholder="Search here" aria-label="Search dashboard">
             <ion-icon name="search-outline"></ion-icon>
           </label>
         </div>
         <div class="user">
-          <img src="./images2/image.png" alt="User Profile" width="120" height="120">
+          <img src="./digitalmarketing.png" alt="User Profile" width="120" height="120" onerror="this.src='./digitalmarketing.png'">
         </div>
       </div>
 
@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="stat-views">1,504</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,8 +90,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="stat-courses">6</div>
+            <div class="cardName">Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="stat-messages">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,129 +108,53 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
+            <div class="numbers" id="stat-users">1</div>
+            <div class="cardName">Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="people-outline"></ion-icon>
           </div>
         </div>
       </div>
 
-      <!-- datails lists -->
+      <!-- Details lists -->
         <div class="details">
-          <div class="recentOrders">
+          <div class="recentOrders table-responsive">
             <div class="cardHeader">
-              <h2>Recent Tutors</h2>
+              <h2>Recent Messages</h2>
               <a href="#" class="btn">View All</a>
             </div>
             <table>
               <thead>
                 <tr>
-                  <td>Tutor</td>
-                  <td>Course</td>
-                  <td>Payment</td>
+                  <td>Sender</td>
+                  <td>Message</td>
+                  <td>Date</td>
                   <td>Status</td>
                 </tr>
               </thead>
 
               <tbody>
                 <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
+                  <td colspan="4">Loading messages...</td>
                 </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
 
           <!-- New Customers -->
-           <div class="recentCustomers">
+           <div class="recentCustomers table-responsive">
             <div class="cardHeader">
-              <h2>Recent Customers</h2>
+              <h2>Recent Users</h2>
             </div>
             <table>
               <tr>
                 <td width="60px">
-                  <div class="imgBx"><img src="./images2/2.jpg" alt="Customer"></div>
+                  <div class="imgBx"><img src="./digitalmarketing.png" alt="Customer" onerror="this.src='./digitalmarketing.png'"></div>
                 </td>
                 <td>
-                  <h4>Gebre<br><span>Grade 12</span></h4>
+                  <h4>System Admin<br><span>(admin)</span></h4>
                 </td>
-              </tr>
-
-              <tr>
-                <td width="60px">
-                  <div class="imgBx"><img src="./images2/1.jpg" alt="Customer"></div>
-                </td>
-                <td>
-                  <h4>Selam<br><span>Grade 11</span></h4>
-                </td>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/4.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Yonas<br><span>Grade 10</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/student.png" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Meron<br><span>Grade 9</span></h4>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td width="60px">
-                    <div class="imgBx"><img src="./images2/5.jpg" alt="Customer"></div>
-                  </td>
-                  <td>
-                    <h4>Daniel<br><span>Grade 12</span></h4>
-                  </td>
-                </tr>
               </tr>
             </table>
            </div>
@@ -262,9 +186,11 @@
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
 
-    toggle.onclick = function() {
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
+    if (toggle) {
+      toggle.onclick = function() {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+      };
     }
   </script>
   <script>
@@ -275,5 +201,7 @@
       });
     });
   </script>
+  <script src="./dashboard.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>
