@@ -6,6 +6,161 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$bSBCqBSA0WulIRO9zKs7ROra3mm0eoXxp99qDhcHDKBP/6eRx84TW",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "testuser_1788557526516@example.com",
+      "password": "$2a$10$LkMwBRTaQ8Zxu0oj.ElZE.eMRGJKrdw4dF0yocsjd6zL3ylMJrYau",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset and goal setting.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Master layout techniques and styling for responsive user interfaces.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn SEO, social media marketing, email marketing, and content strategy.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Learn self-confidence, communication skills, and personal growth strategies.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Build a responsive Netflix clone using HTML, CSS, and modern web techniques.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Design responsive news and article layouts with elegant typography.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Learn design principles, color theory, and typography fundamentals.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 12,
+      "title": "Advanced Dashboard UI Design",
+      "description": "Create complex data dashboards and data visualization layouts.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn blockchain fundamentals, smart contracts, and decentralized architectures.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Build functional forms with CSS layout, validation, and backend submission.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Create high-converting landing pages with modern styling techniques.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Build a personalized showcase portfolio website to highlight your work.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashboard UI Design",
+      "description": "Design business management web interfaces for desktop and mobile.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "description": "Design IoT smart home control dashboards and interactive components.",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Jane Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify!",
+      "date": "9/4/2026",
+      "status": "Delivered"
+    }
+  ],
+  "stats": {
+    "pageViews": 1508
+  }
 }
