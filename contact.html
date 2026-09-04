@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="./CSS/about.css">
  <link rel="stylesheet" href="./CSS/contact.css">
 
-
-
 </head>
 
 <body>
@@ -30,6 +28,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -58,22 +57,17 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
               <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
       </div>
   </section>
-
-
-
-
-
 
       <!-- ==================== FOOTER ==================== -->
   <footer>
@@ -122,6 +116,54 @@
       <small>&copy; 2025 <span>Tutorify Tutoring</span>. All Rights Reserved.</small>
     </div>
   </footer>
+
+  <script src="./main.js"></script>
+  <script>
+    // Auth UI logic
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user'));
+    const authLink = document.getElementById('auth-link');
+
+    if (token && user && authLink) {
+      authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.reload();
+    }
+
+    // Contact form submit logic
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName, lastName, email, message })
+          });
+          const data = await response.json();
+          if (response.ok) {
+            alert('Thank you! Your message has been sent successfully.');
+            contactForm.reset();
+          } else {
+            alert(data.message || 'Failed to send message.');
+          }
+        } catch (err) {
+          console.error('Error submitting contact form:', err);
+          alert('An error occurred. Please try again.');
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
