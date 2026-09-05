@@ -1,0 +1,3 @@
+## 2026-05-12 - Async File I/O and In-Memory Caching for Express API
+**Learning:** Synchronous JSON file reads (`readFileSync`/`writeFileSync`) block Node's single-threaded event loop on every incoming HTTP request, severely limiting throughput under concurrent traffic. Adding an in-memory cache (`dbCache`) alongside serialized async file writes (`fs.promises` + queue) eliminates I/O latency on read endpoints while keeping disk writes safe and non-blocking.
+**Action:** Always prefer async I/O with in-memory caching for JSON-file backends in Node.js/Express, ensuring promise write queues recover gracefully with `.catch()`.
