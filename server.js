@@ -1,38 +1,52 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = 'your_secret_key';
+const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
 const DB_FILE = path.join(__dirname, 'db.json');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-// Helper function to read database
-const readDB = () => {
-    if (!fs.existsSync(DB_FILE)) {
-        return { users: [] };
+// In-memory cache for fast async database access without blocking the event loop
+let dbCache = null;
+
+// Helper function to read database asynchronously with in-memory caching
+const readDB = async () => {
+    if (dbCache) {
+        return dbCache;
     }
-    const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data);
+    try {
+        const data = await fs.readFile(DB_FILE, 'utf8');
+        dbCache = JSON.parse(data);
+        if (!dbCache.users) dbCache.users = [];
+    } catch (err) {
+        dbCache = { users: [] };
+    }
+    return dbCache;
 };
 
-// Helper function to write to database
-const writeDB = (data) => {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+// Helper function to write to database asynchronously with queue error recovery
+let writeQueue = Promise.resolve();
+const writeDB = async (data) => {
+    dbCache = data;
+    writeQueue = writeQueue.catch(() => {}).then(async () => {
+        await fs.writeFile(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+    });
+    return writeQueue;
 };
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
     const { name, email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     if (db.users.find(u => u.email === email)) {
         return res.status(400).json({ message: 'User already exists' });
@@ -44,11 +58,11 @@ app.post('/api/register', async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role
+        role: role || 'user'
     };
 
     db.users.push(newUser);
-    writeDB(db);
+    await writeDB(db);
 
     res.status(201).json({ message: 'User registered successfully' });
 });
@@ -56,7 +70,7 @@ app.post('/api/register', async (req, res) => {
 // Login endpoint
 app.post('/api/login', async (req, res) => {
     const { email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     const user = db.users.find(u => u.email === email && u.role === role);
     if (!user) {
@@ -65,7 +79,6 @@ app.post('/api/login', async (req, res) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-        // Fallback for initial placeholder users if needed, but we'll re-register them or just use hashed passwords
         return res.status(400).json({ message: 'Invalid email, password or role' });
     }
 
@@ -73,6 +86,7 @@ app.post('/api/login', async (req, res) => {
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await readDB(); // Warm up cache on server launch
     console.log(`Server is running on http://localhost:${PORT}`);
 });
