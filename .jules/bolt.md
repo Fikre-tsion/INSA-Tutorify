@@ -1,0 +1,3 @@
+## 2026-06-03 - Express Event-Loop Non-Blocking I/O & In-Memory Caching
+**Learning:** Synchronous file system calls (`fs.readFileSync`, `fs.writeFileSync`) in Express route handlers completely block Node's single-threaded event loop, leading to high request latency and queue stall during concurrent requests. Combining `fs.promises` with an in-memory cache (`dbCache`) for reads and a Promise-chained write queue (`writeQueue`) with `.catch(() => {})` recovery eliminates disk I/O bottlenecks while preventing file corruption.
+**Action:** Always wrap JSON database backends with in-memory caching for reads and serialized async queues for writes to achieve maximum request throughput without blocking the event loop.
