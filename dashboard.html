@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div id="stat-views" class="numbers">1,504</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,7 +90,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
+            <div id="stat-tutorials" class="numbers">80</div>
             <div class="cardName">Tutorials</div>
           </div>
           <div class="iconBx">
@@ -99,7 +99,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
+            <div id="stat-comments" class="numbers">284</div>
             <div class="cardName">Comments</div>
           </div>
           <div class="iconBx">
@@ -108,7 +108,7 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
+            <div id="stat-earnings" class="numbers">7,842</div>
             <div class="cardName">Earnings</div>
           </div>
           <div class="iconBx">
@@ -242,12 +242,13 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
+  <script src="dashboard.js"></script>
   <script>
-    // Check authentication
+    // Check authentication with null-guard
     const token = localStorage.getItem('token');
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
 
-    if (!token || !user || user.role !== 'admin') {
+    if (!token || !user || (user && user.role !== 'admin')) {
       alert('Access denied. Please login as admin.');
       window.location.href = 'login.html';
     }
@@ -262,9 +263,11 @@
     let navigation = document.querySelector('.navigation');
     let main = document.querySelector('.main');
 
-    toggle.onclick = function() {
-      navigation.classList.toggle('active');
-      main.classList.toggle('active');
+    if (toggle) {
+      toggle.onclick = function() {
+        navigation.classList.toggle('active');
+        main.classList.toggle('active');
+      };
     }
   </script>
   <script>
