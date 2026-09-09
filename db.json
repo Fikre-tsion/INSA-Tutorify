@@ -6,6 +6,146 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "System Admin",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$8XyZzVm.xAVJ761lt2DXOuyH16hKrdbl7J5vpQvhoiA7jzZnv.WeC",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Integration Tester",
+      "email": "testuser_1788988197261@example.com",
+      "password": "$2a$10$OI.c8LFfi0WiDc9KRMVsE.RBWLCJBOk2/aZJsw55ibnazzz.l7QN.",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and communication.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn layout techniques, styling, and best practices for social interfaces.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn SEO, social media marketing, email marketing, and content marketing.",
+      "image": "./images/digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Build self-confidence, goal setting, and effective communication skills.",
+      "image": "./images/self.png"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Create a responsive Netflix website clone using HTML and CSS.",
+      "image": "./images/course9.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Design an interactive online newspaper layout with HTML and CSS.",
+      "image": "./images/course10.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Master design principles, color theory, and typography.",
+      "image": "./images/course11.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Responsive Admin Dashboard UI Design Pro",
+      "description": "Advanced dashboard UI components and charting design.",
+      "image": "./images/course12.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn blockchain architecture, smart contracts, and decentralized apps.",
+      "image": "./images/blockchain.png"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Create accessible and functional contact form components.",
+      "image": "./images/course14.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Create conversion-focused high quality landing page interfaces.",
+      "image": "./images/course15.jpg"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Build a modern developer or design portfolio website.",
+      "image": "./images/course16.jpg"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashboard UI Design",
+      "description": "Layouts for enterprise business analytics.",
+      "image": "./images/course17.jpg"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "description": "UI patterns for IoT and Smart Home mobile/web apps.",
+      "image": "./images/course18.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "janedoe@example.com",
+      "message": "I am interested in tutoring sessions.",
+      "createdAt": "2026-09-09T21:09:57.638Z"
+    }
+  ],
+  "stats": {
+    "views": 1511,
+    "tutorials": 80,
+    "comments": 285,
+    "earnings": 7842
+  }
 }
