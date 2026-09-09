@@ -74,39 +74,39 @@
 
     <div id="loginForm">
       <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="email" id="loginEmail" placeholder="Email" aria-label="Email address" required>
       </div>
       <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
+        <input type="password" id="loginPassword" placeholder="Password" aria-label="Password" required>
       </div>
       <div class="input-box">
-        <select id="loginRole">
+        <select id="loginRole" aria-label="Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <div class="toggle" role="button" tabindex="0" aria-label="Switch to registration form" onclick="toggleForm()" onkeydown="handleToggleKey(event)">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <input type="text" id="regName" placeholder="Full Name" aria-label="Full Name" required>
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="email" id="regEmail" placeholder="Email" aria-label="Email address" required>
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
+        <input type="password" id="regPassword" placeholder="Password" aria-label="Password" required>
       </div>
       <div class="input-box">
-        <select id="regRole">
+        <select id="regRole" aria-label="Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <div class="toggle" role="button" tabindex="0" aria-label="Switch to login form" onclick="toggleForm()" onkeydown="handleToggleKey(event)">Already have an account? Login</div>
     </div>
   </div>
 
@@ -119,6 +119,13 @@
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
+    }
+
+    function handleToggleKey(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleForm();
+      }
     }
 
     async function register() {
