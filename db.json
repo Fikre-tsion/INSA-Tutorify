@@ -6,6 +6,160 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$DdI3oi.dV4LCL7FaQ6sxHej4Lx5IrZE6LrK1P0wwNhYX.dU/OWgz.",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test_1789161070559@example.com",
+      "password": "$2a$10$TzAYg2cCNLsP0eGm47WKXuD/4AWnVpy5VmFScoT8g/fIXmTPdPWDW",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test User",
+      "email": "test_1789161109729@example.com",
+      "password": "$2a$10$pWwn/vmEeepK9NxLsxP/vujwh5ti.UVBbptT1MXvwGDIwGbzfN0Aq",
+      "role": "user"
+    }
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS. Covers layout techniques and best practices.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS layout techniques.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, mindset, goal setting, and effective communication.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn SEO, social media marketing, email marketing, and content marketing strategies.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 7,
+      "title": "How to be a confident and successful person",
+      "description": "Learn mindset, goal setting, and effective communication skills.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn blockchain fundamentals, smart contracts, and decentralized app concepts.",
+      "image": "./digitalmarketing.png"
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1789161070864,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify team!",
+      "date": "2026-09-11T21:11:10.864Z"
+    },
+    {
+      "id": 1789161110051,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify team!",
+      "date": "2026-09-11T21:11:50.051Z"
+    }
+  ],
+  "stats": {
+    "profileViews": 1507,
+    "tutorials": 80,
+    "comments": 284,
+    "earnings": 7842
+  },
+  "tutors": [
+    {
+      "name": "Haile",
+      "course": "Mathematics",
+      "payment": "ETB 450/hr",
+      "status": "delivered"
+    },
+    {
+      "name": "Fikre",
+      "course": "Physics",
+      "payment": "ETB 500/hr",
+      "status": "pending"
+    },
+    {
+      "name": "Tsion",
+      "course": "Chemistry",
+      "payment": "ETB 400/hr",
+      "status": "return"
+    },
+    {
+      "name": "Abebe",
+      "course": "Biology",
+      "payment": "ETB 350/hr",
+      "status": "inprogress"
+    },
+    {
+      "name": "Almaz",
+      "course": "English",
+      "payment": "ETB 300/hr",
+      "status": "delivered"
+    }
+  ],
+  "customers": [
+    {
+      "name": "Gebre",
+      "grade": "Grade 12",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "name": "Selam",
+      "grade": "Grade 11",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "name": "Yonas",
+      "grade": "Grade 10",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "name": "Meron",
+      "grade": "Grade 9",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "name": "Daniel",
+      "grade": "Grade 12",
+      "image": "./digitalmarketing.png"
     }
   ]
 }
