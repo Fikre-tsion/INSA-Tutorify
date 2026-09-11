@@ -36,7 +36,7 @@
     </nav>
 
 
-    /*==================== END OF NAV ====================*/
+    <!-- ==================== END OF NAV ==================== -->
 
 
     <header>
@@ -432,34 +432,21 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 <script src="./main.js"></script>
 <script>
-  // Auth display logic
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
-  const authLink = document.getElementById('auth-link');
-
-  if (token && user) {
-    authLink.innerHTML = `<a href="#" onclick="logout()">${user.name} (Logout)</a>`;
+  if (typeof Swiper !== 'undefined') {
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
   }
-
-  function logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.location.reload();
-  }
-
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      0: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 }
-    }
-  });
 </script>
 
 
