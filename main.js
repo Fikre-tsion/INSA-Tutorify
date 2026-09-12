@@ -1,7 +1,12 @@
-//changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+// Bolt ⚡ Optimization: Lazy-cache `nav` DOM element & use passive scroll listener
+// Avoids querying the DOM on every scroll frame (60-120fps) and allows non-blocking smooth scrolling.
+let navElement = null;
+window.addEventListener('scroll', () => {
+    if (!navElement) navElement = document.querySelector('nav');
+    if (navElement) {
+        navElement.classList.toggle('window-scroll', window.scrollY > 0);
+    }
+}, { passive: true });
 
 
 
