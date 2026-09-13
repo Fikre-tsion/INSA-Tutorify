@@ -1,0 +1,3 @@
+## 2026-05-12 - Synchronous JSON File DB I/O Bottleneck
+**Learning:** `server.js` was using synchronous file operations (`fs.readFileSync` and `fs.writeFileSync`) on every API request. Synchronous disk I/O blocks the Node.js single-threaded event loop, adding disk latency to every registration and login check and preventing concurrent request processing.
+**Action:** Implement an in-memory cache layer (`dbCache`) populated on startup, serve read requests zero-latency directly from RAM, and serialize background disk persistence with asynchronous non-blocking operations (`fs.promises.writeFile` with Promise chaining).

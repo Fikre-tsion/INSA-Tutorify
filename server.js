@@ -8,31 +8,59 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SECRET_KEY = 'your_secret_key';
+const SECRET_KEY = process.env.JWT_SECRET || 'your_secret_key';
 const DB_FILE = path.join(__dirname, 'db.json');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-// Helper function to read database
-const readDB = () => {
-    if (!fs.existsSync(DB_FILE)) {
-        return { users: [] };
+// Performance Optimization: In-memory DB cache and non-blocking asynchronous file operations.
+// Eliminates blocking `readFileSync` disk access on every API request.
+let dbCache = null;
+let writeQueue = Promise.resolve();
+
+/**
+ * Asynchronously reads the database into an in-memory cache.
+ * Subsequent reads serve directly from `dbCache` without blocking event loop disk I/O.
+ */
+const readDB = async () => {
+    if (dbCache) {
+        return dbCache;
     }
-    const data = fs.readFileSync(DB_FILE, 'utf8');
-    return JSON.parse(data);
+    try {
+        if (!fs.existsSync(DB_FILE)) {
+            dbCache = { users: [] };
+            return dbCache;
+        }
+        const data = await fs.promises.readFile(DB_FILE, 'utf8');
+        dbCache = JSON.parse(data);
+        if (!dbCache.users) dbCache.users = [];
+    } catch (err) {
+        console.error('Error reading DB_FILE:', err);
+        dbCache = { users: [] };
+    }
+    return dbCache;
 };
 
-// Helper function to write to database
-const writeDB = (data) => {
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+/**
+ * Asynchronously writes database data to disk using a serialized promise queue.
+ * Keeps memory cache updated instantly for zero-latency subsequent reads.
+ */
+const writeDB = async (data) => {
+    dbCache = data;
+    writeQueue = writeQueue.then(async () => {
+        await fs.promises.writeFile(DB_FILE, JSON.stringify(data, null, 2), 'utf8');
+    }).catch(err => {
+        console.error('Error in writeDB queue:', err);
+    });
+    return writeQueue;
 };
 
 // Register endpoint
 app.post('/api/register', async (req, res) => {
     const { name, email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     if (db.users.find(u => u.email === email)) {
         return res.status(400).json({ message: 'User already exists' });
@@ -44,11 +72,11 @@ app.post('/api/register', async (req, res) => {
         name,
         email,
         password: hashedPassword,
-        role
+        role: role || 'user'
     };
 
     db.users.push(newUser);
-    writeDB(db);
+    await writeDB(db);
 
     res.status(201).json({ message: 'User registered successfully' });
 });
@@ -56,7 +84,7 @@ app.post('/api/register', async (req, res) => {
 // Login endpoint
 app.post('/api/login', async (req, res) => {
     const { email, password, role } = req.body;
-    const db = readDB();
+    const db = await readDB();
 
     const user = db.users.find(u => u.email === email && u.role === role);
     if (!user) {
@@ -65,7 +93,6 @@ app.post('/api/login', async (req, res) => {
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-        // Fallback for initial placeholder users if needed, but we'll re-register them or just use hashed passwords
         return res.status(400).json({ message: 'Invalid email, password or role' });
     }
 
@@ -73,6 +100,11 @@ app.post('/api/login', async (req, res) => {
     res.json({ token, user: { name: user.name, email: user.email, role: user.role } });
 });
 
+// Warm up DB cache on startup
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    readDB().then(() => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
 });
+
+module.exports = app;
