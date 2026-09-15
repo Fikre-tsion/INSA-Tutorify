@@ -58,14 +58,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+              <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+              <button type="submit" class="btn btn-primary" id="sendBtn">Send Message</button>
+              <div id="contactStatus" style="margin-top: 1rem; font-weight: 500;"></div>
           </form>
       </div>
   </section>
@@ -123,5 +124,52 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const sendBtn = document.getElementById('sendBtn');
+        const contactStatus = document.getElementById('contactStatus');
+
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = 'Sending...'; }
+        if (contactStatus) { contactStatus.textContent = ''; }
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName, lastName, email, message })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            if (contactStatus) {
+              contactStatus.style.color = '#5bc0be';
+              contactStatus.textContent = data.message || 'Message sent successfully!';
+            }
+            contactForm.reset();
+          } else {
+            if (contactStatus) {
+              contactStatus.style.color = '#ff6b6b';
+              contactStatus.textContent = data.message || 'Failed to send message.';
+            }
+          }
+        } catch (err) {
+          if (contactStatus) {
+            contactStatus.style.color = '#ff6b6b';
+            contactStatus.textContent = 'An error occurred. Please try again.';
+          }
+        } finally {
+          if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = 'Send Message'; }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
