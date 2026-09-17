@@ -1,0 +1,3 @@
+## 2025-09-17 - Centralized Auth UI and Role-Based Navigation Access
+**Learning:** Hardcoding static links in header menus without dynamic ARIA states or auth sync can lead to inconsistent session feedback across multi-page static frontend applications. Providing accessible labels (`aria-label`) and accessible form toggles (`role="button"`, `tabindex="0"`) improves both screen reader compatibility and keyboard navigation flow.
+**Action:** Always maintain a single centralized `updateAuthUI()` function in core client scripts (`main.js`) targeting unique IDs (`#auth-link`) within primary navigation elements across all HTML templates.
