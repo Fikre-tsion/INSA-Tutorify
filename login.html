@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Login & Register - Tutorify</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
     * {
@@ -17,6 +17,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
     .container {
       background: #1c2541;
@@ -42,6 +43,10 @@
       background: #3a506b;
       color: #fff;
     }
+    .input-box input:focus-visible, .input-box select:focus-visible, button:focus-visible, .toggle:focus-visible {
+      outline: 2px solid #5bc0be;
+      outline-offset: 2px;
+    }
     button {
       width: 100%;
       padding: 10px;
@@ -53,17 +58,33 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    button:hover {
+    button:hover:not(:disabled) {
       background: #6fffe9;
+    }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
     .toggle {
       text-align: center;
       margin-top: 1rem;
       color: #aaa;
       cursor: pointer;
+      border-radius: 4px;
+      padding: 4px;
     }
     .hidden {
       display: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
   </style>
 </head>
@@ -74,39 +95,46 @@
 
     <div id="loginForm">
       <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
+        <label for="loginEmail" class="sr-only">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Email" required aria-label="Email Address">
       </div>
       <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
+        <label for="loginPassword" class="sr-only">Password</label>
+        <input type="password" id="loginPassword" placeholder="Password" required aria-label="Password">
       </div>
       <div class="input-box">
-        <select id="loginRole">
+        <label for="loginRole" class="sr-only">Select Role</label>
+        <select id="loginRole" aria-label="Select Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <button id="loginBtn" onclick="login()">Login</button>
+      <div class="toggle" tabindex="0" role="button" aria-label="Don't have an account? Register" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleForm()">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <label for="regName" class="sr-only">Full Name</label>
+        <input type="text" id="regName" placeholder="Full Name" required aria-label="Full Name">
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <label for="regEmail" class="sr-only">Email Address</label>
+        <input type="email" id="regEmail" placeholder="Email" required aria-label="Email Address">
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
+        <label for="regPassword" class="sr-only">Password</label>
+        <input type="password" id="regPassword" placeholder="Password" required aria-label="Password">
       </div>
       <div class="input-box">
-        <select id="regRole">
+        <label for="regRole" class="sr-only">Select Role</label>
+        <select id="regRole" aria-label="Select Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <button id="regBtn" onclick="register()">Register</button>
+      <div class="toggle" tabindex="0" role="button" aria-label="Already have an account? Login" onclick="toggleForm()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleForm()">Already have an account? Login</div>
     </div>
   </div>
 
@@ -114,6 +142,8 @@
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
+    const loginBtn = document.getElementById('loginBtn');
+    const regBtn = document.getElementById('regBtn');
 
     function toggleForm() {
       loginForm.classList.toggle('hidden');
@@ -132,6 +162,9 @@
         return;
       }
 
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
+
       try {
         const response = await fetch('/api/register', {
           method: 'POST',
@@ -148,6 +181,9 @@
       } catch (error) {
         console.error('Error during registration:', error);
         alert('An error occurred during registration.');
+      } finally {
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
@@ -155,6 +191,14 @@
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+
+      if (!email || !password) {
+        alert('Please fill in both email and password.');
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -166,7 +210,6 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
           if (role === 'admin') {
             window.location.href = 'dashboard.html';
           } else {
@@ -178,6 +221,9 @@
       } catch (error) {
         console.error('Error during login:', error);
         alert('An error occurred during login.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>
