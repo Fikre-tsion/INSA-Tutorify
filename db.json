@@ -6,6 +6,161 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 1,
+      "name": "System Admin",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$FW6ykANd.9JwuYfPWQsPR.rjqd4CNh2HwF7pfybI1.PLL.PGlhvZW",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test Student",
+      "email": "test_1789939356496@example.com",
+      "password": "$2a$10$oyuABU47L7uQ3iog.MjO9eHUMGbA2QnSQ/9A365OfdraOC5Vcm1YC",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test Student",
+      "email": "test_1789939386053@example.com",
+      "password": "$2a$10$dNeEaMsjo.WND5K1eVqsUOpxo59R9Pdto4vHdamdqcwQHiQCDEPn6",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, including mindset, goal setting, and effective communication.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn how to create a responsive social Media UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn the fundamentals of Digital Marketing, including SEO, social media, and email marketing.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Learn the fundamentals of self-confidence and success.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Learn how to create a responsive Netflix website clone using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Learn how to create a responsive Digital Newspaper website design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Learn the fundamentals of Logo and Graphic Designing, including design principles and typography.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 12,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Learn the fundamentals of Blockchain Technology, including architecture and DApps.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Learn how to create a responsive Contact Form design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Learn how to create a responsive Landing Page design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Learn how to create a world Class Portfolio Website using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business Manager Dashboard UI Design",
+      "description": "Learn how to create a responsive Business manager dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart Home Application UI Design",
+      "description": "Learn how to create a responsive Smart home Application UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Abebe Bikila",
+      "email": "abebe@example.com",
+      "message": "Inquiring about tutoring availability for Mathematics.",
+      "date": "2026-09-20",
+      "status": "Unread"
+    },
+    {
+      "id": 2,
+      "sender": "Abebe Bikila",
+      "email": "abebe@example.com",
+      "message": "Inquiring about tutoring availability for Mathematics.",
+      "date": "2026-09-20",
+      "status": "Unread"
+    }
+  ],
+  "stats": {
+    "profileViews": 1508,
+    "tutorials": 18,
+    "comments": 286,
+    "earnings": "ETB 7,842"
+  }
 }
