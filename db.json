@@ -1,11 +1,11 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "name": "Playwright User",
-      "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
-      "role": "user"
-    }
-  ]
+  "users": [],
+  "courses": [],
+  "messages": [],
+  "stats": {
+    "profileViews": 1504,
+    "tutorials": 18,
+    "comments": 284,
+    "earnings": 7842
+  }
 }
