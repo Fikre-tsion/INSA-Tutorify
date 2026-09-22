@@ -15,7 +15,19 @@
   <link rel="stylesheet" href="./CSS/about.css">
  <link rel="stylesheet" href="./CSS/contact.css">
 
-
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
 
 </head>
 
@@ -58,13 +70,18 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <label for="firstName" class="sr-only">First Name</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                  <label for="lastName" class="sr-only">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
+              <label for="contactEmail" class="sr-only">Email Address</label>
+              <input type="email" id="contactEmail" name="email" placeholder="Your Email Address" required>
+              <label for="contactMessage" class="sr-only">Message</label>
+              <textarea id="contactMessage" name="message" rows="7" placeholder="Message" required></textarea>
+              <div id="formStatus" style="margin-bottom: 1rem; display: none;"></div>
               <button type="submit" class="btn btn-primary">Send Message</button>
           </form>
       </div>
@@ -123,5 +140,48 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const responseData = await res.json();
+          if (res.ok) {
+            formStatus.style.display = 'block';
+            formStatus.style.color = '#5bc0be';
+            formStatus.textContent = responseData.message || 'Thank you! Your message has been sent.';
+            contactForm.reset();
+          } else {
+            formStatus.style.display = 'block';
+            formStatus.style.color = '#ff6b6b';
+            formStatus.textContent = responseData.message || 'Failed to send message.';
+          }
+        } catch (err) {
+          formStatus.style.display = 'block';
+          formStatus.style.color = '#ff6b6b';
+          formStatus.textContent = 'An error occurred while sending message.';
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
