@@ -61,9 +61,37 @@
       margin-top: 1rem;
       color: #aaa;
       cursor: pointer;
+      display: inline-block;
+      width: 100%;
+      border-radius: 4px;
+      padding: 4px 0;
+    }
+    .toggle:focus-visible {
+      outline: 2px solid #5bc0be;
+      color: #fff;
     }
     .hidden {
       display: none;
+    }
+    .status-msg {
+      margin-bottom: 1rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+    .status-msg.error {
+      background: #ff4d4d22;
+      color: #ff6b6b;
+      border: 1px solid #ff4d4d66;
+      display: block;
+    }
+    .status-msg.success {
+      background: #5bc0be22;
+      color: #6fffe9;
+      border: 1px solid #5bc0be66;
+      display: block;
     }
   </style>
 </head>
@@ -71,42 +99,43 @@
 
   <div class="container">
     <h2 id="formTitle">Login</h2>
+    <div id="authStatus" class="status-msg" aria-live="polite"></div>
 
     <div id="loginForm">
       <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="email" id="loginEmail" placeholder="Email" aria-label="Email Address" required>
       </div>
       <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
+        <input type="password" id="loginPassword" placeholder="Password" aria-label="Password" required>
       </div>
       <div class="input-box">
-        <select id="loginRole">
+        <select id="loginRole" aria-label="Select Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <div class="toggle" role="button" tabindex="0" onclick="toggleForm()" onkeydown="handleToggleKey(event)">Don't have an account? Register</div>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <input type="text" id="regName" placeholder="Full Name" aria-label="Full Name" required>
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <input type="email" id="regEmail" placeholder="Email" aria-label="Email Address" required>
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
+        <input type="password" id="regPassword" placeholder="Password" aria-label="Password" required>
       </div>
       <div class="input-box">
-        <select id="regRole">
+        <select id="regRole" aria-label="Select Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
       <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <div class="toggle" role="button" tabindex="0" onclick="toggleForm()" onkeydown="handleToggleKey(event)">Already have an account? Login</div>
     </div>
   </div>
 
@@ -115,20 +144,41 @@
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
 
+    const authStatus = document.getElementById('authStatus');
+
+    function showStatus(message, isError = false) {
+      authStatus.textContent = message;
+      authStatus.className = `status-msg ${isError ? 'error' : 'success'}`;
+    }
+
+    function clearStatus() {
+      authStatus.textContent = '';
+      authStatus.className = 'status-msg';
+    }
+
+    function handleToggleKey(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleForm();
+      }
+    }
+
     function toggleForm() {
+      clearStatus();
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
     async function register() {
+      clearStatus();
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
 
       if (!name || !email || !password) {
-        alert('Please fill in all fields.');
+        showStatus('Please fill in all required fields.', true);
         return;
       }
 
@@ -140,21 +190,27 @@
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          showStatus('Registration successful! You can now log in.');
+          setTimeout(() => toggleForm(), 1200);
         } else {
-          alert(data.message || 'Registration failed');
+          showStatus(data.message || 'Registration failed', true);
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        showStatus('An error occurred during registration.', true);
       }
     }
 
     async function login() {
+      clearStatus();
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+
+      if (!email || !password) {
+        showStatus('Please enter both email and password.', true);
+        return;
+      }
 
       try {
         const response = await fetch('/api/login', {
@@ -166,18 +222,20 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          showStatus(`Welcome ${data.user.name}! Redirecting...`);
+          setTimeout(() => {
+            if (role === 'admin') {
+              window.location.href = 'dashboard.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 800);
         } else {
-          alert(data.message || 'Login failed');
+          showStatus(data.message || 'Login failed', true);
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        showStatus('An error occurred during login.', true);
       }
     }
   </script>
