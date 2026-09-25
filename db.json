@@ -6,6 +6,185 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$QR/A0BbcIGEdKGcsMGbiyO8mIKlJC7h6hI4uICS4EcG5UVQsUgOF2",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test1790370412965@example.com",
+      "password": "$2a$10$HzkG93GvP1z.jbu8fzYNS.t.BD4NFhIMgQcC12dK8TMEwVcAC0p9q",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test User",
+      "email": "test1790370438802@example.com",
+      "password": "$2a$10$lplpPXVB1m19jeaL16XQo.8Ugxc3HEQCGZVUKI2/OsDqEqSFkvsMW",
+      "role": "user"
+    },
+    {
+      "id": 5,
+      "name": "Test User",
+      "email": "test1790370581858@example.com",
+      "password": "$2a$10$mMrHaWKEI5rGJpmPOLxfw.G9X/UglxRe0jjaOck.XkWQ42PZl6aH.",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "JavaScript Fundamentals for Beginners",
+      "description": "Master modern ES6+ JavaScript core concepts, variables, functions, and async programming.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "Fullstack Web Development BootCamp",
+      "description": "Build fullstack Node.js, Express, and HTML/CSS web applications from scratch.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "UI/UX Design Masterclass",
+      "description": "Design intuitive and beautiful user interfaces with user-centered design principles.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 7,
+      "title": "Python Programming Essentials",
+      "description": "Learn Python programming language fundamentals and object-oriented practices.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "Data Structures and Algorithms",
+      "description": "Understand key data structures and algorithmic thinking to ace technical interviews.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 9,
+      "title": "Mobile App Development with React Native",
+      "description": "Build cross-platform mobile iOS and Android applications using React Native.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 10,
+      "title": "Cybersecurity Principles & Practices",
+      "description": "Understand ethical hacking, network defense, threat analysis, and safe digital practices.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 11,
+      "title": "Digital Marketing & Social Media Strategy",
+      "description": "Scale brand visibility, conversion, and organic marketing strategies effectively.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 12,
+      "title": "Database Design & SQL Optimization",
+      "description": "Learn relational database modeling, SQL queries, indexing, and data management.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 13,
+      "title": "Cloud Computing Essentials (AWS)",
+      "description": "Deploy, manage, and scale server infrastructure on Amazon Web Services cloud.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 14,
+      "title": "Artificial Intelligence & Machine Learning",
+      "description": "Discover machine learning algorithms, models, neural networks, and Python libraries.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 15,
+      "title": "DevOps & Docker Containerization",
+      "description": "Automate CI/CD deployment pipelines, Docker container management, and cloud workflows.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 16,
+      "title": "Financial Intelligence for Entrepreneurs",
+      "description": "Master budgeting, cash flow management, valuation, and financial growth metrics.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 17,
+      "title": "Graphic Design Fundamentals & Photoshop",
+      "description": "Master visual design composition, color theory, typography, and graphic tools.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 18,
+      "title": "Blockchain Fundamentals & Smart Contracts",
+      "description": "Learn blockchain architecture, decentralized app development, and Web3 technology.",
+      "image": "./digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify team!",
+      "date": "2026-09-25T21:06:53.250Z",
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify team!",
+      "date": "2026-09-25T21:07:19.081Z",
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "alice@example.com",
+      "message": "I would like to inquire about fullstack tutoring options.",
+      "date": "2026-09-25T21:08:40.046Z",
+      "status": "Pending"
+    },
+    {
+      "id": 4,
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify team!",
+      "date": "2026-09-25T21:09:42.126Z",
+      "status": "Pending"
+    }
+  ],
+  "stats": {
+    "views": 5
+  }
 }
