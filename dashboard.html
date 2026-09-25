@@ -81,7 +81,7 @@
       <div class="cardBox">
         <div class="card">
           <div>
-            <div class="numbers">1,504</div>
+            <div class="numbers" id="num-views">1,504</div>
             <div class="cardName">Profile Views</div>
           </div>
           <div class="iconBx">
@@ -90,8 +90,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Tutorials</div>
+            <div class="numbers" id="num-courses">6</div>
+            <div class="cardName">Tutorials & Courses</div>
           </div>
           <div class="iconBx">
             <ion-icon name="school-outline"></ion-icon>
@@ -99,8 +99,8 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">284</div>
-            <div class="cardName">Comments</div>
+            <div class="numbers" id="num-messages">0</div>
+            <div class="cardName">Messages</div>
           </div>
           <div class="iconBx">
             <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -108,11 +108,11 @@
         </div>
         <div class="card">
           <div>
-            <div class="numbers">7,842</div>
-            <div class="cardName">Earnings</div>
+            <div class="numbers" id="num-users">1</div>
+            <div class="cardName">Registered Users</div>
           </div>
           <div class="iconBx">
-            <ion-icon name="cash-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
           </div>
         </div>
       </div>
@@ -121,63 +121,23 @@
         <div class="details">
           <div class="recentOrders">
             <div class="cardHeader">
-              <h2>Recent Tutors</h2>
+              <h2>Recent Contact Messages</h2>
               <a href="#" class="btn">View All</a>
             </div>
             <table>
               <thead>
                 <tr>
-                  <td>Tutor</td>
-                  <td>Course</td>
-                  <td>Payment</td>
+                  <td>Sender</td>
+                  <td>Message</td>
+                  <td>Date</td>
                   <td>Status</td>
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody id="messages-table-body">
                 <tr>
-                  <td>Haile</td>
-                  <td>Mathematics</td>
-                  <td>ETB 450/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
+                  <td colspan="4" style="text-align:center;">Loading messages...</td>
                 </tr>
-                <tr>
-                  <td>Fikre</td>
-                  <td>Physics</td>
-                  <td>ETB 500/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Tsion</td>
-                  <td>Chemistry</td>
-                  <td>ETB 400/hr</td>
-                  <td><span class="status return">Return</span></td>
-                </tr>
-                <tr>
-                  <td>Abebe</td>
-                  <td>Biology</td>
-                  <td>ETB 350/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-                <tr>
-                  <td>Almaz</td>
-                  <td>English</td>
-                  <td>ETB 300/hr</td>
-                  <td><span class="status delivered">Delivered</span></td>
-                </tr>
-                <tr>
-                  <td>Samson</td>
-                  <td>History</td>
-                  <td>ETB 250/hr</td>
-                  <td><span class="status pending">Pending</span></td>
-                </tr>
-                <tr>
-                  <td>Mengistu</td>
-                  <td>Geography</td>
-                  <td>ETB 200/hr</td>
-                  <td><span class="status inprogress">In Progress</span></td>
-                </tr>
-
               </tbody>
             </table>
           </div>
@@ -239,6 +199,7 @@
     </div>
   </div>
 
+  <script src="dashboard.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 

@@ -6,6 +6,122 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$Vh.TaKHfiazTFl4BOSzuxu0KtfBneQyz7LioJmQhmUD3LDHvHAch2",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test Student",
+      "email": "student@example.com",
+      "password": "$2a$10$gvoLzAnYnzcUm8SBj2SJGuDFLatxOp0nwV7mGTS2nNPABwzhJXOC6",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test Student",
+      "email": "student_1790371782489@example.com",
+      "password": "$2a$10$LYpdr0lI4GLwsVNOsr8gTOngamS2nwxCFFclSZ/fn4F20e.cOMjxC",
+      "role": "user"
+    },
+    {
+      "id": 5,
+      "name": "Test Student",
+      "email": "student_1790371815003@example.com",
+      "password": "$2a$10$VE0s3ORuacBaZBGNovbxx.r7SzLi/r7YbX5qEtYQ0lGRt5QMdfFs.",
+      "role": "user"
+    },
+    {
+      "id": 6,
+      "name": "Test Student",
+      "email": "student_1790371989565@example.com",
+      "password": "$2a$10$HQtKxR7I35QQSk8Xp.ltbeNTQ3Pg0Io4nteLqLyjopbe6mvfLJGVO",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "category": "Graphic Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS. Covers layout techniques and styling.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "category": "Web Development",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS. Covers layout techniques and responsive design.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "category": "Web Development",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML, CSS, and JavaScript.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Blockchain & Smart Contract Basics",
+      "category": "Blockchain",
+      "description": "Master blockchain fundamentals, Solidity smart contracts, and decentralized app development.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "Python Programming Masterclass",
+      "category": "Programming",
+      "description": "Comprehensive guide to Python from basic syntax to object-oriented programming and data handling.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Financial Literacy & Digital Marketing",
+      "category": "Finance and Marketing",
+      "description": "Learn essential budgeting, marketing analytics, and investment strategies for personal and business growth.",
+      "image": "./digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 4,
+      "sender": "Alex Mercer",
+      "email": "alex@example.com",
+      "message": "Hello, I have a question about the courses.",
+      "date": "2026-09-25",
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "sender": "Alex Mercer",
+      "email": "alex@example.com",
+      "message": "Hello, I have a question about the courses.",
+      "date": "2026-09-25",
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "sender": "Alex Mercer",
+      "email": "alex@example.com",
+      "message": "Hello, I have a question about the courses.",
+      "date": "2026-09-25",
+      "status": "Pending"
+    },
+    {
+      "id": 1,
+      "sender": "Alex Mercer",
+      "email": "alex@example.com",
+      "message": "Hello, I have a question about the courses.",
+      "date": "2026-09-25",
+      "status": "Pending"
+    }
+  ],
+  "stats": {
+    "views": 1509
+  }
 }
