@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Login & Register - Tutorify</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
     * {
@@ -16,14 +16,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
     }
     .container {
       background: #1c2541;
       padding: 2rem;
       border-radius: 15px;
-      width: 350px;
-      box-shadow: 0 0 10px #3a506b;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 0 15px #3a506b;
     }
     h2 {
       text-align: center;
@@ -35,35 +38,79 @@
     }
     .input-box input, .input-box select {
       width: 100%;
-      padding: 10px;
-      border: none;
+      padding: 12px;
+      border: 1px solid transparent;
       border-radius: 8px;
       outline: none;
       background: #3a506b;
       color: #fff;
+      font-size: 0.95rem;
+    }
+    .input-box input:focus-visible, .input-box select:focus-visible {
+      border-color: #5bc0be;
     }
     button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background: #5bc0be;
       border: none;
       border-radius: 8px;
       color: #0b132b;
       font-weight: bold;
+      font-size: 1rem;
       cursor: pointer;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
-    button:hover {
+    button:hover:not(:disabled) {
       background: #6fffe9;
+    }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
     .toggle {
       text-align: center;
       margin-top: 1rem;
       color: #aaa;
       cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .toggle:hover, .toggle:focus {
+      color: #5bc0be;
+      outline: none;
+    }
+    .status-msg {
+      padding: 10px;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+    .status-msg.error {
+      background: rgba(231, 76, 60, 0.2);
+      color: #e74c3c;
+      border: 1px solid #e74c3c;
+      display: block;
+    }
+    .status-msg.success {
+      background: rgba(46, 204, 113, 0.2);
+      color: #2ecc71;
+      border: 1px solid #2ecc71;
+      display: block;
     }
     .hidden {
       display: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
     }
   </style>
 </head>
@@ -72,65 +119,99 @@
   <div class="container">
     <h2 id="formTitle">Login</h2>
 
-    <div id="loginForm">
-      <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
-      </div>
-      <div class="input-box">
-        <select id="loginRole">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
-      <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
-    </div>
+    <div id="authStatus" class="status-msg" aria-live="polite"></div>
 
-    <div id="registerForm" class="hidden">
+    <form id="loginForm" onsubmit="event.preventDefault(); login();">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <label for="loginEmail" class="sr-only">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Email Address" aria-label="Email Address" required>
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <label for="loginPassword" class="sr-only">Password</label>
+        <input type="password" id="loginPassword" placeholder="Password" aria-label="Password" required>
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
-      </div>
-      <div class="input-box">
-        <select id="regRole">
+        <label for="loginRole" class="sr-only">Select Role</label>
+        <select id="loginRole" aria-label="Select Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
-    </div>
+      <button type="submit" id="loginBtn">Login</button>
+      <div class="toggle" tabindex="0" role="button" onclick="toggleForm()" onkeydown="handleToggleKey(event)">Don't have an account? Register</div>
+    </form>
+
+    <form id="registerForm" class="hidden" onsubmit="event.preventDefault(); register();">
+      <div class="input-box">
+        <label for="regName" class="sr-only">Full Name</label>
+        <input type="text" id="regName" placeholder="Full Name" aria-label="Full Name" required>
+      </div>
+      <div class="input-box">
+        <label for="regEmail" class="sr-only">Email Address</label>
+        <input type="email" id="regEmail" placeholder="Email Address" aria-label="Email Address" required>
+      </div>
+      <div class="input-box">
+        <label for="regPassword" class="sr-only">Password</label>
+        <input type="password" id="regPassword" placeholder="Password" aria-label="Password" required>
+      </div>
+      <div class="input-box">
+        <label for="regRole" class="sr-only">Role</label>
+        <select id="regRole" aria-label="Select Role">
+          <option value="user">User</option>
+          <option value="admin">Admin (Request)</option>
+        </select>
+      </div>
+      <button type="submit" id="regBtn">Register</button>
+      <div class="toggle" tabindex="0" role="button" onclick="toggleForm()" onkeydown="handleToggleKey(event)">Already have an account? Login</div>
+    </form>
   </div>
 
   <script>
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
+    const authStatus = document.getElementById('authStatus');
+
+    function showStatus(msg, isSuccess = false) {
+      authStatus.textContent = msg;
+      authStatus.className = `status-msg ${isSuccess ? 'success' : 'error'}`;
+    }
+
+    function clearStatus() {
+      authStatus.style.display = 'none';
+      authStatus.textContent = '';
+      authStatus.className = 'status-msg';
+    }
 
     function toggleForm() {
+      clearStatus();
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
+    function handleToggleKey(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleForm();
+      }
+    }
+
     async function register() {
+      clearStatus();
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
       const role = document.getElementById('regRole').value;
 
       if (!name || !email || !password) {
-        alert('Please fill in all fields.');
+        showStatus('Please fill in all fields.');
         return;
       }
+
+      const regBtn = document.getElementById('regBtn');
+      regBtn.disabled = true;
+      regBtn.textContent = 'Registering...';
 
       try {
         const response = await fetch('/api/register', {
@@ -140,21 +221,31 @@
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          showStatus('Registration successful! You can now log in.', true);
+          setTimeout(() => {
+            toggleForm();
+          }, 1200);
         } else {
-          alert(data.message || 'Registration failed');
+          showStatus(data.message || 'Registration failed.');
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        showStatus('An error occurred during registration.');
+      } finally {
+        regBtn.disabled = false;
+        regBtn.textContent = 'Register';
       }
     }
 
     async function login() {
+      clearStatus();
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+
+      const loginBtn = document.getElementById('loginBtn');
+      loginBtn.disabled = true;
+      loginBtn.textContent = 'Logging in...';
 
       try {
         const response = await fetch('/api/login', {
@@ -166,18 +257,23 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          showStatus(`Welcome ${data.user.name}! Redirecting...`, true);
+          setTimeout(() => {
+            if (role === 'admin') {
+              window.location.href = 'dashboard.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 800);
         } else {
-          alert(data.message || 'Login failed');
+          showStatus(data.message || 'Login failed.');
         }
       } catch (error) {
         console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        showStatus('An error occurred during login.');
+      } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
       }
     }
   </script>

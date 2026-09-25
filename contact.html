@@ -30,6 +30,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
       <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
       <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
@@ -58,14 +59,19 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
+              <div id="contactStatus" style="display:none; padding: 10px; margin-bottom: 15px; border-radius: 6px;" aria-live="polite"></div>
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <label for="firstName" class="sr-only">First Name</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" aria-label="First Name" required>
+                  <label for="lastName" class="sr-only">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Last Name" aria-label="Last Name" required>
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <label for="email" class="sr-only">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" aria-label="Your Email Address" required>
+              <label for="message" class="sr-only">Message</label>
+              <textarea id="message" name="message" rows="7" placeholder="Message" aria-label="Message" required></textarea>
+              <button type="submit" id="submitContactBtn" class="btn btn-primary">Send Message</button>
           </form>
       </div>
   </section>
@@ -123,5 +129,58 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+    const submitBtn = document.getElementById('submitContactBtn');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      contactStatus.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const formData = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        message: document.getElementById('message').value.trim()
+      };
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          contactStatus.style.display = 'block';
+          contactStatus.style.background = 'rgba(46, 204, 113, 0.2)';
+          contactStatus.style.color = '#2ecc71';
+          contactStatus.style.border = '1px solid #2ecc71';
+          contactStatus.textContent = 'Thank you! Your message has been sent successfully.';
+          contactForm.reset();
+        } else {
+          contactStatus.style.display = 'block';
+          contactStatus.style.background = 'rgba(231, 76, 60, 0.2)';
+          contactStatus.style.color = '#e74c3c';
+          contactStatus.style.border = '1px solid #e74c3c';
+          contactStatus.textContent = result.message || 'Failed to send message.';
+        }
+      } catch (err) {
+        contactStatus.style.display = 'block';
+        contactStatus.style.background = 'rgba(231, 76, 60, 0.2)';
+        contactStatus.style.color = '#e74c3c';
+        contactStatus.style.border = '1px solid #e74c3c';
+        contactStatus.textContent = 'An error occurred. Please try again later.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+      }
+    });
+  </script>
 </body>
 </html>
