@@ -4,8 +4,81 @@
       "id": 1,
       "name": "Playwright User",
       "email": "pw@example.com",
-      "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
+      "password": "$2a$10$VMn37SH.c.L7lvgMredVZepcVCbaIjXu/z3fxiM5gFJGsKPoKqLim",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "$2a$10$VMn37SH.c.L7lvgMredVZepcVCbaIjXu/z3fxiM5gFJGsKPoKqLim",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test_1790457359463@example.com",
+      "password": "$2a$10$jshx3hZWzsYd8.oX4.5IOO35iiSe6Mjd8e9vV/ZTgHS45HyxrNvuq",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test User",
+      "email": "test_1790457397524@example.com",
+      "password": "$2a$10$OxL5sHZPhe.i5lwXA7vVK.tatFEEXwa7bl36eggOypNxUPoerzM/u",
       "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 3,
+      "sender": "Test Sender",
+      "email": "test@example.com",
+      "message": "Hello world",
+      "date": "2026-09-26",
+      "status": "Unread"
+    },
+    {
+      "id": 2,
+      "sender": "Test Sender",
+      "email": "test@example.com",
+      "message": "Hello world",
+      "date": "2026-09-26",
+      "status": "Unread"
+    },
+    {
+      "id": 1,
+      "sender": "John Doe",
+      "email": "john@example.com",
+      "message": "Inquiry about web dev course duration.",
+      "date": "2026-05-30",
+      "status": "Unread"
+    }
+  ],
+  "stats": {
+    "views": 1508,
+    "tutorials": 80,
+    "comments": 284,
+    "earnings": 7842
+  }
 }
