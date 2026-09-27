@@ -6,6 +6,133 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 1,
+      "name": "System Admin",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$kRlybG/f6C8EE5jyO/7ageKJedcgtx7sXp5hpnh.SAmdut2tobypK",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test Student",
+      "email": "student_1790543258076@example.com",
+      "password": "$2a$10$uho49OKSi.E9XFL08pvzm.F2Clk.grq4apfe.BygVmUG46st2gJgS",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test Student",
+      "email": "student_1790543425195@example.com",
+      "password": "$2a$10$LUaoqCCAXISL8u3yAtIUU.oW/HSPQ/h0xCQwluC6.HayDpTp/hvQ2",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "category": "Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png",
+      "price": "ETB 450"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "category": "Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./digitalmarketing.png",
+      "price": "ETB 500"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "category": "Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png",
+      "price": "ETB 400"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "category": "Personal Development",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./digitalmarketing.png",
+      "price": "ETB 350"
+    },
+    {
+      "id": 5,
+      "title": "Fundamentals of Digital Marketing",
+      "category": "Marketing",
+      "description": "Learn SEO, social media marketing, email marketing, and content marketing fundamentals.",
+      "image": "./digitalmarketing.png",
+      "price": "ETB 400"
+    },
+    {
+      "id": 6,
+      "title": "Introduction to Blockchain Technology",
+      "category": "Technology",
+      "description": "Learn the fundamentals of Blockchain Technology, smart contracts, and real-world applications.",
+      "image": "./digitalmarketing.png",
+      "price": "ETB 600"
+    },
+    {
+      "id": 7,
+      "title": "Automated Test Course",
+      "category": "Testing",
+      "description": "Integration test course description",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    },
+    {
+      "id": 8,
+      "title": "Automated Test Course",
+      "category": "Testing",
+      "description": "Integration test course description",
+      "image": "./digitalmarketing.png",
+      "price": "Free"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "firstName": "Gebre",
+      "lastName": "Alemu",
+      "email": "gebre@example.com",
+      "message": "Interested in Grade 12 math tutoring sessions.",
+      "date": "2026-09-27T21:04:33.998Z"
+    },
+    {
+      "id": 2,
+      "firstName": "Selam",
+      "lastName": "Haile",
+      "email": "selam@example.com",
+      "message": "Could you provide details on the physics course schedule?",
+      "date": "2026-09-27T21:04:33.998Z"
+    },
+    {
+      "id": 3,
+      "firstName": "Tester",
+      "lastName": "Automated",
+      "email": "tester@example.com",
+      "message": "Hello from automated API test suite!",
+      "date": "2026-09-27T21:07:38.465Z"
+    },
+    {
+      "id": 4,
+      "firstName": "Tester",
+      "lastName": "Automated",
+      "email": "tester@example.com",
+      "message": "Hello from automated API test suite!",
+      "date": "2026-09-27T21:10:25.583Z"
+    }
+  ],
+  "stats": {
+    "pageViews": 1508,
+    "tutorialsCount": 18,
+    "commentsCount": 284,
+    "earnings": 7842
+  }
 }

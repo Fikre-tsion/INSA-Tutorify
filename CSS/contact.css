@@ -1,0 +1,92 @@
+/* contact.css */
+.contact {
+  background: #2e3856;
+  padding: 4rem 0;
+  margin-top: 6rem;
+  border-radius: 1rem;
+}
+
+.contact__container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 4rem;
+  background: #1f2641;
+  padding: 3rem;
+  border-radius: 1rem;
+}
+
+.contact__aside {
+  background: #f75842;
+  padding: 3rem;
+  border-radius: 1rem;
+  position: relative;
+  bottom: 0;
+}
+
+.aside__image {
+  width: 12rem;
+  margin-bottom: 2rem;
+}
+
+.contact__aside h2 {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.contact__aside p {
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.contact__details li {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact__socials {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.contact__socials a {
+  background: #1f2641;
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  transition: all 400ms ease;
+}
+
+.contact__socials a:hover {
+  background: transparent;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-right: 2rem;
+}
+
+.form__name {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.contact__form input[type="text"],
+.contact__form input[type="email"],
+.contact__form textarea {
+  width: 100%;
+  padding: 1rem;
+  background: #2e3856;
+  color: #fff;
+  border-radius: 0.5rem;
+}
+
+.contact__form button {
+  width: max-content;
+  cursor: pointer;
+}
