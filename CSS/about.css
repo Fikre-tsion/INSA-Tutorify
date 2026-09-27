@@ -1,0 +1,61 @@
+/* about.css */
+.about__achievements {
+  margin-top: 6rem;
+}
+.about__achievements-container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 5rem;
+}
+.achievements__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.achievement__card {
+  background: #2e3856;
+  padding: 1.6rem;
+  border-radius: 1rem;
+  text-align: center;
+  transition: all 400ms ease;
+}
+.achievement__card:hover {
+  background: #424e74;
+  box-shadow: 0 3rem 3rem rgba(0,0,0,0.3);
+}
+.team {
+  background: #2e3856;
+  box-shadow: inset 0 0 3rem rgba(0,0,0,0.5);
+  margin-top: 6rem;
+  padding: 4rem 0;
+}
+.team h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.team__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.team__member {
+  background: #1f2641;
+  padding: 2rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  transition: all 400ms ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.team__member:hover {
+  background: transparent;
+  border-color: #f75842;
+}
+.team__member-image img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+}
