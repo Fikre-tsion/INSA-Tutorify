@@ -1,7 +1,14 @@
-//changing navbar style when scrolling
-window.addEventListener('scroll',()=>{
-    document.querySelector('nav').classList.toggle('window-scroll',window.scrollY>0);
-});
+// Performance optimization: Cache nav element reference lazily to avoid repeated DOM query overhead per scroll frame,
+// and use { passive: true } listener option to prevent blocking scroll thread rendering.
+let cachedNav = null;
+window.addEventListener('scroll', () => {
+    if (!cachedNav) {
+        cachedNav = document.querySelector('nav');
+    }
+    if (cachedNav) {
+        cachedNav.classList.toggle('window-scroll', window.scrollY > 0);
+    }
+}, { passive: true });
 
 
 
