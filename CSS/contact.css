@@ -1,0 +1,87 @@
+/* CONTACT PAGE STYLES */
+.contact__container {
+  background: var(--color-bg1, #2e3856);
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  gap: 4rem;
+  border-radius: 1rem;
+}
+
+.contact__aside {
+  background: var(--color-primary, #6c63ff);
+  padding: 3rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aside__image {
+  width: 12rem;
+  margin-bottom: 2rem;
+}
+
+.contact__aside h2 {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.contact__aside p {
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.contact__details li {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.contact__socials {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.contact__socials a {
+  background: var(--color-bg2, #424890);
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  font-size: 1.1rem;
+  transition: var(--transition, all 400ms ease);
+}
+
+.contact__socials a:hover {
+  background: transparent;
+}
+
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-right: 4rem;
+}
+
+.form__name {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.contact__form input[type="text"],
+.contact__form input[type="email"],
+.contact__form textarea {
+  width: 100%;
+  padding: 1rem;
+  background: var(--color-bg, #1f2641);
+  color: var(--color-white, #fff);
+  border-radius: 0.5rem;
+  border: none;
+  font-family: inherit;
+}
+
+.contact__form input:focus-visible,
+.contact__form textarea:focus-visible {
+  outline: 2px solid var(--color-primary, #6c63ff);
+}
