@@ -6,6 +6,20 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Test User",
+      "email": "test_1790630800109@example.com",
+      "password": "$2a$10$mOXSj2NmcN4qgZ9wuJuSJuqcz0Tk0CcswDfuOXQvlribAdh2w.yvO",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test_1790630818082@example.com",
+      "password": "$2a$10$5Lm.sGrFSOd63bwx7qX1guR8Uqp8sCEeaDZ1ObP/386g4KLUxdfL.",
+      "role": "user"
     }
   ]
 }
