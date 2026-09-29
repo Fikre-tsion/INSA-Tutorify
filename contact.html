@@ -58,14 +58,15 @@
               </ul>
           </aside>
   
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
+          <form id="contactForm" class="contact__form">
+              <div id="contactStatus" aria-live="polite" style="margin-bottom: 1rem; font-weight: bold;"></div>
               <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
+                  <input type="text" id="firstName" name="firstName" placeholder="First Name" required aria-label="First Name">
+                  <input type="text" id="lastName" name="lastName"  placeholder="Last Name" aria-label="Last Name">
               </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
+              <input type="email" id="email" name="email" placeholder="Your Email Address" required aria-label="Your Email Address">
+              <textarea id="message" name="message" rows="7" placeholder="Message" required aria-label="Message"></textarea>
+              <button type="submit" id="contactSubmitBtn" class="btn btn-primary">Send Message</button>
           </form>
       </div>
   </section>
@@ -123,5 +124,55 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+    const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!firstName || !email || !message) {
+          contactStatus.style.color = '#ff4d4d';
+          contactStatus.textContent = 'Please fill in all required fields.';
+          return;
+        }
+
+        contactSubmitBtn.disabled = true;
+        contactSubmitBtn.textContent = 'Sending...';
+        contactStatus.style.color = '#5bc0be';
+        contactStatus.textContent = 'Sending your message...';
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName, lastName, email, message })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            contactStatus.style.color = '#00ff88';
+            contactStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            contactForm.reset();
+          } else {
+            contactStatus.style.color = '#ff4d4d';
+            contactStatus.textContent = data.message || 'Failed to send message.';
+          }
+        } catch (err) {
+          contactStatus.style.color = '#ff4d4d';
+          contactStatus.textContent = 'An error occurred. Please try again.';
+        } finally {
+          contactSubmitBtn.disabled = false;
+          contactSubmitBtn.textContent = 'Send Message';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
