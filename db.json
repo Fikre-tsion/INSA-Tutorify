@@ -6,6 +6,95 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "System Admin",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$iTLA6WSK3b4Co3WCHxWhGO/s/1ad6n.vJ6zOu5T3VFdQRsr1PE9Oq",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test_1790716017070@example.com",
+      "password": "$2a$10$70ApNzrLpe6LfGvq3k4WUepMTh/6Xsbx5nkUwrT2KmDzY39Maar1e",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test User",
+      "email": "test_1790716050829@example.com",
+      "password": "$2a$10$yGtB1kiZIWUnvLCcn6oYHOAEPcJVeIJUwqw2rgbnWLhBDo3mATV6u",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "category": "Web Development",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "category": "Web Development",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "category": "Web Development",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 4,
+      "title": "Blockchain Fundamentals",
+      "category": "Blockchain",
+      "description": "Master smart contracts, dApps, and decentralized technologies.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 5,
+      "title": "Python Programming Masterclass",
+      "category": "Programming",
+      "description": "Learn Python from scratch with hands-on projects and data structures.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 6,
+      "title": "Digital Marketing & SEO Strategy",
+      "category": "Marketing",
+      "description": "Boost brand presence and optimize search rankings effectively.",
+      "image": "./digitalmarketing.png"
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Jane Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-09-29",
+      "status": "Unread"
+    },
+    {
+      "id": 2,
+      "sender": "Jane Doe",
+      "email": "jane@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-09-29",
+      "status": "Unread"
+    }
+  ],
+  "stats": {
+    "profileViews": 1506,
+    "tutorials": 18,
+    "comments": 284,
+    "earnings": 7842
+  }
 }

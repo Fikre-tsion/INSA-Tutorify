@@ -13,10 +13,7 @@
   
   <link rel="stylesheet" href="./CSS/style.css">
   <link rel="stylesheet" href="./CSS/about.css">
- <link rel="stylesheet" href="./CSS/contact.css">
-
-
-
+  <link rel="stylesheet" href="./CSS/contact.css">
 </head>
 
 <body>
@@ -30,52 +27,53 @@
         <li><a href="about.html">About</a></li>
         <li><a href="courses.html">Courses</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
       </ul>
-      <button id="open-menu-btn"><i class="uil uil-bars"></i></button>
-      <button id="close-menu-btn"><i class="uil uil-multiply"></i></button>
+      <button id="open-menu-btn" aria-label="Open Menu"><i class="uil uil-bars"></i></button>
+      <button id="close-menu-btn" aria-label="Close Menu"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
-    <!-- ==================== END OF NAVBAR ==================== -->
+  <!-- ==================== END OF NAVBAR ==================== -->
 
-    <section class="contact">
-      <div class="container contact__container">
-          <aside class="contact__aside">  
-              <div class="aside__image">
-                  <img src="./images/contact.svg" alt="Contact Image">
-              </div>
-              <h2>Contact Us</h2>
-              <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
-              <ul class="contact__details">
-                  <li><i class="uil uil-phone-times"></i><h5>+251966418467 / +251928505904</h5></li>
-                  <li><i class="uil uil-envelope"></i><h5>tutorifytutoring@gmail.com</h5></li>
-                  <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
-              </ul>
-              <ul class="contact__socials">  
-                  <li><a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a></li>
-                  <li><a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a></li>
-                  <li><a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a></li>
-                  <li><a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a></li>
-              </ul>
-          </aside>
-  
-          <form action="https://formspree.io/f/xdkwldrz" method="POST" class="contact__form"> 
-              <div class="form__name">
-                  <input type="text" name="firstName" placeholder="First Name" required>
-                  <input type="text" name="lastName"  placeholder="Last Name" required>
-              </div>
-              <input type="email" name="email" placeholder="Your Email Address" required>
-              <textarea name="message" rows="7" placeholder="Message" required></textarea>
-              <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
-      </div>
+  <section class="contact">
+    <div class="container contact__container">
+        <aside class="contact__aside">
+            <div class="aside__image">
+                <img src="./digitalmarketing.png" alt="Contact Image" loading="lazy">
+            </div>
+            <h2>Contact Us</h2>
+            <p>We are here to assist you. Please reach out to us with any questions or inquiries you may have. We look forward to hearing from you!</p>
+            <ul class="contact__details">
+                <li><i class="uil uil-phone-times"></i><h5>+251966418467 / +251928505904</h5></li>
+                <li><i class="uil uil-envelope"></i><h5>tutorifytutoring@gmail.com</h5></li>
+                <li><i class="uil uil-location-point"></i><h5>AddisAbaba, Ethiopia</h5></li>
+            </ul>
+            <ul class="contact__socials">
+                <li><a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a></li>
+                <li><a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a></li>
+                <li><a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a></li>
+                <li><a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a></li>
+            </ul>
+        </aside>
+
+        <form id="contactForm" class="contact__form">
+            <div id="contactStatus" style="display:none; padding: 1rem; margin-bottom: 1rem; border-radius: 0.5rem;" aria-live="polite"></div>
+            <div class="form__name">
+                <label for="firstName" class="sr-only" style="display:none;">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                <label for="lastName" class="sr-only" style="display:none;">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+            </div>
+            <label for="email" class="sr-only" style="display:none;">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+            <label for="message" class="sr-only" style="display:none;">Message</label>
+            <textarea id="message" name="message" rows="7" placeholder="Message" required></textarea>
+            <button type="submit" id="contactSubmitBtn" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
   </section>
 
-
-
-
-
-
-      <!-- ==================== FOOTER ==================== -->
+  <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="container footer__container">
 
@@ -110,10 +108,10 @@
           <p>tutorifytutoring@gmail.com</p>
         </div>
         <div class="footer__socials">
-          <a href="https://linkedin.com/Tutorify" target="_blank"><i class="uil uil-linkedin"></i></a>
-          <a href="https://facebook.com/TutorifyTutoring" target="_blank"><i class="uil uil-facebook-f"></i></a>
-          <a href="https://twitter.com/TutorifyTutoring" target="_blank"><i class="uil uil-twitter"></i></a>
-          <a href="https://instagram.com/TutorifyTutoring" target="_blank"><i class="uil uil-instagram"></i></a>
+          <a href="https://linkedin.com/Tutorify" target="_blank" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
+          <a href="https://facebook.com/TutorifyTutoring" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+          <a href="https://twitter.com/TutorifyTutoring" target="_blank" aria-label="Twitter"><i class="uil uil-twitter"></i></a>
+          <a href="https://instagram.com/TutorifyTutoring" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -123,5 +121,56 @@
     </div>
   </footer>
 
+  <script src="./main.js"></script>
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+    const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        contactSubmitBtn.disabled = true;
+        contactSubmitBtn.textContent = 'Sending...';
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName, lastName, email, message })
+          });
+          const data = await response.json();
+
+          contactStatus.style.display = 'block';
+          if (response.ok) {
+            contactStatus.style.backgroundColor = 'rgba(0, 191, 142, 0.2)';
+            contactStatus.style.color = '#00bf8e';
+            contactStatus.style.border = '1px solid #00bf8e';
+            contactStatus.textContent = 'Thank you! Your message has been sent successfully.';
+            contactForm.reset();
+          } else {
+            contactStatus.style.backgroundColor = 'rgba(247, 88, 66, 0.2)';
+            contactStatus.style.color = '#f75842';
+            contactStatus.style.border = '1px solid #f75842';
+            contactStatus.textContent = data.message || 'Failed to send message. Please try again.';
+          }
+        } catch (err) {
+          contactStatus.style.display = 'block';
+          contactStatus.style.backgroundColor = 'rgba(247, 88, 66, 0.2)';
+          contactStatus.style.color = '#f75842';
+          contactStatus.style.border = '1px solid #f75842';
+          contactStatus.textContent = 'An error occurred. Please try again later.';
+        } finally {
+          contactSubmitBtn.disabled = false;
+          contactSubmitBtn.textContent = 'Send Message';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
