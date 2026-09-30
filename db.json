@@ -6,6 +6,159 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "System Admin",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$EV0ml5yWQifQkisu7ingieGH3JVMwcP5wVBp6/LW5WX1GxI2EqLZu",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Integration Test User",
+      "email": "testuser_1790803442759@example.com",
+      "password": "$2a$10$Ll7kR/98CV3VxpWkCaqHFuxsghaqUkQsNkr.eYUazzh47Q6Csq14a",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Integration Test User",
+      "email": "testuser_1790803470470@example.com",
+      "password": "$2a$10$fnRmM7C7yiZILkPa6UlIzuoFChbsojuZB8YhLLnf1XTFGFW47usbC",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn how to create a responsive social media website UI design using HTML and CSS.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Learn how to create a responsive SmartHome website design using HTML and CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Learn how to create a responsive Admin Dashboard UI design using HTML and CSS.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be focused and productive",
+      "description": "Learn the fundamentals of productivity and focus, including time management and goal setting.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to use every opportunity to be successful",
+      "description": "Learn the fundamentals of success, mindset, goal setting, and effective communication.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive social Media UI design",
+      "description": "Learn layout techniques, styling, and best practices for social media UIs.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "Learn SEO, social media marketing, email marketing, and content marketing.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to be a confident and successful person",
+      "description": "Enhance your personal and professional confidence through structured learning.",
+      "image": "./images/self.png"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Learn how to build a responsive Netflix UI clone using modern web techniques.",
+      "image": "./images/course9.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Master responsive grid layouts and editorial article styling.",
+      "image": "./images/course10.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Discover design principles, color theory, and typography basics.",
+      "image": "./images/course11.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Responsive Admin Dashboard UI Design (Advanced)",
+      "description": "Build scalable administrative user interfaces with interactive tables.",
+      "image": "./images/course12.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Understand blockchain architecture, smart contracts, and decentralized systems.",
+      "image": "./images/blockchain.png"
+    },
+    {
+      "id": 14,
+      "title": "Fully functioning Contact Form Design",
+      "description": "Build interactive, accessible, and responsive user contact forms.",
+      "image": "./images/course14.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design",
+      "description": "Create high-converting landing pages using HTML5 and CSS3.",
+      "image": "./images/course15.jpg"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website development",
+      "description": "Design and deploy showcase personal portfolios to stand out.",
+      "image": "./images/course16.jpg"
+    },
+    {
+      "id": 17,
+      "title": "Responsive Business manager dashboard UI Design",
+      "description": "Master business analytics views and responsive chart containers.",
+      "image": "./images/course17.jpg"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart home Application UI Design",
+      "description": "Design smart home controller widgets and IoT mobile-first layouts.",
+      "image": "./images/course18.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 2,
+      "senderName": "Test Sender",
+      "email": "sender@example.com",
+      "message": "Hello Tutorify team!",
+      "createdAt": "2026-09-30T21:24:30.829Z"
+    },
+    {
+      "id": 1,
+      "senderName": "Test Sender",
+      "email": "sender@example.com",
+      "message": "Hello Tutorify team!",
+      "createdAt": "2026-09-30T21:24:03.107Z"
+    }
+  ],
+  "stats": {
+    "views": 1515,
+    "tutorials": 80,
+    "comments": 284,
+    "earnings": 7842
+  }
 }
