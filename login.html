@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login & Register</title>
+  <title>Tutorify - Login & Register</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <style>
     * {
@@ -16,31 +16,62 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      margin: 0;
     }
     .container {
       background: #1c2541;
       padding: 2rem;
       border-radius: 15px;
-      width: 350px;
-      box-shadow: 0 0 10px #3a506b;
+      width: 380px;
+      box-shadow: 0 0 15px rgba(58, 80, 107, 0.5);
     }
     h2 {
       text-align: center;
       margin-bottom: 1rem;
       color: #5bc0be;
     }
+    .status-msg {
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none;
+    }
+    .status-msg.success {
+      background: rgba(76, 209, 55, 0.2);
+      border: 1px solid #4cd137;
+      color: #4cd137;
+      display: block;
+    }
+    .status-msg.error {
+      background: rgba(247, 88, 66, 0.2);
+      border: 1px solid #f75842;
+      color: #f75842;
+      display: block;
+    }
     .input-box {
       margin-bottom: 1rem;
+    }
+    .input-box label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: #aaa;
     }
     .input-box input, .input-box select {
       width: 100%;
       padding: 10px;
-      border: none;
+      border: 1px solid #3a506b;
       border-radius: 8px;
       outline: none;
       background: #3a506b;
       color: #fff;
+    }
+    .input-box input:focus-visible, .input-box select:focus-visible, button:focus-visible, .toggle:focus-visible {
+      outline: 2px solid #5bc0be;
+      outline-offset: 2px;
     }
     button {
       width: 100%;
@@ -61,9 +92,26 @@
       margin-top: 1rem;
       color: #aaa;
       cursor: pointer;
+      font-size: 0.9rem;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    .toggle:hover {
+      color: #5bc0be;
     }
     .hidden {
       display: none;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
   </style>
 </head>
@@ -72,41 +120,54 @@
   <div class="container">
     <h2 id="formTitle">Login</h2>
 
+    <div id="authStatus" aria-live="polite" class="status-msg"></div>
+
     <div id="loginForm">
       <div class="input-box">
-        <input type="email" id="loginEmail" placeholder="Email" required>
+        <label for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="Email Address" required aria-label="Email Address">
       </div>
       <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="Password" required aria-label="Password">
       </div>
       <div class="input-box">
-        <select id="loginRole">
+        <label for="loginRole">Account Role</label>
+        <select id="loginRole" aria-label="Account Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="login()">Login</button>
-      <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+      <button type="button" id="loginBtn" onclick="login()">Login</button>
+      <div class="toggle" tabindex="0" role="button" id="switchToReg" onclick="toggleForm()">
+        Don't have an account? Register
+      </div>
     </div>
 
     <div id="registerForm" class="hidden">
       <div class="input-box">
-        <input type="text" id="regName" placeholder="Full Name" required>
+        <label for="regName">Full Name</label>
+        <input type="text" id="regName" placeholder="Full Name" required aria-label="Full Name">
       </div>
       <div class="input-box">
-        <input type="email" id="regEmail" placeholder="Email" required>
+        <label for="regEmail">Email Address</label>
+        <input type="email" id="regEmail" placeholder="Email Address" required aria-label="Email Address">
       </div>
       <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" placeholder="Password" required aria-label="Password">
       </div>
       <div class="input-box">
-        <select id="regRole">
+        <label for="regRole">Account Role</label>
+        <select id="regRole" aria-label="Account Role">
           <option value="user">User</option>
           <option value="admin">Admin</option>
         </select>
       </div>
-      <button onclick="register()">Register</button>
-      <div class="toggle" onclick="toggleForm()">Already have an account? Login</div>
+      <button type="button" id="regBtn" onclick="register()">Register</button>
+      <div class="toggle" tabindex="0" role="button" id="switchToLogin" onclick="toggleForm()">
+        Already have an account? Login
+      </div>
     </div>
   </div>
 
@@ -114,21 +175,43 @@
     const loginForm = document.getElementById('loginForm');
     const registerForm = document.getElementById('registerForm');
     const formTitle = document.getElementById('formTitle');
+    const authStatus = document.getElementById('authStatus');
+
+    function showStatus(msg, isSuccess = false) {
+      authStatus.textContent = msg;
+      authStatus.className = `status-msg ${isSuccess ? 'success' : 'error'}`;
+    }
+
+    function clearStatus() {
+      authStatus.textContent = '';
+      authStatus.className = 'status-msg';
+    }
 
     function toggleForm() {
+      clearStatus();
       loginForm.classList.toggle('hidden');
       registerForm.classList.toggle('hidden');
       formTitle.textContent = loginForm.classList.contains('hidden') ? 'Register' : 'Login';
     }
 
+    // Keyboard support for form toggles
+    document.querySelectorAll('.toggle').forEach(element => {
+      element.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleForm();
+        }
+      });
+    });
+
     async function register() {
+      clearStatus();
       const name = document.getElementById('regName').value.trim();
       const email = document.getElementById('regEmail').value.trim();
       const password = document.getElementById('regPassword').value.trim();
-      const role = document.getElementById('regRole').value;
 
       if (!name || !email || !password) {
-        alert('Please fill in all fields.');
+        showStatus('Please fill in all required fields.');
         return;
       }
 
@@ -136,25 +219,30 @@
         const response = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, password, role })
+          body: JSON.stringify({ name, email, password, role: 'user' })
         });
         const data = await response.json();
         if (response.ok) {
-          alert('Registration successful! You can now log in.');
-          toggleForm();
+          showStatus('Registration successful! Please log in.', true);
+          setTimeout(() => toggleForm(), 1200);
         } else {
-          alert(data.message || 'Registration failed');
+          showStatus(data.message || 'Registration failed');
         }
       } catch (error) {
-        console.error('Error during registration:', error);
-        alert('An error occurred during registration.');
+        showStatus('An error occurred during registration. Please try again.');
       }
     }
 
     async function login() {
+      clearStatus();
       const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value.trim();
       const role = document.getElementById('loginRole').value;
+
+      if (!email || !password) {
+        showStatus('Please enter your email and password.');
+        return;
+      }
 
       try {
         const response = await fetch('/api/login', {
@@ -166,18 +254,19 @@
         if (response.ok) {
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          alert(`Welcome ${data.user.name}!`);
-          if (role === 'admin') {
-            window.location.href = 'dashboard.html';
-          } else {
-            window.location.href = 'index.html';
-          }
+          showStatus(`Welcome, ${data.user.name}! Redirecting...`, true);
+          setTimeout(() => {
+            if (role === 'admin') {
+              window.location.href = 'dashboard.html';
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 800);
         } else {
-          alert(data.message || 'Login failed');
+          showStatus(data.message || 'Invalid email or password.');
         }
       } catch (error) {
-        console.error('Error during login:', error);
-        alert('An error occurred during login.');
+        showStatus('An error occurred during login.');
       }
     }
   </script>
