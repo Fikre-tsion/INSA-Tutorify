@@ -6,6 +6,159 @@
       "email": "pw@example.com",
       "password": "$2a$10$RBFMt3HkuEKajmLrozwULu.5335GEMTQxlyy2y8wephJbfv7EycLC",
       "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Admin User",
+      "email": "admin@tutorify.com",
+      "password": "$2a$10$VhXpAu65wnOGC6J1a4cPQOf5jgh4xPMvU7v8DUVnVZ1.gR5RigWnO",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "user_1790890454780@example.com",
+      "password": "$2a$10$Kxaot9g9dtKK1RbfwKaLlebgLMNJAW.CqltYv3pkYUIDrQITlpKZi",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Test User",
+      "email": "user_1790890522405@example.com",
+      "password": "$2a$10$FW3jodkckcpw2FfWbm5ffeXvJH4WyKFJXJjx6n88NApEY.dP7kUyW",
+      "role": "user"
     }
-  ]
+  ],
+  "courses": [
+    {
+      "id": 1,
+      "title": "Responsive Social Media Website UI Design",
+      "description": "Learn layout techniques and styling for social media interfaces.",
+      "image": "./images/course1.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Responsive SmartHome Website Design",
+      "description": "Build modern smart home web applications with HTML & CSS.",
+      "image": "./images/course2.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Responsive Admin Dashboard UI Design",
+      "description": "Design responsive dashboards with interactive charts and tables.",
+      "image": "./images/course3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Be Focused and Productive",
+      "description": "Fundamentals of focus, goal setting, and time management.",
+      "image": "./images/course4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "How to Use Every Opportunity to Be Successful",
+      "description": "Mindset shifts and strategic habits for career growth.",
+      "image": "./images/course5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Responsive Social Media UI Design Advanced",
+      "description": "Deep dive into dynamic web components and micro-interactions.",
+      "image": "./images/course6.jpg"
+    },
+    {
+      "id": 7,
+      "title": "Fundamentals of Digital Marketing",
+      "description": "SEO, social media strategies, email campaigns, and content growth.",
+      "image": "./digitalmarketing.png"
+    },
+    {
+      "id": 8,
+      "title": "How to Be a Confident and Successful Person",
+      "description": "Public speaking, self-confidence, and effective communication.",
+      "image": "./images/self.png"
+    },
+    {
+      "id": 9,
+      "title": "Cloning Netflix Website",
+      "description": "Replicate Netflix interface using advanced CSS grid and flexbox.",
+      "image": "./images/course9.jpg"
+    },
+    {
+      "id": 10,
+      "title": "Digital Newspaper Website Design",
+      "description": "Multi-column editorial layouts and responsive article styling.",
+      "image": "./images/course10.jpg"
+    },
+    {
+      "id": 11,
+      "title": "Logo and Graphic Designing",
+      "description": "Master design principles, vector graphics, and color theory.",
+      "image": "./images/course11.jpg"
+    },
+    {
+      "id": 12,
+      "title": "Business Manager Dashboard UI Design",
+      "description": "Build scalable management interfaces for enterprise clients.",
+      "image": "./images/course12.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Introduction to Blockchain Technology",
+      "description": "Architecture, smart contracts, and decentralized application basics.",
+      "image": "./images/blockchain.png"
+    },
+    {
+      "id": 14,
+      "title": "Fully Functioning Contact Form Design",
+      "description": "Form validation, accessibility features, and server integration.",
+      "image": "./images/course14.jpg"
+    },
+    {
+      "id": 15,
+      "title": "Landing Page Design for Startups",
+      "description": "High-converting landing page layouts and typography secrets.",
+      "image": "./images/course15.jpg"
+    },
+    {
+      "id": 16,
+      "title": "World Class Portfolio Website Development",
+      "description": "Showcase your work with slick animations and responsive design.",
+      "image": "./images/course16.jpg"
+    },
+    {
+      "id": 17,
+      "title": "E-Commerce Storefront UI Design",
+      "description": "Product grids, shopping cart interfaces, and checkout flow UX.",
+      "image": "./images/course17.jpg"
+    },
+    {
+      "id": 18,
+      "title": "Responsive Smart Home Application UI",
+      "description": "IoT device controls and dark mode dashboard layouts.",
+      "image": "./images/course18.jpg"
+    }
+  ],
+  "messages": [
+    {
+      "id": 2,
+      "sender": "Integration Tester",
+      "email": "tester@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-10-01",
+      "status": "Pending"
+    },
+    {
+      "id": 1,
+      "sender": "Integration Tester",
+      "email": "tester@example.com",
+      "message": "Hello Tutorify!",
+      "date": "2026-10-01",
+      "status": "Pending"
+    }
+  ],
+  "stats": {
+    "viewsCount": 4,
+    "messagesCount": 2
+  }
 }
