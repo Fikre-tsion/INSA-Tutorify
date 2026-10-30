@@ -97,6 +97,7 @@
                 <article class="course glass-card shadow-sm">
                     <div class="course__image video-thumbnail">
                         <img src="${course.thumbnailUrl || course.image}" class="img-fluid" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';">
+                        ${course.youtubeId ? '<span class="video-play" aria-hidden="true">▶</span>' : ''}
                         ${course.youtubeId ? '<span class="video-badge"><i class="uil uil-youtube"></i> Curated video</span>' : ''}
                     </div>
                     <div class="p-4">

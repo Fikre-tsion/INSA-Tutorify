@@ -320,6 +320,18 @@ main { position: relative; z-index: 1; }
     background: rgba(205, 32, 31, .92); color: #fff;
     border-radius: 999px; padding: .35rem .65rem; font-size: .72rem;
 }
+.video-play {
+    position: absolute; left: 50%; top: 50%;
+    display: grid; place-items: center;
+    width: 3.4rem; height: 3.4rem;
+    transform: translate(-50%, -50%);
+    border-radius: 50%; background: #e62117; color: #fff;
+    font-size: 1.25rem; padding-left: .15rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    transition: var(--transition);
+}
+.video-thumbnail:hover .video-play { transform: translate(-50%, -50%) scale(1.12); }
+.video-thumbnail { display: block; text-decoration: none; }
 .video-frame {
     position: relative; width: 100%; aspect-ratio: 16 / 9;
     overflow: hidden; border-radius: 1rem; background: #050812;
