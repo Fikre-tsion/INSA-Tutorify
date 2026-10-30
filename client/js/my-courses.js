@@ -1,4 +1,6 @@
 async function loadMyCourses() {
+    if (!localStorage.getItem('token')) return;
+
     try {
         const courses = await api.fetch('/api/courses/my-courses');
         const container = document.querySelector('.courses__container') || document.getElementById('my-courses-grid');
@@ -27,7 +29,7 @@ async function loadMyCourses() {
             article.className = 'course';
             article.innerHTML = `
                 <div class="course__image">
-                    <img src="${course.image}" alt="${course.title}">
+                    <img src="${course.image}" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';">
                 </div>
                 <div class="course__info">
                     <h4>${course.title}</h4>

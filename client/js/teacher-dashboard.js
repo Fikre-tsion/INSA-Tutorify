@@ -8,7 +8,7 @@ async function loadTeacherCourses() {
             <tr class="course-row">
                 <td class="ps-4">
                     <div class="d-flex align-items-center gap-3">
-                        <img src="${course.image}" class="rounded shadow-sm" style="width: 120px; height: 68px; object-fit: cover;">
+                        <img src="${course.image}" class="rounded shadow-sm" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';" style="width: 120px; height: 68px; object-fit: cover;">
                         <div>
                             <div class="fw-bold text-white mb-1">${course.title}</div>
                             <div class="text-muted small">${course.category}</div>

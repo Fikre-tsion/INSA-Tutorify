@@ -146,6 +146,15 @@ faqs.forEach(faq => {
 const menu = document.querySelector(".nav__menu");
 const menuBtn = document.querySelector("#open-menu-btn");
 const closeBtn = document.querySelector("#close-menu-btn");
+const bootstrapMenu = document.querySelector("#navbarNav");
+const bootstrapMenuBtn = document.querySelector(".navbar-toggler");
+
+if (bootstrapMenuBtn && bootstrapMenu) {
+    bootstrapMenuBtn.addEventListener('click', () => {
+        const isOpen = bootstrapMenu.classList.toggle('show');
+        bootstrapMenuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+}
 
 if (menuBtn) {
     menuBtn.addEventListener('click', () => {

@@ -95,7 +95,7 @@
         container.innerHTML = courses.map(course => `
             <div class="col-md-6 col-lg-4">
                 <article class="course glass-card shadow-sm">
-                    <div class="course__image"><img src="${course.image}" class="img-fluid" alt="${course.title}"></div>
+                    <div class="course__image"><img src="${course.image}" class="img-fluid" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';"></div>
                     <div class="p-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <span class="badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill">${course.category}</span>
