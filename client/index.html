@@ -136,7 +136,10 @@
                     container.innerHTML = courses.slice(0, 3).map(course => `
                         <div class="col-md-6 col-lg-4">
                             <article class="course glass-card overflow-hidden">
-                                <div class="course__image"><img src="${course.image}" class="img-fluid" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';"></div>
+                                <div class="course__image video-thumbnail">
+                                    <img src="${course.thumbnailUrl || course.image}" class="img-fluid" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';">
+                                    ${course.youtubeId ? '<span class="video-badge"><i class="uil uil-youtube"></i> Video lesson</span>' : ''}
+                                </div>
                                 <div class="p-4">
                                     <h5 class="fw-bold mb-3">${course.title}</h5>
                                     <p class="small text-muted mb-4">${course.description.substring(0, 80)}...</p>
@@ -161,7 +164,7 @@
                     <div class="col-md-6 col-lg-4">
                         <article class="course glass-card shadow-sm">
                             <div class="course__image position-relative">
-                                <img src="${course.image}" class="img-fluid" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';">
+                                <img src="${course.thumbnailUrl || course.image}" class="img-fluid" alt="${course.title}" onerror="this.onerror=null;this.src='images/digitalmarketing.png';">
                                 <span class="badge bg-danger position-absolute top-0 end-0 m-3"><i class="uil uil-fire"></i> Trending</span>
                             </div>
                             <div class="p-4">

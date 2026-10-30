@@ -111,7 +111,12 @@
             const lesson = currentCourse.lessons[index];
             renderLessons();
             document.getElementById('lesson-title').textContent = lesson.title;
-            document.getElementById('lesson-content').innerHTML = `<p class="lead">${lesson.content}</p>`;
+            const videoUrl = lesson.videoId
+                ? `https://www.youtube-nocookie.com/embed/${lesson.videoId}`
+                : (currentCourse.embedUrl && index === 0 ? currentCourse.embedUrl : null);
+            document.getElementById('lesson-content').innerHTML = videoUrl
+                ? `<div class="video-frame mb-4"><iframe src="${videoUrl}" title="${lesson.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div><p class="lead">${lesson.content}</p>`
+                : `<p class="lead">${lesson.content}</p>`;
             document.getElementById('prev-btn').disabled = index === 0;
             document.getElementById('next-btn').disabled = index === currentCourse.lessons.length - 1;
             document.getElementById('complete-btn').style.display = completedLessons.includes(lesson.id) ? 'none' : 'inline-block';

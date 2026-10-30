@@ -1,11 +1,22 @@
 const { readDB, writeDB } = require('../models/db');
 const indexContent = require('../../index_content');
 
+const withVideoMetadata = (course) => {
+    if (!course.youtubeId) return course;
+
+    return {
+        ...course,
+        videoUrl: `https://www.youtube.com/watch?v=${course.youtubeId}`,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${course.youtubeId}`,
+        thumbnailUrl: `https://i.ytimg.com/vi/${course.youtubeId}/hqdefault.jpg`
+    };
+};
+
 exports.getCourseById = (req, res) => {
     const db = readDB();
     const course = db.courses.find(c => c.id === parseInt(req.params.id));
     if (!course) return res.status(404).json({ message: 'Course not found' });
-    res.json(course);
+    res.json(withVideoMetadata(course));
 };
 
 exports.getAllCourses = (req, res) => {
@@ -32,7 +43,7 @@ exports.getAllCourses = (req, res) => {
         }
     }
 
-    res.json(courses);
+    res.json(courses.map(withVideoMetadata));
 };
 
 exports.enroll = (req, res) => {
@@ -57,19 +68,23 @@ exports.enroll = (req, res) => {
 exports.getMyCourses = (req, res) => {
     const db = readDB();
     const userEnrollments = db.enrollments.filter(e => e.userId === req.user.id);
-    const enrolledCourses = db.courses.filter(c => userEnrollments.find(e => e.courseId === c.id));
+    const enrolledCourses = db.courses
+        .filter(c => userEnrollments.find(e => e.courseId === c.id))
+        .map(withVideoMetadata);
     res.json(enrolledCourses);
 };
 
 // Teacher management
 exports.getTeacherCourses = (req, res) => {
     const db = readDB();
-    const courses = db.courses.filter(c => c.instructorId === req.user.id);
+    const courses = db.courses
+        .filter(c => c.instructorId === req.user.id)
+        .map(withVideoMetadata);
     res.json(courses);
 };
 
 exports.createCourse = (req, res) => {
-    const { title, description, image, category, visibility, lessons } = req.body;
+    const { title, description, image, category, visibility, lessons, youtubeId } = req.body;
     const db = readDB();
 
     const newCourse = {
@@ -77,6 +92,7 @@ exports.createCourse = (req, res) => {
         title,
         description,
         image: image || 'https://via.placeholder.com/400x300?text=Course',
+        youtubeId: youtubeId || '',
         category: category || 'General',
         createdAt: new Date().toISOString(),
         popularity: 0,

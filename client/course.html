@@ -41,6 +41,17 @@
         <button class="btn btn-primary" id="enroll-btn" style="margin-top: 2rem;">Enroll Now</button>
       </div>
     </div>
+    <div class="container" id="video-section" style="display:none; margin-top: 3rem;">
+      <div class="glass-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h2 class="m-0">Selected video lesson</h2>
+          <a id="youtube-link" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+        </div>
+        <div class="video-frame">
+          <iframe id="course-video" title="Course video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -66,6 +77,12 @@
             document.getElementById('course-description').textContent = course.description;
             document.getElementById('full-description').textContent = course.description + " This course offers a deep dive into " + course.category + " principles with a focus on real-world applications.";
             document.getElementById('course-img').src = course.image;
+            if (course.youtubeId) {
+                document.getElementById('course-img').src = course.thumbnailUrl;
+                document.getElementById('course-video').src = course.embedUrl;
+                document.getElementById('youtube-link').href = course.videoUrl;
+                document.getElementById('video-section').style.display = 'block';
+            }
 
             // Render Curriculum
             if (course.lessons) {

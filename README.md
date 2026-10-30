@@ -16,6 +16,7 @@ Tutorify is a high-engagement, full-stack educational ecosystem that combines th
   - **Studio Wizard**: A multi-step upload flow for teachers (Metadata -> Thumbnail -> Curriculum -> Visibility).
   - **Social Interaction**: Real-time likes and comments on every lesson.
   - **Trending Feed**: Discover the most popular and recommended courses on the homepage.
+  - **Curated YouTube lessons**: Selected videos are embedded into courses with YouTube-hosted thumbnails and privacy-enhanced playback.
 
 - **📚 Professional Learning**:
   - **Course Player**: A distraction-free environment for navigating multi-lesson courses.
@@ -75,6 +76,10 @@ npm start
 The application will be available at `http://localhost:3000`.
 
 > **Note**: Do not open `.html` files directly in your browser. They require the backend server to handle API requests and security.
+
+### Adding a curated YouTube lesson
+
+Add a valid YouTube video ID to a course as `youtubeId`. Tutorify derives the thumbnail, watch URL, and privacy-enhanced embed URL automatically. Videos are embedded from YouTube; the platform does not download or redistribute them.
 
 ---
 
