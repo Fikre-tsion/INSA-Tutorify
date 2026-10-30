@@ -6,22 +6,24 @@ const { hasRole } = require('../middleware/roleCheck');
 
 // Public routes
 router.get('/', courseController.getAllCourses);
-router.get('/:id', courseController.getCourseById);
 router.get('/:id/reviews', courseController.getReviews);
 
 // Student routes
 router.get('/my-courses', authenticateToken, courseController.getMyCourses);
 router.post('/enroll', authenticateToken, courseController.enroll);
-router.get('/:id/progress', authenticateToken, courseController.getProgress);
-router.post('/:id/progress', authenticateToken, courseController.updateProgress);
-router.post('/:id/reviews', authenticateToken, courseController.addReview);
-router.get('/:id/comments', authenticateToken, courseController.getComments);
 router.post('/comments', authenticateToken, courseController.addComment);
-router.post('/:id/like', authenticateToken, courseController.likeCourse);
 
 // Teacher/Admin routes
 router.get('/teacher', authenticateToken, hasRole(['teacher', 'admin']), courseController.getTeacherCourses);
 router.post('/', authenticateToken, hasRole(['teacher', 'admin']), courseController.createCourse);
+
+// Course-specific routes must follow the named routes above.
+router.get('/:id/progress', authenticateToken, courseController.getProgress);
+router.post('/:id/progress', authenticateToken, courseController.updateProgress);
+router.post('/:id/reviews', authenticateToken, courseController.addReview);
+router.get('/:id/comments', authenticateToken, courseController.getComments);
+router.post('/:id/like', authenticateToken, courseController.likeCourse);
+router.get('/:id', courseController.getCourseById);
 router.put('/:id', authenticateToken, hasRole(['teacher', 'admin']), courseController.updateCourse);
 router.delete('/:id', authenticateToken, hasRole(['teacher', 'admin']), courseController.deleteCourse);
 
