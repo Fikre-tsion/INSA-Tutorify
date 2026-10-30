@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorify Studio - Upload Course</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        .studio-container { max-width: 900px; margin: 6rem auto; background: var(--color-bg1); border-radius: 1rem; border: 1px solid var(--glass-border); overflow: hidden; display: flex; flex-direction: column; min-height: 600px; }
+        .studio-header { padding: 1.5rem 2rem; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; }
+        .studio-steps { display: flex; padding: 1rem 2rem; background: var(--color-bg2); gap: 2rem; border-bottom: 1px solid var(--glass-border); }
+        .step-label { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-light); font-weight: 600; opacity: 0.5; }
+        .step-label.active { color: var(--color-primary); opacity: 1; border-bottom: 2px solid var(--color-primary); }
+        .studio-content { flex: 1; padding: 2rem; }
+        .studio-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.8rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); background: var(--color-bg2); color: white; }
+        .thumbnail-preview { width: 100%; height: 200px; border: 2px dashed var(--glass-border); border-radius: 1rem; display: flex; align-items: center; justify-content: center; margin-top: 1rem; background-size: cover; background-position: center; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav__container">
+            <a href="index.html"><h4>TUTORIFY STUDIO</h4></a>
+            <ul class="nav__menu">
+                <li><a href="teacher-dashboard.html">Back to Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="studio-container">
+        <div class="studio-header">
+            <h3>Upload new course</h3>
+            <i class="uil uil-multiply" style="cursor:pointer" onclick="window.location.href='teacher-dashboard.html'"></i>
+        </div>
+
+        <div class="studio-steps">
+            <div class="step-label active" id="lab-1">1. Details</div>
+            <div class="step-label" id="lab-2">2. Thumbnail</div>
+            <div class="step-label" id="lab-3">3. Curriculum</div>
+            <div class="step-label" id="lab-4">4. Visibility</div>
+        </div>
+
+        <div class="studio-content">
+            <!-- Step 1: Details -->
+            <div class="step-pane" id="pane-1">
+                <div class="form-group">
+                    <label>Title (required)</label>
+                    <input type="text" id="title" placeholder="Add a title that describes your course">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="description" rows="5" placeholder="Tell viewers about your course"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="category">
+                        <option value="Programming">Programming</option>
+                        <option value="Design">Design</option>
+                        <option value="Business">Business</option>
+                        <option value="Technology">Technology</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 2: Thumbnail -->
+            <div class="step-pane hidden" id="pane-2">
+                <p>Select or upload a picture that shows what's in your course. A good thumbnail stands out and draws viewers' attention.</p>
+                <div class="form-group">
+                    <label>Thumbnail URL</label>
+                    <input type="text" id="image" placeholder="https://unsplash.com/..." oninput="updateThumbPreview(this.value)">
+                </div>
+                <div class="thumbnail-preview" id="thumb-preview">
+                    <i class="uil uil-image-upload" style="font-size: 3rem; opacity: 0.3;"></i>
+                </div>
+            </div>
+
+            <!-- Step 3: Curriculum -->
+            <div class="step-pane hidden" id="pane-3">
+                <p>Add lessons to your course. These are the building blocks of your curriculum.</p>
+                <div id="lessons-list">
+                    <!-- Lessons will be added here -->
+                </div>
+                <button class="btn" style="margin-top: 1rem;" onclick="addLessonRow()"><i class="uil uil-plus"></i> Add Lesson</button>
+            </div>
+
+            <!-- Step 4: Visibility -->
+            <div class="step-pane hidden" id="pane-4">
+                <p>Choose when to publish and who can see your course.</p>
+                <div class="form-group">
+                    <label><input type="radio" name="visibility" value="public" checked> Public</label>
+                    <small>Everyone can see and enroll in your course.</small>
+                </div>
+                <div class="form-group">
+                    <label><input type="radio" name="visibility" value="unlisted"> Unlisted</label>
+                    <small>Anyone with the course link can see it.</small>
+                </div>
+                <div class="form-group" style="opacity: 0.5;">
+                    <label><input type="radio" name="visibility" value="private" disabled> Private (Pro Feature)</label>
+                    <small>Only you and people you choose can see it.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="studio-footer">
+            <button class="btn" id="prev-btn" style="visibility: hidden;" onclick="changePane(-1)">Back</button>
+            <button class="btn btn-primary" id="next-btn" onclick="changePane(1)">Next</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        let currentPane = 1;
+        const totalPanes = 4;
+        let lessons = [{ id: 1, title: 'Introduction', content: '', type: 'text' }];
+
+        function updateThumbPreview(url) {
+            const preview = document.getElementById('thumb-preview');
+            if (url) {
+                preview.style.backgroundImage = `url(${url})`;
+                preview.innerHTML = '';
+            } else {
+                preview.style.backgroundImage = '';
+                preview.innerHTML = '<i class="uil uil-image-upload" style="font-size: 3rem; opacity: 0.3;"></i>';
+            }
+        }
+
+        function addLessonRow() {
+            const id = lessons.length + 1;
+            lessons.push({ id, title: '', content: '', type: 'text' });
+            renderLessons();
+        }
+
+        function renderLessons() {
+            const container = document.getElementById('lessons-list');
+            container.innerHTML = lessons.map((l, i) => `
+                <div class="form-group" style="background: var(--color-bg2); padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem; border: 1px solid var(--glass-border);">
+                    <label>Lesson ${i+1} Title</label>
+                    <input type="text" value="${l.title}" oninput="lessons[${i}].title = this.value">
+                    <label style="margin-top: 0.5rem;">Content</label>
+                    <textarea rows="2" oninput="lessons[${i}].content = this.value">${l.content}</textarea>
+                </div>
+            `).join('');
+        }
+
+        function changePane(dir) {
+            if (currentPane === 1 && !document.getElementById('title').value.trim() && dir === 1) {
+                alert('Title is required!');
+                return;
+            }
+
+            currentPane += dir;
+
+            document.querySelectorAll('.step-pane').forEach(p => p.classList.add('hidden'));
+            document.getElementById(`pane-${currentPane}`).classList.remove('hidden');
+
+            document.querySelectorAll('.step-label').forEach(l => l.classList.remove('active'));
+            document.getElementById(`lab-${currentPane}`).classList.add('active');
+
+            document.getElementById('prev-btn').style.visibility = currentPane === 1 ? 'hidden' : 'visible';
+            const nextBtn = document.getElementById('next-btn');
+            if (currentPane === totalPanes) {
+                nextBtn.textContent = 'Publish';
+                nextBtn.onclick = publishCourse;
+            } else {
+                nextBtn.textContent = 'Next';
+                nextBtn.onclick = () => changePane(1);
+            }
+        }
+
+        async function publishCourse() {
+            const body = {
+                title: document.getElementById('title').value,
+                description: document.getElementById('description').value,
+                image: document.getElementById('image').value,
+                category: document.getElementById('category').value,
+                visibility: document.querySelector('input[name="visibility"]:checked').value,
+                lessons: lessons.filter(l => l.title.trim() !== '')
+            };
+
+            try {
+                await api.fetch('/api/courses', {
+                    method: 'POST',
+                    body: JSON.stringify(body)
+                });
+                alert('Course published successfully!');
+                window.location.href = 'teacher-dashboard.html';
+            } catch (error) {
+                alert(error.message);
+            }
+        }
+
+        renderLessons();
+    </script>
+</body>
+</html>

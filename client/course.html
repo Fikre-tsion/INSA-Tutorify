@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details - Tutorify</title>
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="container nav__container">
+      <a href="index.html"><h4>Tutorify</h4></a>
+      <ul class="nav__menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li id="auth-link"><a href="login.html">Login</a></li>
+        <li><button id="theme-toggle"><i class="uil uil-sun"></i></button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header style="height: 40vh;">
+    <div class="container">
+      <h1 id="course-title">Course Details</h1>
+      <p id="course-description">Loading course information...</p>
+    </div>
+  </header>
+
+  <section class="course-details">
+    <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+      <div class="course-image">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="Course" id="course-img">
+      </div>
+      <div class="course-info">
+        <h2>About this course</h2>
+        <p id="full-description">This is a comprehensive course designed to help you master the subject from scratch. You will learn through interactive lessons and hands-on projects.</p>
+        <button class="btn btn-primary" id="enroll-btn" style="margin-top: 2rem;">Enroll Now</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer__copyright">
+      <small>&copy; 2025 <span>Tutorify Tutoring</span>. All Rights Reserved.</small>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const courseId = params.get('id');
+
+    async function loadCourseDetails() {
+        if (!courseId) {
+            window.location.href = 'courses.html';
+            return;
+        }
+
+        try {
+            const course = await api.fetch(`/api/courses/${courseId}`);
+            document.getElementById('course-title').textContent = course.title;
+            document.getElementById('course-description').textContent = course.description;
+            document.getElementById('full-description').textContent = course.description + " This course offers a deep dive into " + course.category + " principles with a focus on real-world applications.";
+            document.getElementById('course-img').src = course.image;
+
+            // Render Curriculum
+            if (course.lessons) {
+                const curriculumDiv = document.createElement('div');
+                curriculumDiv.innerHTML = `
+                    <h3 style="margin-top: 2rem;">Course Curriculum</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        ${course.lessons.map(l => `<li style="padding: 10px; border-bottom: 1px solid var(--glass-border);"><i class="uil uil-play-circle"></i> ${l.title}</li>`).join('')}
+                    </ul>
+                `;
+                document.querySelector('.course-info').appendChild(curriculumDiv);
+            }
+
+            // Check if already enrolled
+            if (localStorage.getItem('token')) {
+                const myCourses = await api.fetch('/api/courses/my-courses');
+                if (myCourses.find(c => c.id == courseId)) {
+                    const btn = document.getElementById('enroll-btn');
+                    btn.textContent = 'Go to Learning';
+                    btn.onclick = () => window.location.href = `course-player.html?id=${courseId}`;
+                }
+            }
+        } catch (e) {
+            console.error(e);
+            window.location.href = 'courses.html';
+        }
+    }
+
+    document.getElementById('enroll-btn').addEventListener('click', async () => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+            return;
+        }
+        try {
+            await api.fetch('/api/courses/enroll', {
+                method: 'POST',
+                body: JSON.stringify({ courseId })
+            });
+            alert('Successfully enrolled!');
+            window.location.href = `course-player.html?id=${courseId}`;
+        } catch (e) {
+            alert(e.message);
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', loadCourseDetails);
+  </script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

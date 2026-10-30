@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Tutorify - Personalized Onboarding</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <style>
+        body { background: var(--color-bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        .onboarding-card { background: var(--color-bg1); padding: 3rem; border-radius: 2rem; border: 1px solid var(--glass-border); max-width: 600px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.4); text-align: center; }
+        .onboarding-card h2 { margin-bottom: 1rem; color: var(--color-primary); }
+        .onboarding-card p { margin-bottom: 2rem; color: var(--color-text-light); }
+        .step { display: none; }
+        .step.active { display: block; }
+        .input-group { margin-bottom: 1.5rem; text-align: left; }
+        .input-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .input-group input, .input-group select { width: 100%; padding: 0.8rem; border-radius: 0.5rem; border: 1px solid var(--glass-border); background: var(--color-bg2); color: white; }
+        .interests-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .interest-item { padding: 0.8rem; border: 1px solid var(--glass-border); border-radius: 0.5rem; cursor: pointer; transition: 0.3s; }
+        .interest-item.selected { background: var(--color-primary); border-color: var(--color-primary); }
+        .footer-btns { display: flex; justify-content: space-between; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="onboarding-card">
+        <div class="step active" id="step-1">
+            <h2>Welcome to the Community!</h2>
+            <p>First, how should we call you? A nickname makes things more personal.</p>
+            <div class="input-group">
+                <label>Your Nickname (Optional)</label>
+                <input type="text" id="nickname" placeholder="e.g. CodeWizard">
+            </div>
+            <div class="footer-btns">
+                <div style="flex:1"></div>
+                <button class="btn btn-primary" onclick="nextStep(2)">Next <i class="uil uil-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <div class="step" id="step-2">
+            <h2>What are your goals?</h2>
+            <p>Tell us what you want to achieve so we can tailor your experience.</p>
+            <div class="interests-grid">
+                <div class="interest-item" onclick="toggleInterest(this, 'Programming')">Programming</div>
+                <div class="interest-item" onclick="toggleInterest(this, 'Design')">Design</div>
+                <div class="interest-item" onclick="toggleInterest(this, 'Business')">Business</div>
+                <div class="interest-item" onclick="toggleInterest(this, 'Marketing')">Marketing</div>
+                <div class="interest-item" onclick="toggleInterest(this, 'Technology')">Technology</div>
+                <div class="interest-item" onclick="toggleInterest(this, 'Personal Growth')">Personal Growth</div>
+            </div>
+            <div class="footer-btns">
+                <button class="btn" onclick="nextStep(1)"><i class="uil uil-arrow-left"></i> Back</button>
+                <button class="btn btn-primary" onclick="finishOnboarding()">Complete <i class="uil uil-check"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        let selectedInterests = [];
+
+        function nextStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+        }
+
+        function toggleInterest(el, interest) {
+            el.classList.toggle('selected');
+            if (el.classList.contains('selected')) {
+                selectedInterests.push(interest);
+            } else {
+                selectedInterests = selectedInterests.filter(i => i !== interest);
+            }
+        }
+
+        async function finishOnboarding() {
+            const nickname = document.getElementById('nickname').value;
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            try {
+                await api.fetch(`/api/users/profile`, {
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        nickname,
+                        interests: selectedInterests,
+                        onboardingStatus: 'completed'
+                    })
+                });
+
+                // Update local user data
+                user.nickname = nickname;
+                user.onboardingStatus = 'completed';
+                localStorage.setItem('user', JSON.stringify(user));
+
+                window.location.href = 'index.html';
+            } catch (error) {
+                alert('Something went wrong. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
